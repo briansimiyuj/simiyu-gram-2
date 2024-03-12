@@ -4,6 +4,7 @@ import Script from './Script'
 import './style.css'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 
 const styles ={
@@ -35,11 +36,15 @@ const theme = extendTheme({ config, styles })
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     
-    <ChakraProvider theme={theme}>
+    <Router>
 
-      <Script/>
+        <ChakraProvider theme={theme}>
 
-    </ChakraProvider>
+            <Script />
 
-  </React.StrictMode>,
+        </ChakraProvider>
+
+    </Router>
+
+  </React.StrictMode>
 )
