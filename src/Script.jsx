@@ -1,4 +1,6 @@
 import { Button } from '@chakra-ui/react'
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
 
 function Script(){
   
@@ -6,7 +8,11 @@ function Script(){
 
     <div className="container">
 
-      <Button>Hello World</Button>
+      <Routes>
+
+        <Route path="/" element={<Home/>}/>
+
+      </Routes>
 
     </div>
    
