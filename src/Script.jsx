@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Auth from './pages/Auth'
-import PageLayout from './pageLayout/PageLayout'
+import PageLayout from './PageLayout/PageLayout'
 
 function Script(){
   
