@@ -1,5 +1,6 @@
 import { Box, VStack, Input, Button, Flex, Text, Image } from '@chakra-ui/react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import google from '../../img/google.png'
 
 const AuthForm = () =>{
@@ -15,11 +16,23 @@ const AuthForm = () =>{
 
           })
 
+          const navigate = useNavigate()
 
     const handleAuth = () =>{
+
     
-       console.log(inputs)
-    
+        if(!inputs.email || !inputs.password){
+
+            alert('Please enter the credentials')
+            
+            return
+
+        }else{
+
+            
+            navigate("/")
+
+        } 
     }
 
 
