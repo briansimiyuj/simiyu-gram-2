@@ -82,6 +82,29 @@ const AuthForm = () =>{
 
             </Box>
 
+
+
+            <Box border={"1px solid gray"} borderRadius={4} padding={5}>
+
+                <Flex alignItems={"center"} justifyContent={"center"}>
+
+                    <Box mx={2} fontSize={14}>
+
+                        { isSignIn ? "Don't have an account?" : "Already have an account?" }
+
+                    </Box>
+
+
+                    <Box onClick={() => setIsSignIn(!isSignIn)} color={"blue.500"} cursor={"pointer"}>
+
+                        {  isSignIn ? "Sign Up" : "Sign In" }
+
+                    </Box>
+
+                </Flex>
+
+            </Box>
+
         </div>
 
     )
