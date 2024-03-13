@@ -4,7 +4,24 @@ import google from '../../img/google.png'
 
 const AuthForm = () =>{
 
-    const [isSignIn, setIsSignIn] = useState(true)
+    const [isSignIn, setIsSignIn] = useState(true),
+         
+          [inputs, setInputs] = useState({
+
+             email: '',
+             password: '',
+             confirmPassword: ''
+            
+
+          })
+
+
+    const handleAuth = () =>{
+    
+       console.log(inputs)
+    
+    }
+
 
     return(
 
@@ -21,7 +38,8 @@ const AuthForm = () =>{
                         placeholder="Email"
                         fontSize={14}
                         type="email"
-
+                        value={inputs.email}
+                        onChange={e => setInputs({...inputs, email: e.target.value})}
                     />
 
 
@@ -29,6 +47,8 @@ const AuthForm = () =>{
                         placeholder="Password"
                         fontSize={14}
                         type="password"
+                        value={inputs.password}
+                        onChange={e => setInputs({...inputs, password: e.target.value})}
                     />
 
 
@@ -40,13 +60,21 @@ const AuthForm = () =>{
                                 placeholder="Confirm Password"
                                 fontSize={14}
                                 type="password"
+                                value={inputs.confirmPassword}
+                                onChange={e => setInputs({...inputs, confirmPassword: e.target.value})}
                             />
 
                         ): null
 
                     } 
 
-                    <Button w={"full"} colorScheme="blue" size={"sm"} fontSize={14}>
+                    <Button 
+                        w={"full"} 
+                        colorScheme="blue" 
+                        size={"sm"} 
+                        fontSize={14}
+                        onClick={handleAuth}
+                    >
                         
                         {isSignIn ? 'Sign In' : 'Sign up'}
                     
