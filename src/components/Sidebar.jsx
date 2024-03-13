@@ -2,7 +2,7 @@ const Sidebar = () =>{
 
     return(
 
-        <div className="side-bar"></div>
+        <div className="side-bar">side-bar</div>
 
     )
 

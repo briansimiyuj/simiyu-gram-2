@@ -2,12 +2,13 @@ import { Button } from '@chakra-ui/react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Auth from './pages/Auth'
+import PageLayout from './pageLayout/PageLayout'
 
 function Script(){
   
   return(
 
-    <div className="container">
+    <PageLayout>
 
       <Routes>
 
@@ -17,7 +18,7 @@ function Script(){
 
       </Routes>
 
-    </div>
+    </PageLayout>
    
   )
 
