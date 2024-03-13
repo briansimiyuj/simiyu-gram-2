@@ -1,5 +1,6 @@
-import { Box, VStack, Input, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, VStack, Input, Button, Flex, Text, Image } from '@chakra-ui/react'
 import { useState } from 'react'
+import google from '../../img/google.png'
 
 const AuthForm = () =>{
 
@@ -65,6 +66,15 @@ const AuthForm = () =>{
                         <Text mx={1} color={"white"}>OR</Text>
 
                         <Box flex={2} h={1} bg={"gray.400"}/>
+
+                    </Flex>
+
+
+                    <Flex alignItems={"center"} justifyContent={"center"} cursor={"pointer"}>
+
+                        <Image src={google} w={5} alt="Google Logo"/>                        
+
+                        <Text mx={2} color={"blue.500"}>Sign in with Google</Text>
 
                     </Flex>
 
