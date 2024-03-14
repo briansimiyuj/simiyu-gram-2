@@ -2,7 +2,7 @@ import { Flex, Container, Box, Image, VStack } from '@chakra-ui/react'
 import auth from '../../img/auth.png'
 import playstore from '../../img/playstore.png'
 import microsoft from '../../img/microsoft.png'
-import AuthForm from '../components/AuthForm'
+import AuthForm from '../components/AuthForm/AuthForm'
 
 const Auth = () =>{
 

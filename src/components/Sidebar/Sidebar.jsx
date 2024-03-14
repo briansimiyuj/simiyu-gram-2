@@ -1,6 +1,6 @@
 import { Box, Flex, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
-import { InstagramMobileLogo } from '../assets/constants'
+import { InstagramMobileLogo } from '../../assets/constants'
 
 const Sidebar = () =>{
 

@@ -1,7 +1,7 @@
 import { Box, VStack, Input, Button, Flex, Text, Image } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import google from '../../img/google.png'
+import google from '../../../img/google.png'
 
 const AuthForm = () =>{
 
