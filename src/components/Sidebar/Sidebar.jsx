@@ -83,7 +83,6 @@ const Sidebar = () =>{
                     <Flex justifyContent={"space-around"} alignItems={"center"}>
 
                         <InstagramMobileLogo/>
-                        <h1 style={{fontSize:"20px", fontWeight: 700, fontStyle: "italic"}}>SimiyuGram</h1>
 
                     </Flex>
 
