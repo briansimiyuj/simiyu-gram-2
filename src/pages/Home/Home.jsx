@@ -1,5 +1,6 @@
 import { Container, Flex, Box } from '@chakra-ui/react'
-
+import FeedPosts from '../../components/FeedPosts/FeedPosts'
+ 
 const Home = () =>{
 
     return(
@@ -8,7 +9,7 @@ const Home = () =>{
 
             <Flex gap={20}>
 
-                <Box flex={2} py={10} border={"1px solid blue"}>FeedPosts</Box>
+                <Box flex={2} py={10} border={"1px solid blue"}><FeedPosts/></Box>
 
                 <Box 
                     flex={3} 
