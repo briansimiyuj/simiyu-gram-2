@@ -1,5 +1,5 @@
 import { Flex, Box, Text } from '@chakra-ui/react'
-import { NotificationsLogo, UnlikeLogo } from '../../assets/constants'
+import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../../assets/constants'
 import { useState } from'react'
 
 const PostFooter = () =>{
@@ -49,7 +49,28 @@ const PostFooter = () =>{
 
                 </Box>
 
+
+                <Box cursor={"pointer"} fontSize={18}>
+
+                    <CommentLogo/>
+
+                </Box>
+
             </Flex>
+
+
+            <Text fontWeight={600} fontSize={"sm"}>{likes} likes</Text>
+
+
+            <Text fontSize='sm' fontWeight={700}>   
+
+                chrishan.dev{" "}
+
+                <Text as="span" fontWeight={400}>Feeling Good</Text>
+
+                <Text fontSize='sm' color={"gray"}>View all 1,000 comments</Text>
+
+            </Text>
         
         </>
 
