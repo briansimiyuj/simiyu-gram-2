@@ -28,7 +28,7 @@ const PostFooter = () =>{
 
     return(
 
-        <>
+        <Box my={10}>
         
             <Flex
                 alignItems={"center"}
@@ -101,7 +101,7 @@ const PostFooter = () =>{
                 
             </Flex>
         
-        </>
+        </Box>
 
     )
 
