@@ -64,13 +64,25 @@ const FeedPosts = () =>{
 
             }
 
-            <FeedPost img={img1} username="ChrisKen" avatar={img1}/>
-            
-            <FeedPost img={img2} username="BenPol" avatar={img2}/>
+            {
 
-            <FeedPost img={img3} username="LouisJohnson" avatar={img3}/>
+                !isLoading && (
 
-            <FeedPost img={img4} username="Jefferson" avatar={img4}/>
+                    <>
+                    
+                        <FeedPost img={img1} username="ChrisKen" avatar={img1}/>
+                
+                        <FeedPost img={img2} username="BenPol" avatar={img2}/>
+
+                        <FeedPost img={img3} username="LouisJohnson" avatar={img3}/>
+
+                        <FeedPost img={img4} username="Jefferson" avatar={img4}/>
+                    
+                    </>
+
+                )
+
+            }
             
         </Container>
 
