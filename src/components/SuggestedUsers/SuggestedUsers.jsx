@@ -1,4 +1,4 @@
-import { VStack, Flex, Text } from '@chakra-ui/react'
+import { VStack, Flex, Text, Box, Link } from '@chakra-ui/react'
 
 import SuggestedHeader from './SuggestedHeader'
 
@@ -17,6 +17,20 @@ const SuggestedUsers = () =>{
                 <Text fontSize={12} fontWeight={"bold"} _hover={{ color: "gray.400" }} cursor={"pointer"}>See All</Text>
 
             </Flex>
+
+
+            <Box fontSize={12} color={"gray.500"} mt={5} alignSelf={"start"}>
+
+                &copy; 2024 Built By{" "}
+
+                <Link
+                    href="https://github.com/briansimiyuj"
+                    target="_blank"
+                    color={"blue.500"}
+                    fontSize={14}
+                >Brian Simiyu</Link>
+
+            </Box>
 
         </VStack>
 
