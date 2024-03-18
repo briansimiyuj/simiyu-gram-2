@@ -1,4 +1,5 @@
 import { Container, Flex } from '@chakra-ui/react'
+import ProfileHeader from '../../components/Profile/ProfileHeader'
 
 const ProfilePage = () =>{
 
@@ -13,7 +14,7 @@ const ProfilePage = () =>{
                 w={"full"}
                 mx={"auto"}
                 flexDirection={"column"}
-            ></Flex>
+            ><ProfileHeader/></Flex>
 
 
             <Flex
