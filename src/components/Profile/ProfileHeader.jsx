@@ -80,6 +80,16 @@ const ProfileHeader = () =>{
 
                 </Flex>
 
+
+                <Flex alignItems={"center"} gap={4}>
+
+                    <Text fontSize={{ base: "xs", md: "sm" }} fontWeight={"bold"}></Text>
+
+                </Flex>
+
+
+                <Text fontSize={{ base: "xs", md: "sm" }}>A fullstack software developer</Text>
+
             </VStack>
 
         </Flex>
