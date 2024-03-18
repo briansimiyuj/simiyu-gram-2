@@ -14,7 +14,7 @@ const SuggestedUser = ({followers, name, avatar}) =>{
                 <Avatar size={"md"} src={avatar} name={name}/>
 
 
-                <VStack spacing={2}>
+                <VStack spacing={2} alignItems={"start"}>
 
                     <Text fontSize={12} fontWeight={"bold"}>{name}</Text>
 
