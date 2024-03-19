@@ -5,7 +5,7 @@ import PostModal from './PostModal'
 
 const ProfilePost = ({ img }) =>{
 
-    const { onOpen } = useDisclosure()
+    const { onOpen, isOpen, onClose } = useDisclosure()
 
     return(
 
@@ -64,7 +64,7 @@ const ProfilePost = ({ img }) =>{
 
             </GridItem>
 
-            <PostModal/>
+            <PostModal isOpen={isOpen} onClose={onClose}/>
         
         </>
 

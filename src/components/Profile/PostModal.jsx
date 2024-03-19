@@ -1,8 +1,6 @@
-import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, useDisclosure } from "@chakra-ui/react"
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from "@chakra-ui/react"
 
-const PostModal = () =>{
-
-    const { isOpen, onOpen, onClose } = useDisclosure()
+const PostModal = ({ isOpen, onClose }) => {
 
     return(
 
