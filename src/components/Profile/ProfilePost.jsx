@@ -1,4 +1,4 @@
-import { GridItem, Flex, Text } from '@chakra-ui/react'
+import { GridItem, Flex, Text, Image } from '@chakra-ui/react'
 import { AiFillHeart } from 'react-icons/ai'
 import { FaComment } from 'react-icons/fa'
 
@@ -52,6 +52,9 @@ const ProfilePost = ({ img }) =>{
                 </Flex>
 
             </Flex>
+
+
+            <Image src={img} alt='profile post' w={"100%"} h={"100%"} objectFit={"cover"} />
 
         </GridItem>
 
