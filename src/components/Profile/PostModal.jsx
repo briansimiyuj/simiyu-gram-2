@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text } from "@chakra-ui/react"
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text, Divider, VStack } from "@chakra-ui/react"
 import profilepic from "../../../img/profilepic.png"
 import { MdDelete } from "react-icons/md"
 
@@ -55,31 +55,33 @@ const PostModal = ({ isOpen, onClose, img }) => {
 
                                 <Flex alignItems={"center"} justifyContent={"space-between"}>
 
-                                    <Avatar src={profilepic} alt="profile pic" size={"sm"} name="Brian Simiyu"/>
+                                    <Flex gap={4}>
 
-                                    <Text fontSize={12} fontWeight={"bold"}>Brian Simiyu</Text>
+                                        <Avatar src={profilepic} alt="profile pic" size={"sm"} name="Brian Simiyu"/>
+
+                                        <Text fontSize={12} fontWeight={"bold"}>Brian Simiyu</Text>
+
+                                    </Flex>
+
+
+                                    <Box 
+                                        _hover={{bg: "whiteAlpha.300", color: "red.600"}}
+                                        borderRadius={4}
+                                        p={1}    
+                                        h={8}
+                                    >
+
+                                        <MdDelete size={20} cursor={"pointer"}/>
+
+                                    </Box>
                                     
                                 </Flex>
 
                             </Flex>
 
-
-                            <Box 
-                                _hover={{bg: "whiteAlpha.300", color: "red.600"}}
-                                borderRadius={4}
-                                p={1}    
-                                h={8}
-                            >
-
-                                <MdDelete size={20} cursor={"pointer"}/>
-
-                            </Box>
-
                         </Flex>
 
                     </ModalBody>
-
-
 
                 </ModalContent>
 
