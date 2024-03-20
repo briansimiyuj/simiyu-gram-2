@@ -1,6 +1,8 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Flex, Box, Image } from "@chakra-ui/react"
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text } from "@chakra-ui/react"
+import profilepic from "../../../img/profilepic.png"
+import { MdDelete } from "react-icons/md"
 
-const PostModal = ({ isOpen, onClose }) => {
+const PostModal = ({ isOpen, onClose, img }) => {
 
     return(
 
@@ -17,19 +19,18 @@ const PostModal = ({ isOpen, onClose }) => {
 
 
                 <ModalContent>
-
-                    <ModalHeader>Modal Title</ModalHeader>
                     
-                    <ModalCloseButton/>
+                    <ModalCloseButton  mt={5}/>
 
 
 
-                    <ModalBody bg={"black"} pb={5}>
+                    <ModalBody bg={"black"} pb={5} pr={55}>
 
                         <Flex
                             gap={4} 
                             w={{ base: "90%", sm: "70%", md: "full" }}
                             mx={"auto"}
+                            mt={5}
                         >
 
                             <Box
@@ -41,6 +42,36 @@ const PostModal = ({ isOpen, onClose }) => {
                             >
 
                                 <Image src={img} alt="Profile post"/>
+
+                            </Box>
+
+
+                            <Flex 
+                                flex={1}
+                                flexDirection={"column"}
+                                px={10}
+                                display={{ base: "none", md: "block" }}
+                            >
+
+                                <Flex alignItems={"center"} justifyContent={"space-between"}>
+
+                                    <Avatar src={profilepic} alt="profile pic" size={"sm"} name="Brian Simiyu"/>
+
+                                    <Text fontSize={12} fontWeight={"bold"}>Brian Simiyu</Text>
+                                    
+                                </Flex>
+
+                            </Flex>
+
+
+                            <Box 
+                                _hover={{bg: "whiteAlpha.300", color: "red.600"}}
+                                borderRadius={4}
+                                p={1}    
+                                h={8}
+                            >
+
+                                <MdDelete size={20} cursor={"pointer"}/>
 
                             </Box>
 
