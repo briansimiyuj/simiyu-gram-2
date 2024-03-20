@@ -1,6 +1,7 @@
 import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text, Divider, VStack } from "@chakra-ui/react"
 import profilepic from "../../../img/profilepic.png"
 import { MdDelete } from "react-icons/md"
+import Comments from "../Comments/Comments"
 
 const PostModal = ({ isOpen, onClose, img }) => {
 
@@ -76,6 +77,40 @@ const PostModal = ({ isOpen, onClose, img }) => {
                                     </Box>
                                     
                                 </Flex>
+                                    
+                                    
+                                <Divider my={4} bg={"gray.500"}/>
+
+
+                                <VStack 
+                                    alignItems={"start"}
+                                    w={"full"}
+                                    maxH={350}
+                                    overflowY={"auto"}
+                                >
+
+                                    <Comments
+                                        createdAt="1d ago"
+                                        username="BrianSimiyu"
+                                        profilePic={profilepic}
+                                        text="Dummy images from unsplash"
+                                    />
+
+                                    <Comments
+                                        createdAt="12h ago"
+                                        username="abrahmov"
+                                        profilePic="https://bit.ly/dan-abramov"
+                                        text="Nice pic"
+                                    />
+
+                                    <Comments
+                                        createdAt="3h ago"
+                                        username="kentdodds"
+                                        profilePic="https://bit.ly/kent-c-dodds"
+                                        text="Good clone dude!"
+                                    />
+
+                                </VStack>
 
                             </Flex>
 
