@@ -2,6 +2,7 @@ import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, B
 import profilepic from "../../../img/profilepic.png"
 import { MdDelete } from "react-icons/md"
 import Comments from "../Comments/Comments"
+import PostFooter from "../FeedPosts/PostFooter"
 
 const PostModal = ({ isOpen, onClose, img }) => {
 
@@ -111,6 +112,12 @@ const PostModal = ({ isOpen, onClose, img }) => {
                                     />
 
                                 </VStack>
+
+
+                            <Divider my={4} bg={"gray.800"}/>
+
+
+                            <PostFooter isProfilePage={true} marginTop={"17rem"}/>
 
                             </Flex>
 
