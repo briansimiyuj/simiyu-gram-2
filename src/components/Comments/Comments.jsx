@@ -1,4 +1,4 @@
-import { Flex, Box, Avatar, Text } from '@chakra-ui/react'
+import { Flex, Avatar, Text } from '@chakra-ui/react'
 
 const Comments = ({ createdAt, text, username, profilePic }) =>{
 
