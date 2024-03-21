@@ -25,7 +25,7 @@ const SuggestedHeader = () =>{
                 color={"blue.400"}
                 style={{ textDecoration: "none" }}
                 cursor={"pointer"}
-            >Logout</Link>
+            >Sign out</Link>
 
         </Flex>
 

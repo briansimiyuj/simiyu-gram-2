@@ -82,16 +82,31 @@ const Sidebar = () =>{
                         justifyContent={{base: "center", md: "start"}}
                     >
 
-                        <BiLogOut/>
+                        
 
-                        <Button
-                            display={{base: "none", md: "block"}}
-                            variant={"ghost"}
-                            _hover={{bg: "transparent"}}
+                        <Link
+                            as={RouterLink}
+                            to={"/auth"}
+                            fontSize={14}
+                            fontWeight={"medium"}
+                            color={"blue.400"}
+                            style={{ textDecoration: "none" }}
+                            cursor={"pointer"}
                         >
 
-                            Logout
-                        </Button>
+                            <Flex alignItems={"center"} gap={2}>
+
+                                <BiLogOut size={25}/>
+
+                                <Button
+                                    display={{base: "none", md: "block"}}
+                                    variant={"ghost"}
+                                    _hover={{bg: "transparent"}}
+                                >Sign Out</Button>
+
+                            </Flex>
+
+                        </Link>
 
                     </Flex>
 
