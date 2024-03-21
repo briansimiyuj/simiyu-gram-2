@@ -30,7 +30,7 @@ const SignUp = () =>{
             
             
             <Input 
-                placeholder="@Username"
+                placeholder="@username"
                 fontSize={14}
                 type="text"
                 value={inputs.username}
