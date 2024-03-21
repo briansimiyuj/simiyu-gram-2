@@ -13,7 +13,7 @@ dist-ssr
 *.local
 /project test
 video.txt
-
+/src/firebase/config.js
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
