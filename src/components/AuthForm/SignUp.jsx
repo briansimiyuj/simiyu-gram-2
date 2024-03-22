@@ -1,6 +1,8 @@
 import { Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { useState } from 'react'
+import { useSignUpWithEmail } from "../../hooks/useSignUpWithEmail"
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () =>{
 
@@ -13,7 +15,9 @@ const SignUp = () =>{
 
     }),
 
-        [showPassword, setShowPassword] = useState(false)
+        [showPassword, setShowPassword] = useState(false),
+        { loading, signup } = useSignUpWithEmail(),
+        navigate = useNavigate()
 
     return(
 
@@ -81,6 +85,11 @@ const SignUp = () =>{
                 colorScheme="blue" 
                 size={"sm"} 
                 fontSize={14}
+                onClick={() => {
+                    signup(inputs)
+                    setTimeout(() => navigate("/"), 5000)
+                }}
+                isLoading={loading}
             >Sign Up</Button>
         
         </>
