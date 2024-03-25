@@ -1,10 +1,14 @@
 import { auth, firestore } from "../firebase/config"
 import { setDoc, doc } from "firebase/firestore"
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth"
+import { useShowToast } from "./useShowToast"
+import { useNavigate } from "react-router-dom"
 
 export const useSignUpWithEmail = () => {
 
-    const [ createUserWithEmailAndPassword, user, loading, error ] = useCreateUserWithEmailAndPassword(auth)
+    const [ createUserWithEmailAndPassword, loading, error ] = useCreateUserWithEmailAndPassword(auth),
+          showToast = useShowToast(),
+          navigate = useNavigate()
 
     const signup = async(inputs) =>{
 
@@ -51,6 +55,8 @@ export const useSignUpWithEmail = () => {
 
                 localStorage.setItem("user-info", JSON.stringify(userDoc))
 
+                setTimeout(() => navigate("/"), 2000)
+                
             }
 
        
