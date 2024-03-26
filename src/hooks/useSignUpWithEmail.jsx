@@ -14,7 +14,7 @@ export const useSignUpWithEmail = () => {
 
         if(!inputs.email || !inputs.password || !inputs.fullName || !inputs.username){
 
-            console.log('Please fill in all the fields')
+            showToast("All fields are required", "Please fill in all fields", "error")
             
             return
 
@@ -26,7 +26,7 @@ export const useSignUpWithEmail = () => {
 
             if(!newUser && error){
 
-                console.log(error)
+                showToast("Error", error.message, "error")
 
                 return
 
@@ -62,7 +62,7 @@ export const useSignUpWithEmail = () => {
        
         }catch(error){
        
-           console.log(error)
+           showToast("Error", error.message, "error")
        
         }
     
