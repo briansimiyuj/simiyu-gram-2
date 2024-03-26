@@ -1,8 +1,10 @@
-import { Flex, Box, Avatar, Link, Text } from '@chakra-ui/react'
-import { Link as RouterLink } from 'react-router-dom' 
+import { Flex, Box, Avatar, Button } from '@chakra-ui/react'
 import profile from '../../../img/profilepic.png'
+import { useLogOut } from "../../hooks/useLogOut"
 
 const SuggestedHeader = () =>{
+
+    const { handleSignOut } = useLogOut()
 
     return(
 
@@ -17,15 +19,16 @@ const SuggestedHeader = () =>{
             </Flex>
 
 
-            <Link
-                as={RouterLink}
-                to={"/auth"}
+            <Button
                 fontSize={14}
                 fontWeight={"medium"}
                 color={"blue.400"}
-                style={{ textDecoration: "none" }}
+                border={"none"}
+                bg={"transparent"}
                 cursor={"pointer"}
-            >Sign out</Link>
+                _hover={{ bg: "transparent" }}
+                onClick={handleSignOut}
+            >Sign out</Button>
 
         </Flex>
 

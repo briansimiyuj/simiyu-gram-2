@@ -3,8 +3,12 @@ import { BiLogOut } from'react-icons/bi'
 import { Link as RouterLink } from 'react-router-dom'
 import { InstagramMobileLogo } from '../../assets/constants'
 import Menu from '../Menu/Menu'
+import { useLogOut } from '../../hooks/useLogOut'
 
 const Sidebar = () =>{
+
+    const { handleSignOut, isSigningOut } = useLogOut()
+
 
     return(
 
@@ -84,9 +88,8 @@ const Sidebar = () =>{
 
                         
 
-                        <Link
-                            as={RouterLink}
-                            to={"/auth"}
+                        <Flex
+                            onClick={handleSignOut}
                             fontSize={14}
                             fontWeight={"medium"}
                             color={"blue.400"}
@@ -102,11 +105,12 @@ const Sidebar = () =>{
                                     display={{base: "none", md: "block"}}
                                     variant={"ghost"}
                                     _hover={{bg: "transparent"}}
+                                    isLoading={isSigningOut}
                                 >Sign Out</Button>
 
                             </Flex>
 
-                        </Link>
+                        </Flex>
 
                     </Flex>
 
