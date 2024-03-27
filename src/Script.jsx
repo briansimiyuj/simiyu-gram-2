@@ -20,7 +20,7 @@ function Script(){
 
         <Route path="/auth" element={ !authUser ? <Auth/> : <Navigate to="/"/> }/>
 
-        <Route path="/:username" element={ authUser ? <ProfilePage/> : <Navigate to="/auth"/> }/>
+        <Route path="/:username" element={ <ProfilePage/> }/>
 
       </Routes>
 
