@@ -1,6 +1,10 @@
 import { Flex, Box, Avatar, Text } from '@chakra-ui/react'
+import img1 from '../../../img/img1.png'
+import { useState } from 'react'
 
-const PostHeader = ({ username, avatar }) =>{
+const PostHeader = () =>{
+
+    const [isFollowed, setIsFollowed] = useState(false)
 
     return(
 
@@ -31,7 +35,12 @@ const PostHeader = ({ username, avatar }) =>{
                     color={"blue.500"}
                     _hover={{color: "white"}}
                     transition={"0.2s ease-in-out"}
-                >Follow</Text>
+                    onClick={() => setIsFollowed(!isFollowed)}
+                >
+                    
+                    { isFollowed ? "Following" : "Follow" }
+
+                </Text>
 
             </Box>
 
