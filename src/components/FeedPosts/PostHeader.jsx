@@ -1,8 +1,7 @@
 import { Flex, Box, Avatar, Text } from '@chakra-ui/react'
-import img1 from '../../../img/img1.png'
 import { useState } from 'react'
 
-const PostHeader = () =>{
+const PostHeader = ({ avatar, username }) =>{
 
     const [isFollowed, setIsFollowed] = useState(false)
 
