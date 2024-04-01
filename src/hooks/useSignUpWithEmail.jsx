@@ -1,5 +1,5 @@
 import { auth, firestore } from "../firebase/config"
-import { setDoc, doc } from "firebase/firestore"
+import { setDoc, doc, collection, getDocs, query, where } from "firebase/firestore"
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth"
 import { useShowToast } from "./useShowToast"
 import { useNavigate } from "react-router-dom"
@@ -17,6 +17,19 @@ export const useSignUpWithEmail = () => {
         if(!inputs.email || !inputs.password || !inputs.fullName || !inputs.username){
 
             showToast("All fields are required", "Please fill in all fields", "error")
+            
+            return
+
+        }
+
+
+        const userRef = collection(firestore, "users"),
+              q = query(userRef, where("username", "==", inputs.username)),
+              querySnapshot = await getDocs(q)
+
+        if(!querySnapshot.empty){
+
+            showToast("Error", "Username already exists", "error")
             
             return
 
