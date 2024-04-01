@@ -3,12 +3,13 @@ import Home from './pages/Home/Home'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import Auth from './pages/Auth'
 import PageLayout from './PageLayout/PageLayout'
-import { useAuthStore } from './store/authStore'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { Navigate } from 'react-router-dom'
+import { auth } from './firebase/config'
 
 function Script(){
 
-  const authUser = useAuthStore(state => state.user)
+  const [authUser] = useAuthState(auth)
   
   return(
 
