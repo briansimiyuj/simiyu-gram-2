@@ -4,13 +4,18 @@ import Sidebar from '../components/Sidebar/Sidebar'
 import { auth } from '../firebase/config'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import NavBar from '../components/NavBar/NavBar'
+import PageLayoutSpinner from './PageLayoutSpinner'
 
 const PageLayout = ({ children }) =>{
 
     const { pathname } = useLocation(),
-          [user, loading, error] = useAuthState(auth),
+          [user, loading] = useAuthState(auth),
           canRenderSidebar = pathname !== '/auth' && user,
-          canRenderNavbar = !user && !loading && pathname !== '/auth'
+          canRenderNavbar = !user && !loading && pathname !== '/auth',
+          checkingUserIsAuthenticated = !user && loading
+
+    
+    if(checkingUserIsAuthenticated) return <PageLayoutSpinner/>
 
 
     return(
