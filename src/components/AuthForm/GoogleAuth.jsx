@@ -1,13 +1,81 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
 import google from '../../../img/google.png'
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
+import { auth, firestore } from '../../firebase/config'
+import { useShowToast } from '../../hooks/useShowToast'
+import { useAuthStore } from '../../store/authStore'
+import { doc, setDoc } from 'firebase/firestore'
 
 const GoogleAuth = ({ prefix }) =>{
+
+    const [signInWithGoogle, error] = useSignInWithGoogle(auth),
+          showToast = useShowToast(),
+          signInUser = useAuthStore(state => state.signin)
+
+
+    const handleGoogleAuth = async() =>{
+        
+        try{
+       
+            const newUser = await signInWithGoogle()
+
+          
+            if(!newUser && error){
+
+                showToast(error.message, "error")
+
+                return
+
+            }
+
+
+            if(newUser){
+
+                const userDoc ={
+
+                    username: newUser.user.email.split("@")[0],
+                    fullName: newUser.user.displayName,
+                    email: newUser.user.email,
+                    createdAt: Date.now(),
+                    userId: newUser.user.uid,
+                    following: [],
+                    followers: [],
+                    likes: [],
+                    photos: [],
+                    bio: '',
+                    website: '',
+                    profilePicURL: newUser.user.photoURL
+
+                }
+
+                await setDoc(doc(firestore, "users", newUser.user.uid), userDoc)
+
+                localStorage.setItem("user-info", JSON.stringify(userDoc))
+
+                signInUser(userDoc)
+
+                setTimeout(() => navigate("/"), 2000)
+
+            }
+       
+        }catch(error){
+       
+           showToast(error.message, "error")
+       
+        }
+
+    }
 
     return(
 
         <>
         
-            <Flex alignItems={"center"} justifyContent={"center"} cursor={"pointer"}>
+            <Flex 
+                alignItems={"center"} 
+                justifyContent={"center"} 
+                cursor={"pointer"}
+                onClick={handleGoogleAuth}
+            >
 
                 <Image src={google} w={5} alt="Google Logo"/>                        
 
