@@ -4,16 +4,12 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { auth, firestore } from '../../firebase/config'
 import { useShowToast } from '../../hooks/useShowToast'
 import { useAuthStore } from '../../store/authStore'
-import { doc, setDoc } from 'firebase/firestore'
-import { useNavigate } from 'react-router-dom'
-
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 const GoogleAuth = ({ prefix }) =>{
 
     const [signInWithGoogle, error] = useSignInWithGoogle(auth),
           showToast = useShowToast(),
-          signInUser = useAuthStore(state => state.signin),
-          navigate = useNavigate()
-
+          signInUser = useAuthStore(state => state.signin)      
 
     const handleGoogleAuth = async() =>{
         
@@ -30,8 +26,19 @@ const GoogleAuth = ({ prefix }) =>{
 
             }
 
+           const userRef = doc(firestore, "users", newUser.user.uid),
+                 userSnap = await getDoc(userRef)
 
-            if(newUser){
+
+            if(userSnap.exists()){
+
+                const userDoc = userSnap.data()
+
+                localStorage.setItem("user-info", JSON.stringify(userDoc))
+
+                signInUser(userDoc)
+
+            }else{
 
                 const userDoc ={
 
@@ -55,8 +62,6 @@ const GoogleAuth = ({ prefix }) =>{
                 localStorage.setItem("user-info", JSON.stringify(userDoc))
 
                 signInUser(userDoc)
-
-                setTimeout(() => navigate("/"), 2000)
 
             }
        
