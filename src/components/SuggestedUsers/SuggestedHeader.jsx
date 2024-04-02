@@ -8,6 +8,8 @@ const SuggestedHeader = () =>{
     const { handleSignOut } = useLogOut(),
           authUser = useAuthStore(state => state.user)  
 
+    if(!authUser) return null
+
     return(
 
         <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>

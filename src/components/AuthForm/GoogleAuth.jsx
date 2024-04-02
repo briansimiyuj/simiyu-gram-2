@@ -5,12 +5,14 @@ import { auth, firestore } from '../../firebase/config'
 import { useShowToast } from '../../hooks/useShowToast'
 import { useAuthStore } from '../../store/authStore'
 import { doc, setDoc } from 'firebase/firestore'
+import { useNavigate } from 'react-router-dom'
 
 const GoogleAuth = ({ prefix }) =>{
 
     const [signInWithGoogle, error] = useSignInWithGoogle(auth),
           showToast = useShowToast(),
-          signInUser = useAuthStore(state => state.signin)
+          signInUser = useAuthStore(state => state.signin),
+          navigate = useNavigate()
 
 
     const handleGoogleAuth = async() =>{
