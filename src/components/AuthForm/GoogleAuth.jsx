@@ -1,7 +1,7 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
 import google from '../../../img/google.png'
 
-const GoogleAuth = () =>{
+const GoogleAuth = ({ prefix }) =>{
 
     return(
 
@@ -11,7 +11,7 @@ const GoogleAuth = () =>{
 
                 <Image src={google} w={5} alt="Google Logo"/>                        
 
-                <Text mx={2} color={"blue.500"}>Sign in with Google</Text>
+                <Text mx={2} color={"blue.500"}>{prefix} with Google</Text>
 
             </Flex>
         
