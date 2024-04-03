@@ -6,3 +6,5 @@ export const profileStore = create((set) => ({
     setUserProfile: (userProfile) => set({ userProfile })
 
 }))
+
+export default profileStore
