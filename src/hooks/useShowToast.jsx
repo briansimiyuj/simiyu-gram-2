@@ -1,10 +1,12 @@
 import { useToast } from '@chakra-ui/react'
+import { useCallback } from 'react'
 
 export const useShowToast = () =>{
 
     const toast = useToast()
 
-    const showToast = (title, description, status) =>{
+    // useCallback is used to prevent the function from being recreated on every render, by caching the function
+    const showToast = useCallback((title, description, status) =>{
     
         toast({
 
@@ -16,7 +18,7 @@ export const useShowToast = () =>{
 
         })
     
-    }
+    }, [toast])
 
     return showToast
 
