@@ -35,12 +35,19 @@ export const useGetUserProfile = (username) => {
             
                 showToast("Error", error.message, "error")
             
+            }finally{
+            
+                setLoading(false)
+            
             }
 
         }
 
         getUserProfile()
     
-    }, [])
+    }, [setUserProfile, showToast, username])
+
+
+    return { loading, userProfile }
 
 }
