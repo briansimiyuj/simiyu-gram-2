@@ -1,7 +1,10 @@
 import { Flex, AvatarGroup, Avatar, VStack, Text, Button } from '@chakra-ui/react'
 import profilepic from '../../../img/profilepic.png'
+import profileStore from '../../store/profileStore'
 
 const ProfileHeader = () =>{
+
+    const { userProfile  } = profileStore()
 
     return(
 
@@ -18,7 +21,7 @@ const ProfileHeader = () =>{
                 mx={"auto"}
             >
 
-                <Avatar src={profilepic} alt="Brian's profile pic" name="Brian"/>
+                <Avatar src={userProfile.profilePicURL} alt={`${userProfile.username}'s profile pic`} name={userProfile.username}/>
 
             </AvatarGroup>
 
@@ -39,7 +42,7 @@ const ProfileHeader = () =>{
                     w={"full"}
                 >
 
-                    <Text fontSize={{ base: "sm", md: "lg" }}>BrianSimiyu</Text>
+                    <Text fontSize={{ base: "sm", md: "lg" }}>{userProfile.username}</Text>
 
                     <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
 
@@ -60,21 +63,21 @@ const ProfileHeader = () =>{
 
                     <Text fontSize={{ base: "xs", md: "sm" }}>
 
-                        <Text as="span" fontWeight={"bold"} mr={1}>12</Text>Posts
+                        <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.photos.length}</Text>Posts
 
                     </Text>
 
                     
                     <Text fontSize={{ base: "xs", md: "sm" }}>
 
-                        <Text as="span" fontWeight={"bold"} mr={1}>132</Text>Followers
+                        <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.followers.length}</Text>Followers
 
                     </Text>
 
 
                     <Text fontSize={{ base: "xs", md: "sm" }}>
 
-                        <Text as="span" fontWeight={"bold"} mr={1}>812</Text>Following
+                        <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.following.length}</Text>Following
 
                     </Text>
 
@@ -83,12 +86,12 @@ const ProfileHeader = () =>{
 
                 <Flex alignItems={"center"} gap={4}>
 
-                    <Text fontSize={{ base: "xs", md: "sm" }} fontWeight={"bold"}></Text>
+                    <Text fontSize={{ base: "xs", md: "sm" }} fontWeight={"bold"}>{userProfile.fullName}</Text>
 
                 </Flex>
 
 
-                <Text fontSize={{ base: "xs", md: "sm" }}>A fullstack software developer</Text>
+                <Text fontSize={{ base: "xs", md: "sm" }}>{userProfile.bio}</Text> 
 
             </VStack>
 
