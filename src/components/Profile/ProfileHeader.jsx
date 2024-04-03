@@ -1,10 +1,15 @@
 import { Flex, AvatarGroup, Avatar, VStack, Text, Button } from '@chakra-ui/react'
-import profilepic from '../../../img/profilepic.png'
+import { useAuthStore } from '../../store/authStore'
 import profileStore from '../../store/profileStore'
+import { useState } from 'react'
 
 const ProfileHeader = () =>{
 
-    const { userProfile  } = profileStore()
+    const { userProfile  } = profileStore(),
+          authUser = useAuthStore(state => state.user),
+          ownProfileAndAuth = authUser && authUser.username === userProfile.username,
+          anProfileAndAuth = authUser && authUser.username !== userProfile.username, 
+          [isFollowing, setIsFollowing] = useState(false)
 
     return(
 
@@ -44,16 +49,47 @@ const ProfileHeader = () =>{
 
                     <Text fontSize={{ base: "sm", md: "lg" }}>{userProfile.username}</Text>
 
-                    <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
+                    {
 
-                        <Button 
-                            bg={"white"}
-                            color={"black"}
-                            _hover={{ bg: "whiteAlpha.800" }}
-                            size={{ base: "xs", md: "sm" }}
-                        >Edit Profile</Button>
+                        ownProfileAndAuth && (
 
-                    </Flex>
+                            <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
+
+                                <Button 
+                                    bg={"white"}
+                                    color={"black"}
+                                    _hover={{ bg: "whiteAlpha.800" }}
+                                    cursor={"pointer"}
+                                    size={{ base: "xs", md: "sm" }}
+                                >Edit Profile</Button>
+
+                            </Flex>
+
+                        )
+
+                    }
+                    
+                    
+                    {
+
+                        anProfileAndAuth && (
+
+                            <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
+
+                                <Button 
+                                    bg={ isFollowing? "#333" : "blue.400" }
+                                    border={ isFollowing ? "1px solid white" : "none" }
+                                    color={"white"}
+                                    size={{ base: "xs", md: "sm" }}
+                                    cursor={"pointer"}
+                                    onClick={() => setIsFollowing(!isFollowing)}
+                                >{isFollowing ? "Unfollow" : "Follow"}</Button>
+
+                            </Flex>
+
+                        )
+
+                    }
 
                 </Flex>
 
