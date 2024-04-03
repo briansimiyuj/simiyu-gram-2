@@ -7,11 +7,19 @@ const NavBar = () => {
 
 		<Container maxW={"container.lg"} my={4}>
 
-			<Flex w={"full"} justifyContent={{ base: "center", sm: "space-between" }} alignItems={"center"}>
+			<Flex 
+				w={"full"} 
+				justifyContent={{ base: "center", sm: "space-between" }} 
+				alignItems={"center"}
+				flexDir={{ base: "column", sm: "row" }}
+			>
 
                 <h1 style={{fontSize:"35px", fontWeight: 900, fontStyle: "italic"}}>SimiyuGram</h1>
 
-				<Flex gap={4}>
+				<Flex 
+					gap={{ base: 4, sm: 2 }}
+					mt={{ base: 5, sm: 15 }}
+				>
 
 					<Link to='/auth'>
 
