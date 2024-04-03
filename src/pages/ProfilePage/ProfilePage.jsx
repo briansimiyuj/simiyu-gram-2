@@ -5,7 +5,7 @@ import ProfilePosts from '../../components/Profile/ProfilePosts'
 import { useParams } from 'react-router-dom'
 import { useGetUserProfile } from '../../hooks/useGetUserProfile'
 import UserNotFound from '../../components/UserNotFound/UserNotFound'
-import ProfileHeaderSkeleton from '../../components/ProfileHeaderSkeleton/ProfileHeaderSkeleton'
+import ProfileHeaderSkeleton from '../../components/Profile/ProfileHeaderSkeleton/ProfileHeaderSkeleton'
 const ProfilePage = () =>{
 
     const { username } = useParams(),
