@@ -2,8 +2,11 @@ import { Box, Flex, Link, Tooltip, Avatar } from '@chakra-ui/react'
 import { AiFillHome } from'react-icons/ai'
 import { CreatePostLogo, NotificationsLogo, SearchLogo } from '../../assets/constants'
 import { Link as RouterLink } from'react-router-dom'
+import { useAuthStore } from '../../store/authStore'
 
 const Menu = ({ column }) =>{
+
+    const authUser = useAuthStore(state => state.user)
 
 
     const sidebarItems =[
@@ -32,7 +35,7 @@ const Menu = ({ column }) =>{
         {
           icon: <Avatar size={"sm"} name='Burak Orkmez' src='/profilepic.png' />,
           text: "Profile",
-          link: "/asaprogrammer",
+          link: `/${authUser.username}`,
         }
     ]      
 
