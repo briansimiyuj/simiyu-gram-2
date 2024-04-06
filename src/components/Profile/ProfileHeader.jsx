@@ -1,15 +1,10 @@
-import { Flex, AvatarGroup, Avatar, VStack, Text, Button } from '@chakra-ui/react'
-import { useAuthStore } from '../../store/authStore'
+import { Flex, AvatarGroup, Avatar, VStack, Text, Button, Link } from '@chakra-ui/react'
+import { LinkIcon } from '@chakra-ui/icons'
 import profileStore from '../../store/profileStore'
-import { useState } from 'react'
 
 const ProfileHeader = () =>{
 
-    const { userProfile  } = profileStore(),
-          authUser = useAuthStore(state => state.user),
-          ownProfileAndAuth = authUser && authUser.username === userProfile.username,
-          anProfileAndAuth = authUser && authUser.username !== userProfile.username, 
-          [isFollowing, setIsFollowing] = useState(false)
+    const { userProfile } = profileStore()
 
     return(
 
@@ -49,48 +44,18 @@ const ProfileHeader = () =>{
 
                     <Text fontSize={{ base: "sm", md: "lg" }}>{userProfile.username}</Text>
 
-                    {
+                    <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
 
-                        ownProfileAndAuth && (
+                        <Button 
+                            bg={"white"}
+                            color={"black"}
+                            _hover={{ bg: "whiteAlpha.800" }}
+                            cursor={"pointer"}
+                            size={{ base: "xs", md: "sm" }}
+                        >Edit Profile</Button>
 
-                            <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
-
-                                <Button 
-                                    bg={"white"}
-                                    color={"black"}
-                                    _hover={{ bg: "whiteAlpha.800" }}
-                                    cursor={"pointer"}
-                                    size={{ base: "xs", md: "sm" }}
-                                >Edit Profile</Button>
-
-                            </Flex>
-
-                        )
-
-                    }
+                    </Flex>
                     
-                    
-                    {
-
-                        anProfileAndAuth && (
-
-                            <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
-
-                                <Button 
-                                    bg={ isFollowing? "#333" : "blue.400" }
-                                    border={ isFollowing ? "1px solid white" : "none" }
-                                    color={"white"}
-                                    size={{ base: "xs", md: "sm" }}
-                                    cursor={"pointer"}
-                                    onClick={() => setIsFollowing(!isFollowing)}
-                                >{isFollowing ? "Unfollow" : "Follow"}</Button>
-
-                            </Flex>
-
-                        )
-
-                    }
-
                 </Flex>
 
 
@@ -128,6 +93,36 @@ const ProfileHeader = () =>{
 
 
                 <Text fontSize={{ base: "xs", md: "sm" }}>{userProfile.bio}</Text> 
+                
+
+                {
+
+                    userProfile.website && (
+                        
+                        <Text fontSize={{ base: "xs", md: "sm" }} mt={19}>
+
+                            <LinkIcon/>
+
+                            <Link 
+                                href={userProfile.website}
+                                isExternal 
+                                color={"blue.500"} 
+                                ml={3}
+                            >
+
+                                {
+
+                                    userProfile.website.replace(/https?:\/\//, "www.")
+
+                                }
+
+                            </Link>
+
+                        </Text>
+
+                    )
+
+                }   
 
             </VStack>
 
