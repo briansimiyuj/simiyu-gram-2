@@ -1,6 +1,7 @@
 import { Avatar, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useAuthStore } from "../../store/authStore";
+import { usePreviewImage } from "../../hooks/usePreviewImage";
 
 const EditProfile = ({ isOpen, onClose }) =>{
 
@@ -14,7 +15,8 @@ const EditProfile = ({ isOpen, onClose }) =>{
 	})
 
 	const authUser = useAuthStore(state => state.user),
-		  fileRef = useRef(null)
+		  fileRef = useRef(null),
+		  { selectedFile,  handleImageChange } = usePreviewImage()
 
 
 	const handleEditProfile = () =>{
@@ -52,7 +54,7 @@ const EditProfile = ({ isOpen, onClose }) =>{
 
 										<Center>
 
-											<Avatar size='xl' src={""} border={"2px solid white "}/>
+											<Avatar size='xl' src={selectedFile || authUser.profilePicURL} border={"2px solid white"}/>
 
 										</Center>
 
@@ -66,6 +68,7 @@ const EditProfile = ({ isOpen, onClose }) =>{
 											type="file"
 											hidden
 											ref={fileRef}
+											onChange={handleImageChange}
 										/>
 
 									</Stack>
