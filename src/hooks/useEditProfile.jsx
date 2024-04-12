@@ -3,7 +3,7 @@ import { useAuthStore } from "../store/authStore"
 import { useShowToast } from "./useShowToast"
 import { getDownloadURL, ref, uploadString } from "firebase/storage"
 import { storage, firestore } from "../firebase/config"
-import { doc, updateDoc } from "firebase/firestore"
+import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import profileStore from "../store/profileStore"
 
 export const useEditProfile = () =>{
@@ -20,6 +20,18 @@ export const useEditProfile = () =>{
       if(isUpdating || !authUser) return
 
       setIsUpdating(true)
+
+      const userRef = collection(firestore, "users"),
+              q = query(userRef, where("username", "==", inputs.username)),
+              querySnapshot = await getDocs(q)
+
+        if(!querySnapshot.empty){
+
+            showToast("Error", "Please choose a different username", "error")
+            
+            return
+
+        }
 
       const storageRef = ref(storage, `profilePics/${authUser.userId}`),
             userDocRef = doc(firestore, "users", authUser.userId)
