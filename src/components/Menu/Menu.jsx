@@ -35,7 +35,7 @@ const Menu = ({ column }) =>{
         {
           icon: <Avatar size={"sm"} name='Burak Orkmez' src='/profilepic.png' />,
           text: "Profile",
-          link: `/${authUser.username}`,
+          link: `/${authUser?.username}`,
         }
     ]      
 
