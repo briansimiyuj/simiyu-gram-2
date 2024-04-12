@@ -21,8 +21,8 @@ export const useEditProfile = () =>{
 
       setIsUpdating(true)
 
-      const storageRef = ref(storage, `profilePics/${authUser.uid}`),
-            userDocRef = doc(firestore, "users", authUser.uid)
+      const storageRef = ref(storage, `profilePics/${authUser.userId}`),
+            userDocRef = doc(firestore, "users", authUser.userId)
 
       let URL
 

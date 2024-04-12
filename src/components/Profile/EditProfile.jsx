@@ -2,6 +2,8 @@ import { Avatar, Button, Center, Flex, FormControl, FormLabel, Heading, Input, M
 import { useRef, useState } from "react";
 import { useAuthStore } from "../../store/authStore";
 import { usePreviewImage } from "../../hooks/usePreviewImage";
+import { useEditProfile } from "../../hooks/useEditProfile";
+import { useShowToast } from "../../hooks/useShowToast";
 
 const EditProfile = ({ isOpen, onClose }) =>{
 
@@ -16,12 +18,25 @@ const EditProfile = ({ isOpen, onClose }) =>{
 
 	const authUser = useAuthStore(state => state.user),
 		  fileRef = useRef(null),
-		  { selectedFile,  handleImageChange } = usePreviewImage()
+		  showToast = useShowToast(),
+		  { selectedFile, setSelectedFile, handleImageChange } = usePreviewImage(),
+		  { editProfile, isUpdating } = useEditProfile()
 
+	const handleEditProfile = async() =>{
 
-	const handleEditProfile = () =>{
+		try{
+	
+			await editProfile(inputs, selectedFile)
 
-		console.log(inputs)
+			setSelectedFile(null)
+
+			onClose()
+	
+		}catch(error){
+	
+			showToast("Error", error.message, "error")
+	
+		}
 
 	}
 
@@ -159,6 +174,7 @@ const EditProfile = ({ isOpen, onClose }) =>{
 										w='full'
 										_hover={{ bg: "blue.500" }}
 										onClick={handleEditProfile}
+										isLoading={isUpdating}
 									>Submit</Button>
 
 								</Stack>
