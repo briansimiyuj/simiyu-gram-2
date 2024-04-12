@@ -3,16 +3,17 @@ import { LinkIcon } from '@chakra-ui/icons'
 import { useAuthStore } from '../../store/authStore'
 import { useState } from 'react'
 import profileStore from '../../store/profileStore'
-import EditProfile from './EditProfile'
+import { useFollowUser } from '../../hooks/useFollowUser'
 
 const ProfileHeader = () =>{
 
-    const { userProfile   } = profileStore(),
+    const { userProfile } = profileStore(),
           { isOpen, onOpen, onClose } = useDisclosure(),
           authUser = useAuthStore(state => state.user),
           ownProfileAndAuth = authUser && authUser.username === userProfile.username,
           anProfileAndAuth = authUser && authUser.username !== userProfile.username, 
-          [isFollowing, setIsFollowing] = useState(false)
+          [isFollowing, setIsFollowing] = useState(false),
+          { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(userProfile.userId)
 
     return(
 
@@ -81,13 +82,17 @@ const ProfileHeader = () =>{
                             <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
 
                                 <Button 
-                                    bg={ isFollowing? "#333" : "blue.400" }
-                                    _hover={{ border: isFollowing ? "1px solid white" : "none" }}
+                                    bg={ isFollowingUser? "#333" : "blue.400" }
+                                    _hover={{ border: isFollowingUser ? "1px solid white" : "none" }}
                                     color={"white"}
                                     size={{ base: "xs", md: "sm" }}
                                     cursor={"pointer"}
-                                    onClick={() => setIsFollowing(!isFollowing)}
-                                >{isFollowing ? "Following" : "Follow"}</Button>
+                                    isLoading={isUpdating}
+                                    onClick={() => {
+                                        setIsFollowing(!isFollowing)
+                                        handleFollowUser()
+                                    }}
+                                >{isFollowingUser ? "Following" : "Follow"}</Button>
 
                             </Flex>
 
