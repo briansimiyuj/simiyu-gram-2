@@ -2,8 +2,9 @@ import { Flex, AvatarGroup, Avatar, VStack, Text, Button, Link, useDisclosure } 
 import { LinkIcon } from '@chakra-ui/icons'
 import { useAuthStore } from '../../store/authStore'
 import { useState } from 'react'
-import profileStore from '../../store/profileStore'
 import { useFollowUser } from '../../hooks/useFollowUser'
+import profileStore from '../../store/profileStore'
+import EditProfile from './EditProfile'
 
 const ProfileHeader = () =>{
 
