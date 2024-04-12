@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useAuthStore } from "../store/authStore"
 import profileStore from "../store/profileStore"
 import { useShowToast } from "./useShowToast"
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore"
+import { firestore } from "../firebase/config"
 
 export const useFollowUser = (userID) =>{
 
@@ -90,8 +92,6 @@ export const useFollowUser = (userID) =>{
 
             }
 
-<<<<<<< HEAD
-=======
 
             if(isFollowingUser){
 
@@ -148,7 +148,6 @@ export const useFollowUser = (userID) =>{
 
             }
 
->>>>>>> ae9046b (Follow user hook 1 bug)
         
         }catch(error){
         
@@ -157,7 +156,7 @@ export const useFollowUser = (userID) =>{
         }finally{
         
             setIsUpdating(false)
-            
+
         }
         
     }
