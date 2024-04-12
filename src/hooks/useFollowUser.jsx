@@ -16,7 +16,7 @@ export const useFollowUser = (userID) =>{
 
     const handleFollowUser = async() =>{
 
-        setIsUpdating(false)
+        setIsUpdating(true)
 
         try{
         
