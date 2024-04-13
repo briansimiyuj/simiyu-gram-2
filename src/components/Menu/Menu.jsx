@@ -6,84 +6,84 @@ import { useAuthStore } from '../../store/authStore'
 
 const Menu = ({ column }) =>{
 
-    const authUser = useAuthStore(state => state.user)
+  const authUser = useAuthStore(state => state.user)
 
+  const sidebarItems =[
 
-    const sidebarItems =[
+    {
+      icon: <AiFillHome size={25}/>,
+      text: "Home",
+      link: "/",
+    },
 
-        {
-          icon: <AiFillHome size={25}/>,
-          text: "Home",
-          link: "/",
-        },
-    
-        {
-          icon: <SearchLogo/>,
-          text: "Search",
-        },
-    
-        {
-          icon: <NotificationsLogo/>,
-          text: "Notifications",
-        },
-    
-        {
-          icon: <CreatePostLogo/>,
-          text: "Create",
-        },
-    
-        {
-          icon: <Avatar size={"sm"} name='Burak Orkmez' src='/profilepic.png' />,
-          text: "Profile",
-          link: `/${authUser?.username}`,
-        }
-    ]      
+    {
+      icon: <SearchLogo/>,
+      text: "Search",
+    },
 
-    return(
+    {
+      icon: <NotificationsLogo/>,
+      text: "Notifications",
+    },
 
-        <Flex direction={column} gap={5} cursor={"pointer"}>
+    {
+      icon: <CreatePostLogo/>,
+      text: "Create",
+    },
 
-            {
+    {
+      icon: <Avatar size={"sm"} name={authUser?.username} src={authUser?.profilePicURL}/>,
+      text: "Profile",
+      link: `/${authUser?.username}`,
+    }
 
-                sidebarItems.map((item, index) => (
+  ]      
 
-                    <Tooltip
-                        hasArrow 
-                        label={item.text}
-                        placement="right"
-                        key={index}
-                        openDelay={500}
-                        ml={1}
-                        display={{base: "block", md: "none"}}
-                    >
+  return(
 
-                        <Link
-                            to={item.link || null}
-                            display={"flex"}
-                            as={RouterLink}
-                            alignItems={"center"}
-                            gap={4}
-                            _hover={{bg: "whiteAlpha.400"}}
-                            borderRadius={6}
-                            p={2} 
-                            w={{base: 10, md: "full"}}
-                        >
+    <Flex direction={column} gap={5} cursor={"pointer"}>
 
-                            {item.icon}
+      {
 
-                            <Box display={{base: "none", md: "block"}}>{item.text}</Box>
-                        
-                        </Link>
+        sidebarItems.map((item, index) => (
 
-                    </Tooltip>
+          <Tooltip
+              hasArrow 
+              label={item.text}
+              placement="right"
+              key={index}
+              openDelay={500}
+              ml={1}
+              display={{base: "block", md: "none"}}
+          >
 
-                ))
+            <Link
+                to={item.link || null}
+                display={"flex"}
+                as={RouterLink}
+                alignItems={"center"}
+                gap={4}
+                _hover={{bg: "whiteAlpha.400"}}
+                borderRadius={6}
+                p={2} 
+                w={{base: 10, md: "full"}}
+            >
 
-            }
+              {item.icon}
 
-        </Flex>
+              <Box display={{base: "none", md: "block"}}>{item.text}</Box>
+            
+            </Link>
 
-    )
+          </Tooltip>
+
+        ))
+
+      }
+
+    </Flex>
+
+  )
 
 }
 
