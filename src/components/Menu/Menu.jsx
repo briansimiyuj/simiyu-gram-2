@@ -3,6 +3,7 @@ import Home from './Home'
 import Search from './Search'
 import Notifications from './Notification'
 import CreatePost from './CreatePost'
+import ProfileLink from './ProfileLink'
 
 const Menu = ({ column }) =>{
 
@@ -17,6 +18,8 @@ const Menu = ({ column }) =>{
       <Notifications/>
 
       <CreatePost/>
+
+      <ProfileLink/>
 
     </Flex>
 
