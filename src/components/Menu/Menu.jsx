@@ -1,6 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import Home from './Home'
 import Search from './Search'
+import Notifications from './Notification'
 
 const Menu = ({ column }) =>{
 
@@ -11,6 +12,8 @@ const Menu = ({ column }) =>{
       <Home/>
 
       <Search/>
+
+      <Notifications/>
 
     </Flex>
 
