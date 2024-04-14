@@ -18,7 +18,7 @@ const ProfileLink = () =>{
         >
 
             <Link
-                to={`/${authUser.username}`}
+                to={`/${authUser?.username}`}
                 display="flex"
                 as={RouterLink}
                 alignItems="center"
@@ -31,7 +31,7 @@ const ProfileLink = () =>{
                 cursor="pointer"
             >
 
-                <Avatar src={authUser.profilePicURL} alt={`${authUser.username}'s profile pic`} name={authUser.username} size="sm"/>
+                <Avatar src={authUser?.profilePicURL} alt={`${authUser?.username}'s profile pic`} name={authUser?.username} size="sm"/>
 
                 <Text display={{ base: "none", md: "block" }}>Profile</Text>
 
