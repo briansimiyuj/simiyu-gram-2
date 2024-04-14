@@ -18,7 +18,7 @@ const ProfileLink = () =>{
         >
 
             <Link
-                to={`/profile/${authUser.username}`}
+                to={`/${authUser.username}`}
                 display="flex"
                 as={RouterLink}
                 alignItems="center"
