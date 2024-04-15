@@ -18,8 +18,8 @@ const Search = () =>{
        searchUser(searchRef.current.value)
 
     }
-    
-    console.log(user)
+
+
 
     return(
 

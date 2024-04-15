@@ -1,9 +1,11 @@
 import { VStack, Flex, Avatar, Text, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 
-const SuggestedUser = ({followers, name, avatar}) =>{
+const SuggestedUser = ({ user }) =>{
 
     const [isFollowed, setIsFollowed] = useState(false)
+
+    console.log(user)
 
     return(
 
@@ -11,14 +13,14 @@ const SuggestedUser = ({followers, name, avatar}) =>{
 
             <Flex alignItems={"center"} gap={2}>
 
-                <Avatar size={"md"} src={avatar} name={name}/>
+                <Avatar size={"md"} src={user?.profilePicURL} name={user?.fullName}/>
 
 
                 <VStack spacing={2} alignItems={"start"}>
 
-                    <Text fontSize={12} fontWeight={"bold"}>{name}</Text>
+                    <Text fontSize={12} fontWeight={"bold"}>{user?.username}</Text>
 
-                    <Text fontSize={11} color={"gray.500"}>{followers} followers</Text>
+                    <Text fontSize={11} color={"gray.500"}>{user?.followers.length} followers</Text>
 
                 </VStack>
 
