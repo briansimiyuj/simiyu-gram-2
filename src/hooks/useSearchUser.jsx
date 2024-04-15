@@ -13,6 +13,8 @@ export const useSearchUser = () =>{
     const searchUser = async (username) =>{
 
         setLoading(true)
+        
+        setUser(null)
 
         try{
         
