@@ -1,11 +1,12 @@
 import { VStack, Flex, Avatar, Text, Button } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useFollowUser } from '../../hooks/useFollowUser'
+import { useAuthStore } from '../../store/authStore'
 
 const SuggestedUser = ({ user }) =>{
 
-    const [isFollowed, setIsFollowed] = useState(false)
+    const { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(user?.userId),
+          authUser = useAuthStore(state => state.user)
 
-    console.log(user)
 
     return(
 
@@ -26,21 +27,31 @@ const SuggestedUser = ({ user }) =>{
 
             </Flex>
 
-            <Button
-                fontSize={13}
-                bg={"transparent"}
-                p={0}
-                h={"max-content"}
-                fontWeight={"medium"}
-                color={"blue.400"}
-                cursor={"pointer"}
-                _hover={{ color: "white" }}
-                onClick={() => setIsFollowed(!isFollowed)}
-            >
+            
+            {
 
-                {isFollowed ? "Unfollow" : "Follow"}
+                authUser?.userId !== user?.userId && (
 
-            </Button>
+                    <Button
+                        fontSize={13}
+                        bg={"transparent"}
+                        p={0}
+                        h={"max-content"}
+                        fontWeight={"medium"}
+                        color={"blue.400"}
+                        cursor={"pointer"}
+                        _hover={{ color: "white" }}
+                        onClick={handleFollowUser}
+                        isLoading={isUpdating}
+                    >
+
+                        {isFollowingUser ? "Unfollow" : "Follow"}
+
+                    </Button>
+
+                )
+
+            } 
 
         </Flex>
 
