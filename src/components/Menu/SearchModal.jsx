@@ -1,6 +1,6 @@
 import { Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/react"
 
-const SearchModal = ({ isOpen, onClose, loading }) =>{
+const SearchModal = ({ isOpen, onClose, loading, searchRef, handleSearchUser }) =>{
 
     return(
 
@@ -17,13 +17,13 @@ const SearchModal = ({ isOpen, onClose, loading }) =>{
                 
                 <ModalBody pb={6}>
 
-                    <form>
+                    <form onSubmit={handleSearchUser}>
 
                         <FormControl>
                             
                             <FormLabel>Username</FormLabel>
 
-                            <Input type="text" placeholder="@username"/> {/* TODO: Add searchRef (ref={searchRef}) */}
+                            <Input type="text" placeholder="@username" ref={searchRef}/>
                             
                         </FormControl>
 

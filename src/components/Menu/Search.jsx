@@ -2,11 +2,24 @@ import { Flex, Tooltip, Text, useDisclosure } from "@chakra-ui/react"
 import { SearchLogo } from "../../assets/constants"
 import { useSearchUser } from "../../hooks/useSearchUser"
 import SearchModal from "./SearchModal"
+import { useRef } from "react"
 
 const Search = () =>{
 
-    const { loading, searchUser, user } = useSearchUser(),
-          { isOpen, onOpen, onClose } = useDisclosure()
+    const { loading, searchUser, user, setUser } = useSearchUser(),
+          { isOpen, onOpen, onClose } = useDisclosure(),
+          searchRef = useRef(null)
+
+    
+    const handleSearchUser = async(e) =>{
+    
+       e.preventDefault()
+
+       searchUser(searchRef.current.value)
+
+    }
+    
+    console.log(user)
 
     return(
 
@@ -41,7 +54,15 @@ const Search = () =>{
 
             </Tooltip>
 
-            <SearchModal isOpen={isOpen} onClose={onClose} loading={loading}/>
+            <SearchModal 
+                user={user}
+                setUser={setUser}
+                isOpen={isOpen} 
+                onClose={onClose} 
+                loading={loading}
+                searchRef={searchRef}
+                handleSearchUser={handleSearchUser}
+            />
         
         </>
 
