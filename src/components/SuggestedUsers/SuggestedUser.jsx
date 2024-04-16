@@ -2,10 +2,24 @@ import { VStack, Flex, Avatar, Text, Button } from '@chakra-ui/react'
 import { useFollowUser } from '../../hooks/useFollowUser'
 import { useAuthStore } from '../../store/authStore'
 
-const SuggestedUser = ({ user }) =>{
+const SuggestedUser = ({ user, setUser }) =>{
 
     const { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(user?.userId),
           authUser = useAuthStore(state => state.user)
+
+    
+    const onFollowUser = async() =>{
+    
+       await handleFollowUser()
+
+        setUser({ 
+            
+            ...user, 
+            followers: isFollowingUser ? user.followers.filter(userId => userId !== authUser.userId) : [...user.followers, authUser.userId]
+
+        })
+    
+    }
 
 
     return(
@@ -41,7 +55,7 @@ const SuggestedUser = ({ user }) =>{
                         color={"blue.400"}
                         cursor={"pointer"}
                         _hover={{ color: "white" }}
-                        onClick={handleFollowUser}
+                        onClick={onFollowUser}
                         isLoading={isUpdating}
                     >
 
