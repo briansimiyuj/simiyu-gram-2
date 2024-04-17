@@ -1,8 +1,9 @@
-import { VStack, Flex, Avatar, Text, Button } from '@chakra-ui/react'
+import { VStack, Flex, Avatar, Text, Button, Link } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 import { useFollowUser } from '../../hooks/useFollowUser'
 import { useAuthStore } from '../../store/authStore'
 
-const SuggestedUser = ({ user, setUser }) =>{
+const SuggestedUser = ({ user, setUser, onClose }) =>{
 
     const { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(user?.userId),
           authUser = useAuthStore(state => state.user)
@@ -24,22 +25,37 @@ const SuggestedUser = ({ user, setUser }) =>{
 
     return(
 
-        <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
+        <Flex 
+            justifyContent={"space-between"} 
+            alignItems={"center"} 
+            w={"full"} 
+            _hover={{ bg: "whiteAlpha.300" }}
+            paddingInline={2}
+        >
 
-            <Flex alignItems={"center"} gap={2}>
+            <Link 
+                to={`${user?.username}`} 
+                as={RouterLink}
+                _hover={{textDecoration: "none"}}
+                onClick={onClose}
+            >
 
-                <Avatar size={"md"} src={user?.profilePicURL} name={user?.fullName}/>
+                <Flex alignItems={"center"} gap={2}>
+
+                    <Avatar size={"md"} src={user?.profilePicURL} name={user?.fullName}/>
 
 
-                <VStack spacing={2} alignItems={"start"}>
+                    <VStack spacing={2} alignItems={"start"}>
 
-                    <Text fontSize={12} fontWeight={"bold"}>{user?.username}</Text>
+                        <Text fontSize={12} fontWeight={"bold"}>{user?.username}</Text>
 
-                    <Text fontSize={11} color={"gray.500"}>{user?.followers.length} followers</Text>
+                        <Text fontSize={11} color={"gray.500"}>{user?.followers.length} followers</Text>
 
-                </VStack>
+                    </VStack>
 
-            </Flex>
+                </Flex>
+
+            </Link>
 
             
             {

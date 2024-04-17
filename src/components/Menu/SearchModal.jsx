@@ -37,7 +37,7 @@ const SearchModal = ({ isOpen, onClose, searchRef, handleSearchUser, user, setUs
 
                     </form>
 
-                    { user && <SuggestedUser user={user} setUser={setUser}/> }
+                    { user && <SuggestedUser user={user} setUser={setUser} onClose={onClose}/> }
 
                 </ModalBody>
 
