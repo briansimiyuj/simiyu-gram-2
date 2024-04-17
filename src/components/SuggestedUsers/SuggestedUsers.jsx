@@ -1,9 +1,13 @@
-import { VStack, Flex, Text, Box, Link } from '@chakra-ui/react'
-
+import { Box, Flex, Link, Text, VStack } from '@chakra-ui/react'
+import { useGetSuggestedUsers } from '../../hooks/useGetSuggestedUsers'
 import SuggestedHeader from './SuggestedHeader'
 import SuggestedUser from './SuggestedUser'
 
 const SuggestedUsers = () =>{
+
+    const { loading, suggestedUsers } = useGetSuggestedUsers()
+
+    if(loading) return null //TODO
 
     return(
 
@@ -20,12 +24,7 @@ const SuggestedUsers = () =>{
             </Flex>
 
 
-            <SuggestedUser name="Rita Njeri" avatar="https://images.unsplash.com/photo-1593878024377-b38927fc7689?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fEJMQUNLJTIwTEFEWXxlbnwwfHwwfHx8MA%3D%3D" followers={1245}/>     
-
-            <SuggestedUser name="Victoria Muthoni" avatar="https://images.unsplash.com/photo-1633419798943-e6dddd7f5370?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fEJMQUNLJTIwTEFEWXxlbnwwfHwwfHx8MA%3D%3D" followers={134}/>       
-
-            <SuggestedUser name="John Evans" avatar="https://images.unsplash.com/photo-1532136672867-8eff8c949b63?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fEJMQUNLJTIwZ3V5fGVufDB8fDB8fHww" followers={700}/>       
-
+            { suggestedUsers.map(user => <SuggestedUser key={user.userId} user={user}/>) }            
 
 
             <Box fontSize={12} color={"gray.500"} mt={5} alignSelf={"start"}>
