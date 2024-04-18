@@ -1,11 +1,13 @@
-import { Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea } from "@chakra-ui/react"
+import { Box, Button, CloseButton, Flex, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea } from "@chakra-ui/react"
 import { useRef, useState } from "react"
 import { BsFillImageFill } from "react-icons/bs"
+import { usePreviewImage } from "../../../hooks/usePreviewImage"
 
 const CreatePostModal = ({ isOpen, onClose }) =>{
 
 	const [caption, setCaption] = useState(''),
-		  imageRef = useRef(null)
+		  imageRef = useRef(null),
+		  {handleImageChange, selectedFile, setSelectedFile} = usePreviewImage()
 
     return(
 
@@ -23,13 +25,41 @@ const CreatePostModal = ({ isOpen, onClose }) =>{
 
 					<Textarea placeholder="Post caption..." value={caption} onChange={e => setCaption(e.target.value)}/>
 
-					<Input type="file" hidden ref={imageRef}/>
+					<Input type="file" hidden ref={imageRef} onChange={handleImageChange}/>
 
 					<BsFillImageFill
 						onClick={() => imageRef.current.click()}
 						style={{ marginTop: "15px", marginLeft: "5px", cursor: "pointer" }}
 						size={16}
 					/>
+
+
+					{
+
+						selectedFile && (
+
+							<Flex
+							   mt={5}
+							   w={"full"}
+							   justifyContent= "center"
+							   position="relative"
+							   bg={"red"}
+							>
+
+								<Image src={selectedFile} alt="Selected img"/>
+
+								<CloseButton
+									position="absolute"
+									top={-10}
+									right={2}
+									onClick={() => setSelectedFile(null)}
+								/>
+
+							</Flex>
+
+						)
+
+					}
 
 				</ModalBody>
 
