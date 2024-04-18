@@ -46,13 +46,16 @@ export const useFollowUser = (userID) =>{
                     
                 })
 
+                if(userProfile){ 
+                    
+                    setUserProfile({
+    
+                        ...userProfile,
+                        followers: userProfile.followers.filter(user => user!== authUser.userId)
+    
+                    })
 
-                setUserProfile({
-
-                    ...userProfile,
-                    followers: userProfile.followers.filter(user => user!== authUser.userId)
-
-                })
+                }
 
                 localStorage.setItem("user-info", JSON.stringify({
 
@@ -72,12 +75,17 @@ export const useFollowUser = (userID) =>{
 
                 })
 
-                setUserProfile({
+                
+                if(userProfile){
 
-                    ...userProfile,
-                    followers: [...userProfile.followers, authUser.userId]
+                    setUserProfile({
+    
+                        ...userProfile,
+                        followers: [...userProfile.followers, authUser.userId]
+    
+                    })
 
-                })
+                }
 
 
                 localStorage.setItem("user-info", JSON.stringify({
@@ -102,13 +110,16 @@ export const useFollowUser = (userID) =>{
                     
                 })
 
+                if(userProfile){ 
 
-                setUserProfile({
+                    setUserProfile({
+    
+                        ...userProfile,
+                        followers: userProfile.followers.filter(user => user!== authUser.userId)
+    
+                    })
 
-                    ...userProfile,
-                    followers: userProfile.followers.filter(user => user!== authUser.userId)
-
-                })
+                }
 
                 localStorage.setItem("user-info", JSON.stringify({
 
@@ -128,12 +139,17 @@ export const useFollowUser = (userID) =>{
 
                 })
 
-                setUserProfile({
 
-                    ...userProfile,
-                    followers: [...userProfile.followers, authUser.userId]
+                if(userProfile){
+                    
+                    setUserProfile({
+    
+                        ...userProfile,
+                        followers: [...userProfile.followers, authUser.userId]
+    
+                    })
 
-                })
+                }
 
 
                 localStorage.setItem("user-info", JSON.stringify({
