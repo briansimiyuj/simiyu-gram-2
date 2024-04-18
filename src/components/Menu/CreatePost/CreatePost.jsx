@@ -1,7 +1,10 @@
-import { Box, Flex, Tooltip } from "@chakra-ui/react"
+import { Box, Flex, Tooltip, useDisclosure } from "@chakra-ui/react"
 import { CreatePostLogo } from "../../../assets/constants"
+import CreatePostModal from "./CreatePostModal"
 
 const CreatePost = () =>{
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
 	return(
 		
@@ -24,6 +27,7 @@ const CreatePost = () =>{
                     p={2}
                     w={{ base: 10, md: "full" }}
                     justifyContent={{ base: "center", md: "flex-start" }}
+                    onClick={onOpen}
                 >
 
                     <CreatePostLogo />
@@ -32,7 +36,10 @@ const CreatePost = () =>{
 
                 </Flex>
 
-            </Tooltip>       
+            </Tooltip> 
+
+
+            <CreatePostModal isOpen={isOpen} onClose={onClose}/>      
         
         </>
 	
