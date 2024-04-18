@@ -1,4 +1,4 @@
-import { Box, Button, CloseButton, Flex, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea } from "@chakra-ui/react"
+import { Button, CloseButton, Flex, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea } from "@chakra-ui/react"
 import { useRef, useState } from "react"
 import { BsFillImageFill } from "react-icons/bs"
 import { usePreviewImage } from "../../../hooks/usePreviewImage"
@@ -43,7 +43,6 @@ const CreatePostModal = ({ isOpen, onClose }) =>{
 							   w={"full"}
 							   justifyContent= "center"
 							   position="relative"
-							   bg={"red"}
 							>
 
 								<Image src={selectedFile} alt="Selected img"/>
