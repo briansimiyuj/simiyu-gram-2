@@ -1,7 +1,11 @@
 import { Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea } from "@chakra-ui/react"
+import { useRef, useState } from "react"
 import { BsFillImageFill } from "react-icons/bs"
 
 const CreatePostModal = ({ isOpen, onClose }) =>{
+
+	const [caption, setCaption] = useState(''),
+		  imageRef = useRef(null)
 
     return(
 
@@ -17,11 +21,12 @@ const CreatePostModal = ({ isOpen, onClose }) =>{
 
 				<ModalBody pb={6}>
 
-					<Textarea placeholder="Post caption..."/>
+					<Textarea placeholder="Post caption..." value={caption} onChange={e => setCaption(e.target.value)}/>
 
-					<Input type="file" hidden/>
+					<Input type="file" hidden ref={imageRef}/>
 
 					<BsFillImageFill
+						onClick={() => imageRef.current.click()}
 						style={{ marginTop: "15px", marginLeft: "5px", cursor: "pointer" }}
 						size={16}
 					/>
