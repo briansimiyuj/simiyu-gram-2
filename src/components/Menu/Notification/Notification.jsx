@@ -1,5 +1,5 @@
 import { Flex, Tooltip, Text } from "@chakra-ui/react"
-import { NotificationsLogo } from "../../assets/constants"
+import { NotificationsLogo } from "../../../assets/constants"
 
 const Notifications = () =>{
 

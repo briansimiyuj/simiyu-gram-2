@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react'
-import Home from './Home'
-import Search from './Search'
-import Notifications from './Notification'
-import CreatePost from './CreatePost'
-import ProfileLink from './ProfileLink'
+import Home from './Home/Home'
+import Search from './Search/Search'
+import Notifications from './Notification/Notification'
+import CreatePost from './CreatePost/CreatePost'
+import ProfileLink from './ProfileLink/ProfileLink'
 
 const Menu = ({ column }) =>{
 

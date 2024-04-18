@@ -1,5 +1,5 @@
 import { Tooltip, Link, Avatar, Text } from "@chakra-ui/react"
-import { useAuthStore } from "../../store/authStore"
+import { useAuthStore } from "../../../store/authStore"
 import { Link as RouterLink } from "react-router-dom"
 
 const ProfileLink = () =>{

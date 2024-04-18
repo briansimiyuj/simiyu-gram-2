@@ -1,6 +1,6 @@
 import { Flex, Tooltip, Text, useDisclosure } from "@chakra-ui/react"
-import { SearchLogo } from "../../assets/constants"
-import { useSearchUser } from "../../hooks/useSearchUser"
+import { SearchLogo } from "../../../assets/constants"
+import { useSearchUser } from "../../../hooks/useSearchUser"
 import SearchModal from "./SearchModal"
 import { useRef } from "react"
 

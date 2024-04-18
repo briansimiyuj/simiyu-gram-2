@@ -1,5 +1,5 @@
 import { Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/react"
-import SuggestedUser from "../SuggestedUsers/SuggestedUser"
+import SuggestedUser from "../../SuggestedUsers/SuggestedUser"
 
 const SearchModal = ({ isOpen, onClose, searchRef, handleSearchUser, user, setUser, loading }) =>{
 
