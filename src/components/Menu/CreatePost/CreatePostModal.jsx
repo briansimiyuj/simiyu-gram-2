@@ -2,12 +2,37 @@ import { Button, CloseButton, Flex, Image, Input, Modal, ModalBody, ModalCloseBu
 import { useRef, useState } from "react"
 import { BsFillImageFill } from "react-icons/bs"
 import { usePreviewImage } from "../../../hooks/usePreviewImage"
+import { useCreatePost } from "../../../hooks/useCreatePost"
+import { useShowToast } from "../../../hooks/useShowToast"
 
 const CreatePostModal = ({ isOpen, onClose }) =>{
 
 	const [caption, setCaption] = useState(''),
 		  imageRef = useRef(null),
-		  {handleImageChange, selectedFile, setSelectedFile} = usePreviewImage()
+		  showToast = useShowToast(),
+		  { handleImageChange, selectedFile, setSelectedFile } = usePreviewImage(),
+		  { loading, handleCreatePost } = useCreatePost()
+
+
+	const handlePostCreation = async() =>{
+	
+	    try{
+	   
+		  await handleCreatePost(selectedFile, caption)
+
+		  onClose()
+
+		  setCaption('')
+
+		  setSelectedFile(null)
+	   
+		}catch(error){
+	   
+		   showToast("Error", error.message, "error")
+	   
+		}
+	
+	}
 
     return(
 
@@ -64,7 +89,7 @@ const CreatePostModal = ({ isOpen, onClose }) =>{
 
 				<ModalFooter>
 					
-					<Button mr={3}>Post</Button>
+					<Button mr={3} onClick={handlePostCreation} isLoading={loading}>Post</Button>
 
 				</ModalFooter>
 

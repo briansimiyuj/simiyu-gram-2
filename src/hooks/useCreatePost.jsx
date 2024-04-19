@@ -2,8 +2,7 @@ import { useState } from "react"
 import { useShowToast } from "./useShowToast"
 import { useAuthStore } from "../store/authStore"
 import { usePostStore } from "../store/postStore"
-import profileStore from "../store/profileStore"
-import { useLocation } from "react-router-dom"
+import profileStore from "../store/profileStore" 
 import { addDoc, arrayUnion, collection, doc, updateDoc } from "firebase/firestore"
 import { firestore, storage } from "../firebase/config"
 import { getDownloadURL, ref, uploadString } from "firebase/storage"
@@ -18,6 +17,8 @@ export const useCreatePost = () => {
 
 
    const handleCreatePost = async(selectedFile, caption) => {
+
+      if(loading) return
 
       if(!selectedFile) throw new Error('Please select an file')
 
@@ -39,7 +40,7 @@ export const useCreatePost = () => {
                imageRef = ref(storage, `posts/${postDocRef.id}`)
 
          await updateDoc(userDocRef, { posts: arrayUnion(postDocRef.id) }),
-               uploadString(imageRef, selectedFile, "data_url")
+         await uploadString(imageRef, selectedFile, "data_url")
          const downloadURL = await getDownloadURL(imageRef)
 
          await updateDoc(postDocRef, { image: downloadURL })
