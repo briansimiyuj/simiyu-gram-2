@@ -3,8 +3,11 @@ import profilepic from "../../../img/profilepic.png"
 import { MdDelete } from "react-icons/md"
 import Comments from "../Comments/Comments"
 import PostFooter from "../FeedPosts/PostFooter"
+import profileStore from "../../store/profileStore"
 
 const PostModal = ({ isOpen, onClose, img }) => {
+
+    const userProfile = profileStore(state => state.userProfile)
 
     return(
 
@@ -33,6 +36,8 @@ const PostModal = ({ isOpen, onClose, img }) => {
                             w={{ base: "90%", sm: "70%", md: "full" }}
                             mx={"auto"}
                             mt={5}
+                            maxW={"90vw"}
+                            maxH={"90vh"}
                         >
 
                             <Box
@@ -59,9 +64,9 @@ const PostModal = ({ isOpen, onClose, img }) => {
 
                                     <Flex gap={4}>
 
-                                        <Avatar src={profilepic} alt="profile pic" size={"sm"} name="Brian Simiyu"/>
+                                        <Avatar src={userProfile?.profilePicURL} alt={userProfile?.profilePicURL} size={"sm"} name={userProfile?.fullName}/>
 
-                                        <Text fontSize={12} fontWeight={"bold"}>Brian Simiyu</Text>
+                                        <Text fontSize={12} fontWeight={"bold"}>{userProfile?.username}</Text>
 
                                     </Flex>
 

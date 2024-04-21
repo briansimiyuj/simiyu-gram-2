@@ -3,7 +3,7 @@ import { AiFillHeart } from 'react-icons/ai'
 import { FaComment } from 'react-icons/fa'
 import PostModal from './PostModal'
 
-const ProfilePost = ({ img }) =>{
+const ProfilePost = ({ post, key, postImage }) =>{
 
     const { onOpen, isOpen, onClose } = useDisclosure()
 
@@ -42,7 +42,7 @@ const ProfilePost = ({ img }) =>{
 
                             <AiFillHeart size={20}/>
 
-                            <Text fontWeight={"bold"} ml={2}>7</Text>
+                            <Text fontWeight={"bold"} ml={2}>{post.likes.length}</Text>
 
                         </Flex>
 
@@ -51,7 +51,7 @@ const ProfilePost = ({ img }) =>{
 
                             <FaComment size={20}/>
 
-                            <Text fontWeight={"bold"} ml={2}>1</Text>
+                            <Text fontWeight={"bold"} ml={2}>{post.comments.length}</Text>
                         
                         </Flex>
 
@@ -60,11 +60,18 @@ const ProfilePost = ({ img }) =>{
                 </Flex>
 
 
-                <Image src={img} alt='profile post' w={"100%"} h={"100%"} objectFit={"cover"} />
+                <Image 
+                    src={postImage} 
+                    key={key}
+                    alt='profile post' 
+                    w={"100%"} 
+                    h={"100%"} 
+                    objectFit={"cover"} 
+                />
 
             </GridItem>
 
-            <PostModal isOpen={isOpen} onClose={onClose} img={img}/>
+            <PostModal isOpen={isOpen} onClose={onClose} img={postImage}/>
         
         </>
 
@@ -72,5 +79,4 @@ const ProfilePost = ({ img }) =>{
     )
 
 }
-
 export default ProfilePost

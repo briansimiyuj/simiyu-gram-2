@@ -45,7 +45,7 @@ const ProfilePage = () =>{
                 
                 <ProfileTabs/>
 
-                <ProfilePosts/>
+                <ProfilePosts username={username}/>
             
             </Flex>
 

@@ -4,9 +4,9 @@ import { useGetUserPosts } from '../../hooks/useGetUsersPosts'
 import NoPostFound from './NoPostFound'
 
 
-const ProfilePosts = () =>{
+const ProfilePosts = ({ username }) =>{
 
-    const { loading, posts } = useGetUserPosts(),
+    const { loading, posts } = useGetUserPosts(username),
           noPostsFound = !loading && !posts
 
     
@@ -54,9 +54,7 @@ const ProfilePosts = () =>{
 
                             posts.map(post => (
 
-                                <ProfilePost
-                                    img={post.image}
-                                />
+                                <ProfilePost key={post.id} postImage={post.image} post={post}/>
 
                             ))
 
