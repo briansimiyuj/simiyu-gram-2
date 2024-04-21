@@ -1,25 +1,16 @@
 import { Grid, VStack, Skeleton, Box } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
 import ProfilePost from './ProfilePost'
-import img2 from '../../../img/img2.png'
-import img4 from '../../../img/img4.png'
-import img3 from '../../../img/img3.png'
-import img1 from '../../../img/img1.png'
+import { useGetUserPosts } from '../../hooks/useGetUsersPosts'
+import NoPostFound from './NoPostFound'
+
 
 const ProfilePosts = () =>{
 
-    const [isLoading, setIsLoading] = useState(true)
+    const { loading, posts } = useGetUserPosts(),
+          noPostsFound = !loading && !posts
 
-
-    useEffect(() =>{
     
-        setTimeout(() =>{
-
-            setIsLoading(false)
-
-        }, 2000)
-    
-    }, [])
+    if(noPostsFound) return <NoPostFound/>
 
     return(
 
@@ -34,7 +25,7 @@ const ProfilePosts = () =>{
 
             {
 
-                isLoading && [0, 1, 2, 3, 4, 5].map(i =>(
+                loading && [0, 1, 2, 3, 4, 5].map(i =>(
 
                     <VStack key={i} gap={4} alignItems={"start"} mb={10}>
 
@@ -55,17 +46,21 @@ const ProfilePosts = () =>{
 
             {
 
-                !isLoading && (
+                !loading && (
 
                     <>
                     
-                        <ProfilePost img={img1}/>
+                        {
 
-                        <ProfilePost img={img2}/>
+                            posts.map(post => (
 
-                        <ProfilePost img={img3}/>
+                                <ProfilePost
+                                    img={post.image}
+                                />
 
-                        <ProfilePost img={img4}/>
+                            ))
+
+                        }
                     
                     </>
 
