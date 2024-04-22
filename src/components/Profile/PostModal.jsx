@@ -1,13 +1,15 @@
-import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text, Divider, VStack } from "@chakra-ui/react"
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text, Divider, VStack, Button } from "@chakra-ui/react"
 import profilepic from "../../../img/profilepic.png"
 import { MdDelete } from "react-icons/md"
 import Comments from "../Comments/Comments"
 import PostFooter from "../FeedPosts/PostFooter"
 import profileStore from "../../store/profileStore"
+import { useAuthStore } from "../../store/authStore"
 
 const PostModal = ({ isOpen, onClose, img }) => {
 
-    const userProfile = profileStore(state => state.userProfile)
+    const userProfile = profileStore(state => state.userProfile),
+          authUser = useAuthStore(state => state.user)
 
     return(
 
@@ -76,16 +78,26 @@ const PostModal = ({ isOpen, onClose, img }) => {
                                     </Flex>
 
 
-                                    <Box 
-                                        _hover={{bg: "whiteAlpha.300", color: "red.600"}}
-                                        borderRadius={4}
-                                        p={1}    
-                                        h={8}
-                                    >
+                                    {
 
-                                        <MdDelete size={20} cursor={"pointer"}/>
+                                        authUser?.userId === userProfile?.userId &&(
 
-                                    </Box>
+                                            <Button
+                                                _hover={{bg: "whiteAlpha.300", color: "red.600"}}
+                                                borderRadius={4}
+                                                p={1}    
+                                                h={8}
+                                                bg="transparent"
+                                                size={"sm"}
+                                            >
+
+                                                <MdDelete size={20} cursor={"pointer"}/>
+
+                                            </Button>
+
+                                        )
+
+                                    }
                                     
                                 </Flex>
                                     
