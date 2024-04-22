@@ -64,9 +64,14 @@ const PostModal = ({ isOpen, onClose, img }) => {
 
                                     <Flex gap={4}>
 
-                                        <Avatar src={userProfile?.profilePicURL} alt={userProfile?.profilePicURL} size={"sm"} name={userProfile?.fullName}/>
+                                        <Avatar 
+                                            src={userProfile?.profilePicURL} 
+                                            alt={userProfile?.profilePicURL} 
+                                            size={"sm"} 
+                                            name={userProfile?.fullName}
+                                        />
 
-                                        <Text fontSize={12} fontWeight={"bold"}>{userProfile?.username}</Text>
+                                        <Text fontSize={12} fontWeight={"bold"} mt={2}>{userProfile?.username}</Text>
 
                                     </Flex>
 
@@ -113,7 +118,7 @@ const PostModal = ({ isOpen, onClose, img }) => {
                                         createdAt="3h ago"
                                         username="kentdodds"
                                         profilePic="https://bit.ly/kent-c-dodds"
-                                        text="Good clone dude!"
+                                        text="Good clone dude! clone dude! clone dude! clone dude! clone dude! clone dude! clone dude!"
                                     />
 
                                 </VStack>
