@@ -1,6 +1,7 @@
-import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text, Divider, VStack, Button } from "@chakra-ui/react"
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text, Divider, VStack, Button, Link } from "@chakra-ui/react"
 import profilepic from "../../../img/profilepic.png"
 import { MdDelete } from "react-icons/md"
+import { Link as RouterLink } from "react-router-dom"
 import Comments from "../Comments/Comments"
 import PostFooter from "../FeedPosts/PostFooter"
 import profileStore from "../../store/profileStore"
@@ -66,18 +67,24 @@ const PostModal = ({ isOpen, onClose, img, post }) => {
 
                                 <Flex alignItems={"center"} justifyContent={"space-between"}>
 
-                                    <Flex gap={4}>
+                                <Link
+                                    fontSize={14}
+                                    fontWeight={700}
+                                    as={RouterLink}
+                                    display="flex"
+                                    gap={3}
+                                >
+                                    
+                                    <Avatar 
+                                        src={userProfile?.profilePicURL} 
+                                        alt={userProfile?.profilePicURL} 
+                                        size={"sm"} 
+                                        name={userProfile?.fullName}
+                                    />
 
-                                        <Avatar 
-                                            src={userProfile?.profilePicURL} 
-                                            alt={userProfile?.profilePicURL} 
-                                            size={"sm"} 
-                                            name={userProfile?.fullName}
-                                        />
-
-                                        <Text fontSize={12} fontWeight={"bold"} mt={2}>{userProfile?.username}</Text>
-
-                                    </Flex>
+                                    <Text mt={1}>{userProfile?.username}</Text>
+                                
+                                </Link>
 
 
                                     {
@@ -107,6 +114,66 @@ const PostModal = ({ isOpen, onClose, img, post }) => {
                                     
                                     
                                 <Divider my={4} bg={"gray.500"}/>
+
+
+                                {
+
+                                    post?.caption && (
+
+                                        <Flex flexDirection="column" mb={25}>
+
+                                            <Flex gap={4} mb={25}>
+
+
+                                                <Link
+                                                    fontSize={14}
+                                                    fontWeight={700}
+                                                    as={RouterLink}
+                                                    display="flex"
+                                                    gap={3}
+                                                >
+                                                    
+                                                    <Avatar 
+                                                        src={userProfile?.profilePicURL} 
+                                                        alt={userProfile?.profilePicURL} 
+                                                        size={"sm"} 
+                                                        name={userProfile?.fullName}
+                                                    />
+
+                                                    <Text mt={1}>{userProfile?.username}</Text>
+                                                
+                                                </Link>
+
+
+                                                <Box>
+
+                                                    <Flex gap={5}>
+
+                                                        <Text fontSize={12} mt={2} color={"gray"}>1 day ago</Text>
+
+                                                    </Flex>
+
+                                                    <Text 
+                                                        fontSize={13} 
+                                                        fontWeight="bold"
+                                                        ml={-20}
+                                                        pl={2}
+                                                        mt={3}
+                                                    >{post?.caption}</Text>
+
+                                                </Box>       
+
+                                            </Flex>
+
+                                            <Divider my={2} bg={"gray.800"}/>
+
+
+                                        </Flex>
+                                        
+
+                                    )
+
+                                }
 
 
                                 <VStack 
@@ -139,11 +206,7 @@ const PostModal = ({ isOpen, onClose, img, post }) => {
 
                                 </VStack>
 
-
-                            <Divider my={4} bg={"gray.800"}/>
-
-
-                            <PostFooter isProfilePage={true} marginTop={"17rem"}/>
+                                <PostFooter isProfilePage={true} marginTop={"10rem"}/>
 
                             </Flex>
 
