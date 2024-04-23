@@ -71,7 +71,7 @@ const ProfilePost = ({ post, key, postImage }) =>{
 
             </GridItem>
 
-            <PostModal isOpen={isOpen} onClose={onClose} img={postImage}/>
+            <PostModal isOpen={isOpen} onClose={onClose} img={postImage} post={post}/>
         
         </>
 

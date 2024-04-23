@@ -5,11 +5,13 @@ import Comments from "../Comments/Comments"
 import PostFooter from "../FeedPosts/PostFooter"
 import profileStore from "../../store/profileStore"
 import { useAuthStore } from "../../store/authStore"
+import { useDeletePost } from "../../hooks/useDeletePost"
 
-const PostModal = ({ isOpen, onClose, img }) => {
+const PostModal = ({ isOpen, onClose, img, post }) => {
 
     const userProfile = profileStore(state => state.userProfile),
-          authUser = useAuthStore(state => state.user)
+          authUser = useAuthStore(state => state.user),
+          { isDeleting, deleteUserPost } = useDeletePost()
 
     return(
 
@@ -89,6 +91,8 @@ const PostModal = ({ isOpen, onClose, img }) => {
                                                 h={8}
                                                 bg="transparent"
                                                 size={"sm"}
+                                                isLoading={isDeleting}
+                                                onClick={() => deleteUserPost(post)}
                                             >
 
                                                 <MdDelete size={20} cursor={"pointer"}/>
