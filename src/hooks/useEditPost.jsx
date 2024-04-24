@@ -2,24 +2,43 @@ import { useState } from "react"
 import { useShowToast } from "./useShowToast"
 import { getDownloadURL, ref, uploadString } from "firebase/storage"
 import { firestore, storage } from "../firebase/config"
-import { doc } from "firebase/firestore"
+import { doc, updateDoc } from "firebase/firestore"
 
 export const useEditPost = () =>{
 
     const [isEditingPost, setIsEditingPost] = useState(false),
+          [editedPost, setEditedPost] = useState(false),
+          [newCaption, setNewCaption] = useState(null),
+          [isEditing, setIsEditing] = useState(false),
           showToast = useShowToast()
           
     
-    const handleEditPost = async(post, selectedFile) =>{
+     const handleEditPost = async(post, selectedFile, caption, onClose) =>{
     
        setIsEditingPost(true)
 
+       setIsEditing(true)
+
        if(isEditingPost) return
 
-    
-    const postRef = ref(storage, `posts/${post.postId}`)
+        if(!post.caption){
 
-    let URL
+            setNewCaption(caption)
+
+        }
+
+
+        if(!post.caption){
+
+            setNewCaption(caption)
+
+        }
+
+
+        const postRef = ref(storage, `posts/${post.postId}`),
+            postDocRef = doc(firestore, "posts", post.postId)
+
+        let URL
 
         try{            
 
@@ -31,7 +50,21 @@ export const useEditPost = () =>{
 
             }
 
-            console.log(URL)
+        
+            const updatedPost = {
+                
+                ...post,
+                image: URL ? URL : post.image,
+                caption: caption ? caption : post.caption,
+                updatedAt: Date.now()
+
+            }
+
+            updateDoc(postDocRef, updatedPost)
+
+            setEditedPost(true)
+
+            showToast("Success", "Post updated successfully", "success")
        
         }catch(error){
        
@@ -41,10 +74,14 @@ export const useEditPost = () =>{
 
             setIsEditingPost(false)
 
+            setIsEditing(false)
+
+            onClose()
+
         }
     
     }
 
-    return { isEditingPost, handleEditPost }
+    return { isEditingPost, isEditing, editedPost, handleEditPost }
 
 }
