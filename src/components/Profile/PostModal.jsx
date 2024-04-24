@@ -1,6 +1,6 @@
 import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text, Divider, VStack, Button, Link } from "@chakra-ui/react"
 import profilepic from "../../../img/profilepic.png"
-import { MdDelete } from "react-icons/md"
+import { MdDelete, MdEdit } from "react-icons/md"
 import { Link as RouterLink } from "react-router-dom"
 import Comments from "../Comments/Comments"
 import PostFooter from "../FeedPosts/PostFooter"
@@ -67,48 +67,74 @@ const PostModal = ({ isOpen, onClose, img, post }) => {
 
                                 <Flex alignItems={"center"} justifyContent={"space-between"}>
 
-                                <Link
-                                    fontSize={14}
-                                    fontWeight={700}
-                                    as={RouterLink}
-                                    display="flex"
-                                    gap={3}
-                                >
+                                    <Link
+                                        fontSize={14}
+                                        fontWeight={700}
+                                        as={RouterLink}
+                                        display="flex"
+                                        gap={3}
+                                    >
+                                        
+                                        <Avatar 
+                                            src={userProfile?.profilePicURL} 
+                                            alt={userProfile?.profilePicURL} 
+                                            size={"sm"} 
+                                            name={userProfile?.fullName}
+                                        />
+
+                                        <Text mt={1}>{userProfile?.username}</Text>
                                     
-                                    <Avatar 
-                                        src={userProfile?.profilePicURL} 
-                                        alt={userProfile?.profilePicURL} 
-                                        size={"sm"} 
-                                        name={userProfile?.fullName}
-                                    />
-
-                                    <Text mt={1}>{userProfile?.username}</Text>
-                                
-                                </Link>
+                                    </Link>
 
 
-                                    {
 
-                                        authUser?.userId === userProfile?.userId &&(
+                                    <Flex gap={4}>
 
-                                            <Button
-                                                _hover={{bg: "whiteAlpha.300", color: "red.600"}}
-                                                borderRadius={4}
-                                                p={1}    
-                                                h={8}
-                                                bg="transparent"
-                                                size={"sm"}
-                                                isLoading={isDeleting}
-                                                onClick={() => deleteUserPost(post)}
-                                            >
+                                        {
+        
+                                            authUser?.userId === userProfile?.userId &&(
+        
+                                                <Button
+                                                    _hover={{bg: "whiteAlpha.300", color: "red.600"}}
+                                                    borderRadius={4}
+                                                    p={1}    
+                                                    h={8}
+                                                    bg="transparent"
+                                                    size={"sm"}
+                                                >
+        
+                                                    <MdEdit size={20} cursor={"pointer"}/>
+        
+                                                </Button>
+        
+                                            )
+        
+                                        }
 
-                                                <MdDelete size={20} cursor={"pointer"}/>
+                                        {
 
-                                            </Button>
+                                            authUser?.userId === userProfile?.userId &&(
 
-                                        )
+                                                <Button
+                                                    _hover={{bg: "whiteAlpha.300", color: "red.600"}}
+                                                    borderRadius={4}
+                                                    p={1}    
+                                                    h={8}
+                                                    bg="transparent"
+                                                    size={"sm"}
+                                                    isLoading={isDeleting}
+                                                    onClick={() => deleteUserPost(post)}
+                                                >
 
-                                    }
+                                                    <MdDelete size={20} cursor={"pointer"}/>
+
+                                                </Button>
+
+                                            )
+
+                                        }
+
+                                    </Flex>
                                     
                                 </Flex>
                                     
