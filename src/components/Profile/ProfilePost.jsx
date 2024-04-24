@@ -2,10 +2,14 @@ import { GridItem, Flex, Text, Image, useDisclosure } from '@chakra-ui/react'
 import { AiFillHeart } from 'react-icons/ai'
 import { FaComment } from 'react-icons/fa'
 import PostModal from './PostModal'
+import { useState } from 'react'
+import CreatePostModal from '../Menu/CreatePost/CreatePostModal'
+import { update } from 'firebase/database'
 
 const ProfilePost = ({ post, key, postImage }) =>{
 
-    const { onOpen, isOpen, onClose } = useDisclosure()
+    const { onOpen, isOpen, onClose } = useDisclosure(),
+          [isEditing, setIsEditing] = useState(true)
 
     return(
 
@@ -71,7 +75,26 @@ const ProfilePost = ({ post, key, postImage }) =>{
 
             </GridItem>
 
-            <PostModal isOpen={isOpen} onClose={onClose} img={postImage} post={post}/>
+            {
+
+                isEditing ?(
+
+                    <CreatePostModal 
+                        isOpen={isOpen} 
+                        onClose={onClose} 
+                        img={postImage} 
+                        postCaption={post.caption}
+                        update={"update"}
+                        isEditing={isEditing}
+                    />
+
+                ):(
+                    
+                    <PostModal isOpen={isOpen} onClose={onClose} img={postImage} post={post}/>
+
+                )
+
+            }
         
         </>
 

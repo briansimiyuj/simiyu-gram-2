@@ -5,7 +5,7 @@ import { usePreviewImage } from "../../../hooks/usePreviewImage"
 import { useCreatePost } from "../../../hooks/useCreatePost"
 import { useShowToast } from "../../../hooks/useShowToast"
 
-const CreatePostModal = ({ isOpen, onClose }) =>{
+const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing }) =>{
 
 	const [caption, setCaption] = useState(''),
 		  imageRef = useRef(null),
@@ -48,7 +48,7 @@ const CreatePostModal = ({ isOpen, onClose }) =>{
 
 				<ModalBody pb={6}>
 
-					<Textarea placeholder="Post caption..." value={caption} onChange={e => setCaption(e.target.value)}/>
+					<Textarea placeholder="Post caption..." value={caption || postCaption} onChange={e => setCaption(e.target.value)}/>
 
 					<Input type="file" hidden ref={imageRef} onChange={handleImageChange}/>
 
@@ -61,7 +61,7 @@ const CreatePostModal = ({ isOpen, onClose }) =>{
 
 					{
 
-						selectedFile && (
+						selectedFile ?(
 
 							<Flex
 							   mt={5}
@@ -81,6 +81,26 @@ const CreatePostModal = ({ isOpen, onClose }) =>{
 
 							</Flex>
 
+						): img &&(
+
+							<Flex
+							   mt={5}
+							   w={"full"}
+							   justifyContent= "center"
+							   position="relative"
+							>
+
+								<Image src={img} alt="Selected img"/>
+
+								<CloseButton
+									position="absolute"
+									top={-10}
+									right={2}
+									onClick={() => setSelectedFile(null)}
+								/>
+
+							</Flex>
+
 						)
 
 					}
@@ -89,7 +109,11 @@ const CreatePostModal = ({ isOpen, onClose }) =>{
 
 				<ModalFooter>
 					
-					<Button mr={3} onClick={handlePostCreation} isLoading={loading}>Post</Button>
+					<Button mr={3} onClick={handlePostCreation} isLoading={loading}>
+						
+						{isEditing ? "Update" : "Post"}
+
+					</Button>
 
 				</ModalFooter>
 
