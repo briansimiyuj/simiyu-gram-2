@@ -8,7 +8,7 @@ import CreatePostModal from '../Menu/CreatePost/CreatePostModal'
 const ProfilePost = ({ post, key, postImage }) =>{
 
     const { onOpen, isOpen, onClose } = useDisclosure(),
-          [isEditing, setIsEditing] = useState(true),
+          [isEditing, setIsEditing] = useState(false),
           [image, setImage] = useState(postImage)
 
     return(
@@ -92,7 +92,7 @@ const ProfilePost = ({ post, key, postImage }) =>{
 
                 ):(
                     
-                    <PostModal isOpen={isOpen} onClose={onClose} img={postImage} post={post}/>
+                    <PostModal isOpen={isOpen} onClose={onClose} img={postImage} post={post} setIsEditing={setIsEditing}/>
 
                 )
 

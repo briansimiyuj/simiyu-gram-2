@@ -8,7 +8,7 @@ import profileStore from "../../store/profileStore"
 import { useAuthStore } from "../../store/authStore"
 import { useDeletePost } from "../../hooks/useDeletePost"
 
-const PostModal = ({ isOpen, onClose, img, post }) => {
+const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
     const userProfile = profileStore(state => state.userProfile),
           authUser = useAuthStore(state => state.user),
@@ -101,6 +101,7 @@ const PostModal = ({ isOpen, onClose, img, post }) => {
                                                     h={8}
                                                     bg="transparent"
                                                     size={"sm"}
+                                                    onClick={() => setIsEditing(true)}
                                                 >
         
                                                     <MdEdit size={20} cursor={"pointer"}/>
