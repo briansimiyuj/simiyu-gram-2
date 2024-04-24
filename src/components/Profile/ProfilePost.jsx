@@ -4,12 +4,12 @@ import { FaComment } from 'react-icons/fa'
 import PostModal from './PostModal'
 import { useState } from 'react'
 import CreatePostModal from '../Menu/CreatePost/CreatePostModal'
-import { update } from 'firebase/database'
 
 const ProfilePost = ({ post, key, postImage }) =>{
 
     const { onOpen, isOpen, onClose } = useDisclosure(),
-          [isEditing, setIsEditing] = useState(true)
+          [isEditing, setIsEditing] = useState(true),
+          [image, setImage] = useState(postImage)
 
     return(
 
@@ -86,6 +86,8 @@ const ProfilePost = ({ post, key, postImage }) =>{
                         postCaption={post.caption}
                         update={"update"}
                         isEditing={isEditing}
+                        setImage={setImage}
+                        image={image}
                     />
 
                 ):(

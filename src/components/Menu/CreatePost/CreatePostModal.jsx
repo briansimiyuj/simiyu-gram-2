@@ -5,9 +5,10 @@ import { usePreviewImage } from "../../../hooks/usePreviewImage"
 import { useCreatePost } from "../../../hooks/useCreatePost"
 import { useShowToast } from "../../../hooks/useShowToast"
 
-const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing }) =>{
+const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing, image, setImage }) =>{
 
 	const [caption, setCaption] = useState(''),
+		  
 		  imageRef = useRef(null),
 		  showToast = useShowToast(),
 		  { handleImageChange, selectedFile, setSelectedFile } = usePreviewImage(),
@@ -44,7 +45,7 @@ const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing }) =>{
 
 				<ModalHeader>Create Post</ModalHeader>
 
-				<ModalCloseButton/>
+				<ModalCloseButton onClick={() => setImage(image)}/>
 
 				<ModalBody pb={6}>
 
@@ -90,13 +91,12 @@ const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing }) =>{
 							   position="relative"
 							>
 
-								<Image src={img} alt="Selected img"/>
+								<Image src={image} alt="Selected img"/>
 
 								<CloseButton
 									position="absolute"
 									top={-10}
 									right={2}
-									onClick={() => setSelectedFile(null)}
 								/>
 
 							</Flex>
@@ -109,11 +109,27 @@ const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing }) =>{
 
 				<ModalFooter>
 					
-					<Button mr={3} onClick={handlePostCreation} isLoading={loading}>
-						
-						{isEditing ? "Update" : "Post"}
+					{
 
-					</Button>
+						selectedFile || caption ?(
+							
+							<Button mr={3} onClick={handlePostCreation} isLoading={loading}>
+						
+								{isEditing ? "Update" : "Post"}
+
+							</Button>
+
+						):(
+							
+							<Button mr={3} cursor={"not-allowed"} isLoading={loading} disabled color={"gray.500"}>
+						
+								{isEditing ? "Update" : "Post"}
+
+							</Button>
+
+						)
+
+					}
 
 				</ModalFooter>
 
