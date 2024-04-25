@@ -4,15 +4,17 @@ import { BsFillImageFill } from "react-icons/bs"
 import { usePreviewImage } from "../../../hooks/usePreviewImage"
 import { useCreatePost } from "../../../hooks/useCreatePost"
 import { useShowToast } from "../../../hooks/useShowToast"
+import { useEditPost } from "../../../hooks/useEditPost"
 
-const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing, image, setImage }) =>{
+const CreatePostModal = ({ isOpen, onClose, img, post, postCaption, isEditing, image, setImage }) =>{
 
 	const [caption, setCaption] = useState(''),
 		  
 		  imageRef = useRef(null),
 		  showToast = useShowToast(),
 		  { handleImageChange, selectedFile, setSelectedFile } = usePreviewImage(),
-		  { loading, handleCreatePost } = useCreatePost()
+		  { loading, handleCreatePost } = useCreatePost(),
+		  { handleEditPost, isEditingPost } = useEditPost()
 
 
 	const handlePostCreation = async() =>{
@@ -43,7 +45,7 @@ const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing, image, 
 
 			<ModalContent bg={"black"} border="1px solid gray">
 
-				<ModalHeader>Create Post</ModalHeader>
+				<ModalHeader>{ isEditing ? "Edit Post" : "Create Post" }</ModalHeader>
 
 				<ModalCloseButton onClick={() => setImage(image)}/>
 
@@ -113,7 +115,14 @@ const CreatePostModal = ({ isOpen, onClose, img, postCaption, isEditing, image, 
 
 						selectedFile || caption ?(
 							
-							<Button mr={3} onClick={handlePostCreation} isLoading={loading}>
+							<Button
+								mr={3} 
+								onClick={() => {
+									{isEditing ? handleEditPost(post, selectedFile, caption, onClose) 
+									: handlePostCreation(selectedFile, caption, post)}
+								}} 
+								isLoading={isEditingPost}
+							>
 						
 								{isEditing ? "Update" : "Post"}
 

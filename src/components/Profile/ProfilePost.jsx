@@ -88,6 +88,7 @@ const ProfilePost = ({ post, key, postImage }) =>{
                         isEditing={isEditing}
                         setImage={setImage}
                         image={image}
+                        post={post}
                     />
 
                 ):(

@@ -46,7 +46,7 @@ const ProfilePosts = ({ username }) =>{
 
             {
 
-                !loading && (
+                !loading && Array.isArray(posts) && (
 
                     <>
                     
