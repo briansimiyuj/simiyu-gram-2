@@ -13,7 +13,7 @@ const CreatePostModal = ({ isOpen, onClose, img, post, postCaption, isEditing, i
 		  imageRef = useRef(null),
 		  showToast = useShowToast(),
 		  { handleImageChange, selectedFile, setSelectedFile } = usePreviewImage(),
-		  { loading, handleCreatePost } = useCreatePost(),
+		  { posting, handleCreatePost } = useCreatePost(),
 		  { handleEditPost, isEditingPost } = useEditPost()
 
 
@@ -121,7 +121,7 @@ const CreatePostModal = ({ isOpen, onClose, img, post, postCaption, isEditing, i
 									{isEditing ? handleEditPost(post, selectedFile, caption, onClose) 
 									: handlePostCreation(selectedFile, caption, post)}
 								}} 
-								isLoading={isEditingPost}
+								isLoading={isEditingPost ? isEditingPost : posting}
 							>
 						
 								{isEditing ? "Update" : "Post"}
@@ -130,7 +130,7 @@ const CreatePostModal = ({ isOpen, onClose, img, post, postCaption, isEditing, i
 
 						):(
 							
-							<Button mr={3} cursor={"not-allowed"} isLoading={loading} disabled color={"gray.500"}>
+							<Button mr={3} cursor={"not-allowed"} isLoading={posting} disabled color={"gray.500"}>
 						
 								{isEditing ? "Update" : "Post"}
 

@@ -10,7 +10,7 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage"
 export const useCreatePost = () => {
 
    const showToast = useShowToast(),
-         [loading, setLoading] = useState(false),
+         [posting, setIsPosting] = useState(false),
          authUser = useAuthStore(state => state.user),
          createPost  = usePostStore(state => state.createPost),
          addPost =  profileStore(state => state.addPost)
@@ -18,11 +18,11 @@ export const useCreatePost = () => {
 
    const handleCreatePost = async(selectedFile, caption) => {
 
-      if(loading) return
+      if(posting) return
 
       if(!selectedFile) throw new Error('Please select an file')
 
-      setLoading(true)
+      setIsPosting(true)
 
       const newPost = {
          caption,
@@ -61,12 +61,12 @@ export const useCreatePost = () => {
       
       }finally{
          
-         setLoading(false)
+         setIsPosting(false)
       
       }
          
    }
 
-   return { loading, handleCreatePost }
+   return { posting, handleCreatePost }
 
 }
