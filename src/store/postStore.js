@@ -1,10 +1,30 @@
 import { create } from "zustand"
 
-export const usePostStore = create((set) => ({
+export const usePostStore = create((set) =>({
     
     posts: [],
     createPost: (post) => set(state => ({ posts: [post, ...state.posts] })),
     setPosts: (posts) => set({ posts }),
-    deletePost: (id) => set(state => ({ posts: state.posts.filter(post => post.postId !== id) }))
+    deletePost: (id) => set(state => ({ posts: state.posts.filter(post => post.postId !== id) })),
+    addComment: (postId, comment) => set(state =>({
+         
+        posts: state.posts.map(post =>{
+
+            if(post.postId === postId){
+
+                return{
+
+                    ...post,
+                    comments: [...post.comments, comment]
+                    
+                }
+
+            }
+
+            return post
+
+        })
+
+    }))
 
 }))
