@@ -1,11 +1,22 @@
 import { Flex, Box, Text, InputGroup, InputRightElement, Input, Button } from '@chakra-ui/react'
 import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../../assets/constants'
 import { useState } from'react'
+import { usePostComment } from '../../hooks/usePostComment'
 
-const PostFooter = ({ username, isProfilePage, marginTop }) =>{
+const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
 
     const [liked, setLiked] = useState(false),
-          [likes, setLikes] = useState(1000)
+          [likes, setLikes] = useState(1000),
+          { commenting, handlePostComment, userComment, setUserComment } = usePostComment()
+
+
+    const handleSubmitComment = async() =>{
+    
+       await handlePostComment(post.postId, userComment)
+
+       setUserComment('')
+    
+    }
 
 
     const handleLikePost = () => {
@@ -94,18 +105,46 @@ const PostFooter = ({ username, isProfilePage, marginTop }) =>{
 
                 <InputGroup>
                 
-                    <Input variant={"flushed"} placeholder={"Add a comment..."} fontSize={14}/>
+                    <Input 
+                        variant={"flushed"} 
+                        placeholder={"Add a comment..."} 
+                        fontSize={14}
+                        value={userComment}
+                        onChange={e => setUserComment(e.target.value)}
+                    />
 
                     <InputRightElement>
                     
-                        <Button
-                            fontSize={14}
-                            color={"blue.500"}
-                            fontWeight={600}
-                            cursor={"pointer"}
-                            _hover={{color: "white"}}
-                            bg={"transparent"}
-                        >Post</Button>
+                        {
+
+                            !userComment ? (
+
+                                <Button
+                                    fontSize={14}
+                                    color={"gray.500"}
+                                    fontWeight={600}
+                                    cursor={"not-allowed"}
+                                    _hover={{color: "white"}}
+                                    bg={"transparent"}
+                                    disabled
+                                >Post</Button>
+
+                            ):(
+
+                                <Button
+                                    fontSize={14}
+                                    color={"blue.500"}
+                                    fontWeight={600}
+                                    cursor={"pointer"}
+                                    _hover={{color: "white"}}
+                                    bg={"transparent"}
+                                    onClick={handleSubmitComment}
+                                    isLoading={commenting}
+                                >Post</Button>
+
+                            )
+
+                        }
                     
                     </InputRightElement>
                 
