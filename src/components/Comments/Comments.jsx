@@ -9,7 +9,7 @@ const Comments = ({ comment }) =>{
 
     const [liked, setLiked] = useState(false),
           [likes, setLikes] = useState(1000),
-          { userProfile, loading, setUserProfile } = useGetUserProfileById(comment.createdBy)
+          { userProfile, loading } = useGetUserProfileById(comment.createdBy)
 
     if(loading) return <CommentsSkeleton/>
 
