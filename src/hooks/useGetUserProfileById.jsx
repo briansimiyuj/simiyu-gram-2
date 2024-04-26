@@ -41,6 +41,6 @@ export const useGetUserProfileById = (userId) =>{
     
     }, [showToast, userId, setUserProfile]) 
 
-    return { userProfile, loading, setUserProfile }
+    return { userProfile, loading }
 
 }
