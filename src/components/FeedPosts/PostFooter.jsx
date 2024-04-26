@@ -39,7 +39,7 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
 
     return(
 
-        <Box marginTop={marginTop} mb={10}>
+        <Box position="absolute" width={"100%"} bottom={0} mb={10} ml={-9}>
         
             <Flex
                 alignItems={"center"}

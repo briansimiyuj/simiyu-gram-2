@@ -1,8 +1,9 @@
 import { Flex, Avatar, Text, VStack } from '@chakra-ui/react'
+import profilePic from '../../../img/profilepic.png'
 import { useState } from 'react'
-import { CommentLike, CommentUnlike} from '../../assets/constants'
+import { CommentLike, CommentUnlike} from '../..//assets/constants'
 
-const Comments = ({ createdAt, text, username, profilePic }) =>{
+const Comments = ({ comment }) =>{
 
     const [liked, setLiked] = useState(false),
           [likes, setLikes] = useState(1000)
@@ -28,20 +29,20 @@ const Comments = ({ createdAt, text, username, profilePic }) =>{
 
     return(
 
-        <Flex gap={4}>
+        <Flex gap={2} justifyContent={"center"}>
 
-            <Avatar src={profilePic} name={username} alt={username} size={"sm"}/>
+            <Avatar src={profilePic} size={"sm"}/>
 
             
-            <Flex direction={"column"}>
+            <Flex direction={"column"} w={"170%"} alignItems="center">
 
-                <Flex>
+                <Flex justifyContent={"space-between"}>
 
                     <Flex gap={2} w={300}>
 
-                        <Text fontWeight={"bold"} fontSize={12}>{username}</Text>
+                        <Text fontWeight={"bold"} fontSize={12}>briansimiyuj</Text>
 
-                        <Text fontSize={14}>{text}</Text>
+                        <Text fontSize={14}>{comment.comment}</Text>
 
                     </Flex>
 
@@ -60,7 +61,7 @@ const Comments = ({ createdAt, text, username, profilePic }) =>{
 
                 </Flex>
 
-                <Text fontSize={12} color={"gray"} mt={-3}>{createdAt}</Text>
+                {/* <Text fontSize={12} color={"gray"} mt={-3}>{createdAt}</Text> */}
 
             </Flex>
 

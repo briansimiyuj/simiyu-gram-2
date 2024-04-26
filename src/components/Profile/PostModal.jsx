@@ -1,5 +1,4 @@
 import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex, Box, Image, Avatar, Text, Divider, VStack, Button, Link } from "@chakra-ui/react"
-import profilepic from "../../../img/profilepic.png"
 import { MdDelete, MdEdit } from "react-icons/md"
 import { Link as RouterLink } from "react-router-dom"
 import Comments from "../Comments/Comments"
@@ -30,11 +29,11 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
                 <ModalContent>
                     
-                    <ModalCloseButton  mt={5}/>
+                    <ModalCloseButton  mt={5} zIndex={1}/>
 
 
 
-                    <ModalBody bg={"black"} pb={5} pr={55}>
+                    <ModalBody bg={"black"} pb={5} pr={5}>
 
                         <Flex
                             gap={4} 
@@ -62,10 +61,16 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
                                 flex={1}
                                 flexDirection={"column"}
                                 px={10}
+                                position="relative"
                                 display={{ base: "none", md: "block" }}
                             >
 
-                                <Flex alignItems={"center"} justifyContent={"space-between"}>
+                                <Flex 
+                                    alignItems={"center"} 
+                                    justifyContent={"space-between"} 
+                                    ml={-9}
+                                    w={"115%"}
+                                >
 
                                     <Link
                                         fontSize={14}
@@ -140,14 +145,14 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
                                 </Flex>
                                     
                                     
-                                <Divider my={4} bg={"gray.500"}/>
+                                <Divider my={4} bg={"gray.500"} w={"125%"} ml={-9}/>
 
 
                                 {
 
                                     post?.caption && (
 
-                                        <Flex flexDirection="column" mb={25}>
+                                        <Flex flexDirection="column" mb={25} ml={-9}>
 
                                             <Flex gap={4} mb={25}>
 
@@ -192,7 +197,7 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
                                             </Flex>
 
-                                            <Divider my={2} bg={"gray.800"}/>
+                                            <Divider my={4} bg={"gray.500"} w={"115%"} ml={1}/>
 
 
                                         </Flex>
@@ -204,36 +209,29 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
 
                                 <VStack 
-                                    alignItems={"start"}
-                                    w={"full"}
-                                    maxH={350}
+                                    alignItems={"stretch"}
+                                    w={"125%"}
+                                    ml={-9}
+                                    maxH={280}
+                                    h={"full"}
                                     overflowY={"auto"}
                                 >
 
-                                    <Comments
-                                        createdAt="1d ago"
-                                        username="BrianSimiyu"
-                                        profilePic={profilepic}
-                                        text="Dummy images from unsplash"
-                                    />
+                                    { 
+                                    
+                                        post?.comments?.map(comment => (
+                                            
+                                            <Comments key={comment.commentId} comment={comment}/>
 
-                                    <Comments
-                                        createdAt="12h ago"
-                                        username="abrahmov"
-                                        profilePic="https://bit.ly/dan-abramov"
-                                        text="Nice pic"
-                                    />
-
-                                    <Comments
-                                        createdAt="3h ago"
-                                        username="kentdodds"
-                                        profilePic="https://bit.ly/kent-c-dodds"
-                                        text="Good clone dude! clone dude! clone dude! clone dude! clone dude! clone dude! clone dude!"
-                                    />
+                                        ))
+                                    
+                                    }
 
                                 </VStack>
 
-                                <PostFooter isProfilePage={true} marginTop={"10rem"}/>
+                                <Divider my={4} bg={"gray.500"} w={"125%"} ml={-9}/>
+
+                                <PostFooter isProfilePage={true} marginTop={"9rem"} post={post}/>
 
                             </Flex>
 
