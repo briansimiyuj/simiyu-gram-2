@@ -2,11 +2,16 @@ import { Flex, Avatar, Text, VStack } from '@chakra-ui/react'
 import profilePic from '../../../img/profilepic.png'
 import { useState } from 'react'
 import { CommentLike, CommentUnlike} from '../..//assets/constants'
+import { useGetUserProfileById } from '../../hooks/useGetUserProfileById'
+import CommentsSkeleton from './CommentsSkeleton'
 
 const Comments = ({ comment }) =>{
 
     const [liked, setLiked] = useState(false),
-          [likes, setLikes] = useState(1000)
+          [likes, setLikes] = useState(1000),
+          { userProfile, loading, setUserProfile } = useGetUserProfileById(comment.createdBy)
+
+    if(loading) return <CommentsSkeleton/>
 
 
     const handleLikeComment = () => {
