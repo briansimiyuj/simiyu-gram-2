@@ -70,7 +70,7 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
                                     justifyContent={"space-between"} 
                                     ml={-9}
                                     w={"115%"}
-                                >
+                                    >
 
                                     <Link
                                         fontSize={14}
@@ -212,8 +212,8 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
                                     alignItems={"stretch"}
                                     w={"125%"}
                                     ml={-9}
-                                    maxH={280}
-                                    h={"full"}
+                                    maxH={380}
+                                    h={"auto"}
                                     overflowY={"auto"}
                                 >
 
@@ -229,7 +229,7 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
                                 </VStack>
 
-                                <Divider my={4} bg={"gray.500"} w={"125%"} ml={-9}/>
+                                { post?.comments && <Divider my={4} bg={"gray.500"} w={"125%"} ml={-9}/> }
 
                                 <PostFooter isProfilePage={true} marginTop={"9rem"} post={post}/>
 
