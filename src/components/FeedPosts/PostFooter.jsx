@@ -2,12 +2,14 @@ import { Flex, Box, Text, InputGroup, InputRightElement, Input, Button } from '@
 import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../../assets/constants'
 import { useState } from'react'
 import { usePostComment } from '../../hooks/usePostComment'
+import { useAuthStore } from '../../store/authStore'
 
 const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
 
     const [liked, setLiked] = useState(false),
           [likes, setLikes] = useState(1000),
-          { commenting, handlePostComment, userComment, setUserComment } = usePostComment()
+          { commenting, handlePostComment, userComment, setUserComment } = usePostComment(),
+          authUser = useAuthStore(state => state.user)
 
 
     const handleSubmitComment = async() =>{
@@ -96,61 +98,70 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
             }
 
 
-            <Flex
-                alignItems={"center"}
-                gap={2} 
-                justifyContent={"space-between"}
-                w={"full"}
-            >
-
-                <InputGroup>
-                
-                    <Input 
-                        variant={"flushed"} 
-                        placeholder={"Add a comment..."} 
-                        fontSize={14}
-                        value={userComment}
-                        onChange={e => setUserComment(e.target.value)}
-                    />
-
-                    <InputRightElement>
+            
+            {
+            
+                authUser && (
                     
-                        {
+                    <Flex
+                        alignItems={"center"}
+                        gap={2} 
+                        justifyContent={"space-between"}
+                        w={"full"}
+                    >
 
-                            !userComment ? (
+                        <InputGroup>
+                        
+                            <Input 
+                                variant={"flushed"} 
+                                placeholder={"Add a comment..."} 
+                                fontSize={14}
+                                value={userComment}
+                                onChange={e => setUserComment(e.target.value)}
+                            />
 
-                                <Button
-                                    fontSize={14}
-                                    color={"gray.500"}
-                                    fontWeight={600}
-                                    cursor={"not-allowed"}
-                                    _hover={{color: "white"}}
-                                    bg={"transparent"}
-                                    disabled
-                                >Post</Button>
+                            <InputRightElement>
+                            
+                                {
 
-                            ):(
+                                    !userComment ? (
 
-                                <Button
-                                    fontSize={14}
-                                    color={"blue.500"}
-                                    fontWeight={600}
-                                    cursor={"pointer"}
-                                    _hover={{color: "white"}}
-                                    bg={"transparent"}
-                                    onClick={handleSubmitComment}
-                                    isLoading={commenting}
-                                >Post</Button>
+                                        <Button
+                                            fontSize={14}
+                                            color={"gray.500"}
+                                            fontWeight={600}
+                                            cursor={"not-allowed"}
+                                            _hover={{color: "white"}}
+                                            bg={"transparent"}
+                                            disabled
+                                        >Post</Button>
 
-                            )
+                                    ):(
 
-                        }
-                    
-                    </InputRightElement>
-                
-                </InputGroup>
-                
-            </Flex>
+                                        <Button
+                                            fontSize={14}
+                                            color={"blue.500"}
+                                            fontWeight={600}
+                                            cursor={"pointer"}
+                                            _hover={{color: "white"}}
+                                            bg={"transparent"}
+                                            onClick={handleSubmitComment}
+                                            isLoading={commenting}
+                                        >Post</Button>
+
+                                    )
+
+                                }
+                            
+                            </InputRightElement>
+                        
+                        </InputGroup>
+                        
+                    </Flex>
+
+                )
+            
+            }
         
         </Box>
 
