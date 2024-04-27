@@ -1,4 +1,4 @@
-import { Container, VStack, Flex, SkeletonCircle, Skeleton, Box } from '@chakra-ui/react'
+import { Container, VStack, Flex, SkeletonCircle, Skeleton, Box, Text } from '@chakra-ui/react'
 import FeedPost from './FeedPost'
 import { useGetFeedPosts } from '../../hooks/useGetFeedPosts'
 
@@ -59,6 +59,8 @@ const FeedPosts = () =>{
                 ))
 
             }
+
+        { !loading && posts.length === 0 && <Text fontSize={50} marginTop={"8rem"} fontWeight={"bold"}>Please follow users to make friends😃</Text> }
             
         </Container>
 
