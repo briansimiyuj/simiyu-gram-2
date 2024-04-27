@@ -4,6 +4,7 @@ import { CommentLike, CommentUnlike} from '../..//assets/constants'
 import { useGetUserProfileById } from '../../hooks/useGetUserProfileById'
 import CommentsSkeleton from './CommentsSkeleton'
 import { Link as RouterLink } from 'react-router-dom'
+import { timeAgo } from '../../utils/timeAgo'
 
 const Comments = ({ comment }) =>{
 
@@ -53,9 +54,9 @@ const Comments = ({ comment }) =>{
 
 
             
-            <Flex direction={"column"} w={"170%"} alignItems="center">
+            <Flex direction={"column"} w={"170%"} alignItems="center" position="relative">
 
-                <Flex justifyContent={"space-between"}>
+                <Flex justifyContent={"space-between"} mb={5}>
 
                     <Flex ml={-6} w={300} mt={2}>
 
@@ -78,7 +79,19 @@ const Comments = ({ comment }) =>{
 
                 </Flex>
 
-                {/* <Text fontSize={12} color={"gray"} mt={-3}>{createdAt}</Text> */}
+                <Text 
+                    fontSize={12} 
+                    color={"gray"} 
+                    mt={-2} 
+                    mr={-15}
+                    position="absolute"
+                    top={10}
+                    left={-110.8}
+                >
+
+                    { timeAgo(comment.createdAt) }
+
+                </Text>
 
             </Flex>
 

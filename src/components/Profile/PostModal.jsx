@@ -6,6 +6,7 @@ import PostFooter from "../FeedPosts/PostFooter"
 import profileStore from "../../store/profileStore"
 import { useAuthStore } from "../../store/authStore"
 import { useDeletePost } from "../../hooks/useDeletePost"
+import { timeAgo } from "../../utils/timeAgo"
 
 const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
@@ -181,7 +182,7 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
                                                     <Flex gap={5}>
 
-                                                        <Text fontSize={12} mt={2} color={"gray"}>1 day ago</Text>
+                                                        <Text fontSize={12} mt={2} color={"gray"}>{timeAgo(post?.createdAt)}</Text>
 
                                                     </Flex>
 
