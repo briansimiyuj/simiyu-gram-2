@@ -3,11 +3,11 @@ import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../../assets/constan
 import { useRef, useState } from'react'
 import { usePostComment } from '../../hooks/usePostComment'
 import { useAuthStore } from '../../store/authStore'
+import { useLikePosts } from '../../hooks/useLikePosts'
 
 const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
 
-    const [liked, setLiked] = useState(false),
-          [likes, setLikes] = useState(1000),
+    const { liked, likes, handleLikePost, updating } = useLikePosts(post),
           { commenting, handlePostComment, userComment, setUserComment } = usePostComment(),
           authUser = useAuthStore(state => state.user),
           commentRef = useRef(null)
@@ -22,23 +22,6 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
     }
 
 
-    const handleLikePost = () => {
-    
-        if(liked){
-
-            setLiked(false)
-            
-            setLikes(likes - 1)
-
-        }else{
-
-            setLiked(true)
-
-            setLikes(likes + 1)
-
-        }
-    
-    }
 
     return(
 
@@ -198,7 +181,7 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
 
 
                             <Box cursor={"pointer"} fontSize={18} onClick={() => commentRef.current.focus()}>
-
+ 
                                 <CommentLogo/>
 
                             </Box>
