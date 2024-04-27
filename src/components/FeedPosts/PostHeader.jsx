@@ -1,7 +1,9 @@
-import { Flex, Box, Avatar, Text } from '@chakra-ui/react'
+import { Flex, Box, Avatar, Text, Link } from '@chakra-ui/react'
 import { useState } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+import { timeAgo } from '../../utils/timeAgo'
 
-const PostHeader = ({ post }) =>{
+const PostHeader = ({ post, userProfile }) =>{
 
     const [isFollowed, setIsFollowed] = useState(false)
 
@@ -11,13 +13,29 @@ const PostHeader = ({ post }) =>{
 
             <Flex alignItems={"center"} gap={2}>
 
-                <Avatar src={post} alt={username} size={"sm"}/>
+                <Link
+                    fontSize={14}
+                    fontWeight={700}
+                    as={RouterLink}
+                    display="flex"
+                    gap={3}
+                    to={`/${userProfile?.username}`}
+                >
+                    
+                    <Avatar 
+                        src={userProfile?.profilePicURL} 
+                        alt={userProfile?.profilePicURL} 
+                        size={"sm"} 
+                        name={userProfile?.fullName}
+                    />
+
+                    <Text mt={1}>{userProfile?.username}</Text>
+                
+                </Link>
 
                 <Flex fontSize={12} fontWeight={"bold"} gap={2}>
 
-                    <h4>{username}</h4>
-
-                    <Box color={"gray.500"}>• 10 minutes ago</Box>
+                    <Box color={"gray.500"}>{ timeAgo(post.createdAt) }</Box>
 
                 </Flex>
 
