@@ -1,11 +1,12 @@
 import { useGetUserProfileById } from "../../hooks/useGetUserProfileById"
+import { useAuthStore } from "../../store/authStore"
 import PostFooter from "./PostFooter"
 import PostHeader from "./PostHeader"
 import { Box, Image } from "@chakra-ui/react"
 
 const FeedPost = ({ post }) =>{
 
-    const { userProfile, loading } = useGetUserProfileById(post.createdBy)
+    const { userProfile } = useGetUserProfileById(post.createdBy)
 
     return(
 

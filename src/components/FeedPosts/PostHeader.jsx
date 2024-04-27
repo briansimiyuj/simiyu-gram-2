@@ -1,11 +1,13 @@
-import { Flex, Box, Avatar, Text, Link } from '@chakra-ui/react'
+import { Flex, Box, Avatar, Text, Link, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { timeAgo } from '../../utils/timeAgo'
+import { useFollowUser } from '../../hooks/useFollowUser'
 
 const PostHeader = ({ post, userProfile }) =>{
 
-    const [isFollowed, setIsFollowed] = useState(false)
+    const [isFollowed, setIsFollowed] = useState(false), 
+          { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(post.createdBy)
 
     return(
 
@@ -46,18 +48,20 @@ const PostHeader = ({ post, userProfile }) =>{
                 cursor={"pointer"}
             >
 
-                <Text 
+                <Button 
                     fontSize={12} 
+                    size={"xs"}
                     fontWeight={"bold"} 
                     color={"blue.500"}
+                    bg={"transparent"}
                     _hover={{color: "white"}}
+                    onFocus={{ outline: "none", bg: "transparent" }}
                     transition={"0.2s ease-in-out"}
-                    onClick={() => setIsFollowed(!isFollowed)}
-                >
-                    
-                    { isFollowed ? "Following" : "Follow" }
-
-                </Text>
+                    isLoading={isUpdating}
+                    onClick={() => {
+                        handleFollowUser()
+                    }}
+                >Unfollow</Button>
 
             </Box>
 
