@@ -1,7 +1,7 @@
 import { Flex, Box, Avatar, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 
-const PostHeader = ({ avatar, username }) =>{
+const PostHeader = ({ post }) =>{
 
     const [isFollowed, setIsFollowed] = useState(false)
 
@@ -11,7 +11,7 @@ const PostHeader = ({ avatar, username }) =>{
 
             <Flex alignItems={"center"} gap={2}>
 
-                <Avatar src={avatar} alt={username} size={"sm"}/>
+                <Avatar src={post} alt={username} size={"sm"}/>
 
                 <Flex fontSize={12} fontWeight={"bold"} gap={2}>
 

@@ -1,25 +1,11 @@
 import { Container, VStack, Flex, SkeletonCircle, Skeleton, Box } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
 import FeedPost from './FeedPost'
-import img2 from '../../../img/img2.png'
-import img4 from '../../../img/img4.png'
-import img3 from '../../../img/img3.png'
-import img1 from '../../../img/img1.png'
+import { useGetFeedPosts } from '../../hooks/useGetFeedPosts'
 
 const FeedPosts = () =>{
 
-    const [isLoading, setIsLoading] = useState(true)
+   const { loading, posts } = useGetFeedPosts()
 
-
-    useEffect(() =>{
-    
-        setTimeout(() =>{
-
-            setIsLoading(false)
-
-        }, 2000)
-    
-    }, [])
 
 
     return(
@@ -32,7 +18,7 @@ const FeedPosts = () =>{
 
             {
 
-                isLoading && [0, 1, 2, 3, 4].map(i =>(
+                loading && [0, 1, 2].map(i =>(
 
                     <VStack key={i} gap={4} alignItems={"start"} mb={10}>
 
@@ -54,7 +40,7 @@ const FeedPosts = () =>{
 
                         <Skeleton w={"full"}>
 
-                            <Box h={"500px"}>Contents wrapped</Box>
+                            <Box h={"400px"}>Contents wrapped</Box>
 
                         </Skeleton>
 
@@ -66,21 +52,11 @@ const FeedPosts = () =>{
 
             {
 
-                !isLoading && (
+                !loading && posts.length > 0 && posts.map(post =>(
 
-                    <>
-                    
-                        <FeedPost img={img1} username="ChrisKen" avatar={img1}/>
-                
-                        <FeedPost img={img2} username="BenPol" avatar={img2}/>
+                    <FeedPost key={post.postId} post={post}/>
 
-                        <FeedPost img={img3} username="LouisJohnson" avatar={img3}/>
-
-                        <FeedPost img={img4} username="Jefferson" avatar={img4}/>
-                    
-                    </>
-
-                )
+                ))
 
             }
             
