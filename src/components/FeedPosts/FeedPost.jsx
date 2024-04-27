@@ -22,7 +22,7 @@ const FeedPost = ({ post }) =>{
             </Box>
 
 
-            {/* <PostFooter username={username}/> */}
+            <PostFooter post={post} userProfile={userProfile}/>
         
         </>
 

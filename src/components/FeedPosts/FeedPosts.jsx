@@ -60,7 +60,7 @@ const FeedPosts = () =>{
 
             }
 
-        { !loading && posts.length === 0 && <Text fontSize={50} marginTop={"8rem"} fontWeight={"bold"}>Please follow users to make friends😃</Text> }
+        { !loading && posts.length === 0 && <Text fontSize={{ base: "2xl", sm: "3xl"}} marginTop={"8rem"} fontWeight={"bold"}>Please follow users to make friends😃</Text> }
             
         </Container>
 

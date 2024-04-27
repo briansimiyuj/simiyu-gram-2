@@ -5,7 +5,7 @@ import { usePostComment } from '../../hooks/usePostComment'
 import { useAuthStore } from '../../store/authStore'
 import { useLikePosts } from '../../hooks/useLikePosts'
 
-const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
+const PostFooter = ({ userProfile, isProfilePage, marginTop, post }) =>{
 
     const { liked, likes, handleLikePost, updating } = useLikePosts(post),
           { commenting, handlePostComment, userComment, setUserComment } = usePostComment(),
@@ -73,11 +73,17 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
                                 
                                     <Text fontSize='sm' fontWeight={700}>   
 
-                                        {username}{" "}
+                                        {userProfile?.username}{" "}
 
-                                        <Text as="span" fontWeight={400}>Feeling Good</Text>
+                                        { post.caption && <Text as="span" fontWeight={400}>{post.caption}</Text> }
 
-                                        <Text fontSize='sm' color={"gray"}>View all 1,000 comments</Text>
+                                        {
+                                        
+                                            post.comments.length > 0 && 
+                                        
+                                            <Text fontSize='sm' color={"gray"}>See all {post.comments.length} comments</Text> 
+                                        
+                                        }
 
                                     </Text>
                                 
@@ -200,11 +206,17 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
                                 
                                     <Text fontSize='sm' fontWeight={700}>   
 
-                                        {username}{" "}
+                                        {userProfile?.username}{" "}
 
-                                        <Text as="span" fontWeight={400}>Feeling Good</Text>
+                                        { post.caption && <Text as="span" fontWeight={400}>{post.caption}</Text> }
 
-                                        <Text fontSize='sm' color={"gray"}>View all 1,000 comments</Text>
+                                        {
+                                        
+                                            post.comments.length > 0 && 
+                                        
+                                            <Text fontSize='sm' color={"gray"}>See all {post.comments.length} comments</Text> 
+                                        
+                                        }
 
                                     </Text>
                                 
