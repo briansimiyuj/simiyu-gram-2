@@ -7,12 +7,15 @@ import profileStore from "../../store/profileStore"
 import { useAuthStore } from "../../store/authStore"
 import { useDeletePost } from "../../hooks/useDeletePost"
 import { timeAgo } from "../../utils/timeAgo"
+import Captions from "../Comments/Captions"
 
 const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
     const userProfile = profileStore(state => state.userProfile),
           authUser = useAuthStore(state => state.user),
           { isDeleting, deleteUserPost } = useDeletePost()
+
+    console.log(post.comments)
 
     return(
 
@@ -94,7 +97,7 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
 
 
-                                    <Flex gap={4}>
+                                    <Flex gap={4} mr={6}>
 
                                         {
         
@@ -146,67 +149,8 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
                                 </Flex>
                                     
                                     
-                                <Divider my={4} bg={"gray.500"} w={"125%"} ml={-9}/>
+                                {<Divider my={4} bg={"gray.500"} w={"125%"} ml={-9}/>}
 
-
-                                {
-
-                                    post?.caption && (
-
-                                        <Flex flexDirection="column" mb={25} ml={-9}>
-
-                                            <Flex gap={4} mb={25}>
-
-
-                                                <Link
-                                                    fontSize={14}
-                                                    fontWeight={700}
-                                                    as={RouterLink}
-                                                    display="flex"
-                                                    gap={3}
-                                                >
-                                                    
-                                                    <Avatar 
-                                                        src={userProfile?.profilePicURL} 
-                                                        alt={userProfile?.profilePicURL} 
-                                                        size={"sm"} 
-                                                        name={userProfile?.fullName}
-                                                    />
-
-                                                    <Text mt={1}>{userProfile?.username}</Text>
-                                                
-                                                </Link>
-
-
-                                                <Box>
-
-                                                    <Flex gap={5}>
-
-                                                        <Text fontSize={12} mt={2} color={"gray"}>{timeAgo(post?.createdAt)}</Text>
-
-                                                    </Flex>
-
-                                                    <Text 
-                                                        fontSize={13} 
-                                                        fontWeight="bold"
-                                                        ml={-20}
-                                                        pl={2}
-                                                        mt={3}
-                                                    >{post?.caption}</Text>
-
-                                                </Box>       
-
-                                            </Flex>
-
-                                            <Divider my={4} bg={"gray.500"} w={"115%"} ml={1}/>
-
-
-                                        </Flex>
-                                        
-
-                                    )
-
-                                }
 
 
                                 <VStack 
@@ -216,7 +160,12 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
                                     maxH={380}
                                     h={"auto"}
                                     overflowY={"auto"}
+                                    overflowX={"hidden"}
                                 >
+
+                                    { post?.caption && <Captions post={post}/> }
+
+                                    { post?.comments.length > 0 && <Divider my={-1} bg={"gray.500"} w={"125%"} ml={-9}/> }   
 
                                     { 
                                     
@@ -230,7 +179,7 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
 
                                 </VStack>
 
-                                { post?.comments && <Divider my={4} bg={"gray.500"} w={"125%"} ml={-9}/> }
+                                { post?.comments.length > 0 && <Divider my={8} bg={"gray.500"} w={"125%"} ml={-9}/> }
 
                                 <PostFooter isProfilePage={true} marginTop={"9rem"} post={post}/>
 

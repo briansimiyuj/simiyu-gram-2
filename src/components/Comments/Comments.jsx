@@ -35,7 +35,7 @@ const Comments = ({ comment }) =>{
 
     return(
 
-        <Flex gap={2} justifyContent={"center"}>
+        <Flex gap={2} justifyContent={"center"} mt={6}>
 
             <Link
                 as={RouterLink}
