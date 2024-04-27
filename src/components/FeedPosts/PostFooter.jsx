@@ -4,6 +4,7 @@ import { useRef, useState } from'react'
 import { usePostComment } from '../../hooks/usePostComment'
 import { useAuthStore } from '../../store/authStore'
 import { useLikePosts } from '../../hooks/useLikePosts'
+import { timeAgo } from '../../utils/timeAgo'
 
 const PostFooter = ({ userProfile, isProfilePage, marginTop, post }) =>{
 
@@ -64,6 +65,12 @@ const PostFooter = ({ userProfile, isProfilePage, marginTop, post }) =>{
 
                         <Text fontWeight={600} fontSize={"sm"}>{likes} likes</Text>
 
+
+                        {
+
+                            isProfilePage && <Text fontSize={12} color={"gray.500"}>Posted {timeAgo(post.createdAt)}</Text>
+
+                        }
 
                         {
 
