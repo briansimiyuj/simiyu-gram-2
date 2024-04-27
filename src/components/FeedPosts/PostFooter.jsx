@@ -1,6 +1,6 @@
 import { Flex, Box, Text, InputGroup, InputRightElement, Input, Button } from '@chakra-ui/react'
 import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../../assets/constants'
-import { useState } from'react'
+import { useRef, useState } from'react'
 import { usePostComment } from '../../hooks/usePostComment'
 import { useAuthStore } from '../../store/authStore'
 
@@ -9,7 +9,8 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
     const [liked, setLiked] = useState(false),
           [likes, setLikes] = useState(1000),
           { commenting, handlePostComment, userComment, setUserComment } = usePostComment(),
-          authUser = useAuthStore(state => state.user)
+          authUser = useAuthStore(state => state.user),
+          commentRef = useRef(null)
 
 
     const handleSubmitComment = async() =>{
@@ -69,7 +70,7 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
                             </Box>
 
 
-                            <Box cursor={"pointer"} fontSize={18}>
+                            <Box cursor={"pointer"} fontSize={18} onClick={() => commentRef.current.focus()}>
 
                                 <CommentLogo/>
 
@@ -124,6 +125,7 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
                                             fontSize={14}
                                             value={userComment}
                                             onChange={e => setUserComment(e.target.value)}
+                                            ref={commentRef}
                                         />
 
                                         <InputRightElement>
@@ -195,7 +197,7 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
                             </Box>
 
 
-                            <Box cursor={"pointer"} fontSize={18}>
+                            <Box cursor={"pointer"} fontSize={18} onClick={() => commentRef.current.focus()}>
 
                                 <CommentLogo/>
 
@@ -245,6 +247,7 @@ const PostFooter = ({ username, isProfilePage, marginTop, post }) =>{
                                     fontSize={14}
                                     value={userComment}
                                     onChange={e => setUserComment(e.target.value)}
+                                    ref={commentRef}
                                 />
 
                                 <InputRightElement>
