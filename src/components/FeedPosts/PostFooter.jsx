@@ -1,17 +1,19 @@
-import { Flex, Box, Text, InputGroup, InputRightElement, Input, Button } from '@chakra-ui/react'
+import { Flex, Box, Text, InputGroup, InputRightElement, Input, Button, useDisclosure } from '@chakra-ui/react'
 import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../../assets/constants'
 import { useRef, useState } from'react'
 import { usePostComment } from '../../hooks/usePostComment'
 import { useAuthStore } from '../../store/authStore'
 import { useLikePosts } from '../../hooks/useLikePosts'
 import { timeAgo } from '../../utils/timeAgo'
+import CommentsModal from '../Comments/CommentsModal'
 
 const PostFooter = ({ userProfile, isProfilePage, marginTop, post }) =>{
 
     const { liked, likes, handleLikePost, updating } = useLikePosts(post),
           { commenting, handlePostComment, userComment, setUserComment } = usePostComment(),
           authUser = useAuthStore(state => state.user),
-          commentRef = useRef(null)
+          commentRef = useRef(null),
+          { isOpen, onOpen, onClose } = useDisclosure()
 
 
     const handleSubmitComment = async() =>{
@@ -88,11 +90,13 @@ const PostFooter = ({ userProfile, isProfilePage, marginTop, post }) =>{
                                         
                                             post.comments.length > 0 && 
                                         
-                                            <Text fontSize='sm' color={"gray"}>See all {post.comments.length} comments</Text> 
+                                            <Text fontSize='sm' color={"gray"} onClick={onOpen} cursor={"pointer"}>See all {post.comments.length} comments</Text> 
                                         
                                         }
 
                                     </Text>
+
+                                    { isOpen && <CommentsModal isOpen={isOpen} onClose={onClose} post={post}/>  }
                                 
                                 </>
 
@@ -221,11 +225,14 @@ const PostFooter = ({ userProfile, isProfilePage, marginTop, post }) =>{
                                         
                                             post.comments.length > 0 && 
                                         
-                                            <Text fontSize='sm' color={"gray"}>See all {post.comments.length} comments</Text> 
+                                            <Text fontSize='sm' color={"gray"} onClick={onOpen} cursor={"pointer"}>See all {post.comments.length} comments</Text> 
                                         
                                         }
 
                                     </Text>
+
+
+                                    { isOpen && <CommentsModal isOpen={isOpen} onClose={onClose} post={post}/>  }
                                 
                                 </>
 
