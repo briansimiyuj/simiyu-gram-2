@@ -1,10 +1,22 @@
 import { Button, Flex, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/react"
 import { useState } from "react"
 import ModalComments from "./ModalComments"
+import { usePostComment } from "../../hooks/usePostComment"
 
 const CommentsModal = ({ isOpen, onClose, post }) =>{
 
-    const [commentModal, setCommentModal] = useState(true)
+    const [commentModal, setCommentModal] = useState(true),
+		  { handlePostComment, commenting, userComment, setUserComment } = usePostComment()
+
+
+	const handleSubmitComment = async() =>{
+
+		await handlePostComment(post.postId, userComment)
+
+		setUserComment('')
+	
+	}
+	
 
 	return(
 
@@ -42,15 +54,18 @@ const CommentsModal = ({ isOpen, onClose, post }) =>{
 
 					<form style={{ marginTop: "5rem" }}>
 
-						<Input placeholder='Comment' size={"sm"}/>
+						<Input placeholder="Comment" size={"sm"} value={userComment} onChange={e => setUserComment(e.target.value)}/>
 
 						<Flex w={"full"} justifyContent={"flex-end"}>
 
-							<Button type='submit' ml={"auto"} size={"sm"} my={4}>
-
-								Post
-
-							</Button>
+							<Button 
+								type="submit"
+								ml={"auto"} 
+								size={"sm"} 
+								my={4}
+								isLoading={commenting}
+								onClick={handleSubmitComment}
+							>Post</Button>
 
 						</Flex>
 
