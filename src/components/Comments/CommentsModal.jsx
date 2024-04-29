@@ -1,6 +1,10 @@
 import { Button, Flex, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/react"
+import { useState } from "react"
+import ModalComments from "./ModalComments"
 
-const CommentsModal = ({ isOpen, onClose }) =>{
+const CommentsModal = ({ isOpen, onClose, post }) =>{
+
+    const [commentModal, setCommentModal] = useState(true)
 
 	return(
 
@@ -8,7 +12,7 @@ const CommentsModal = ({ isOpen, onClose }) =>{
 
 			<ModalOverlay/>
 
-			<ModalContent bg={"black"} border={"1px solid gray"} maxW={"400px"}>
+			<ModalContent bg={"black"} border={"1px solid gray"} maxW={"600px"}>
 
 				<ModalHeader>Comments</ModalHeader>
 
@@ -18,9 +22,25 @@ const CommentsModal = ({ isOpen, onClose }) =>{
 
 				<ModalBody pb={6}>
 
-					<Flex mb={4} gap={4} flexDir={"column"} maxH={"250px"} overflowY={"auto"}></Flex>
+					<Flex 
+                        mb={4} 
+                        alignItems={"center"} 
+                        flexDir={"column"} 
+                        maxH={"900px"} 
+                        h={"auto"}
+                        overflowY={"auto"}  
+                        overflowX={"hidden"}
+                    >
 
-					<form style={{ marginTop: "2rem" }}>
+                        {
+
+                            post?.comments?.map((comment, i) => <ModalComments key={i} comment={comment} commentModal={commentModal}/> )
+
+                        }
+
+                    </Flex>
+
+					<form style={{ marginTop: "5rem" }}>
 
 						<Input placeholder='Comment' size={"sm"}/>
 
