@@ -1,13 +1,26 @@
 import { Button, Flex, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/react"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import ModalComments from "./ModalComments"
 import { usePostComment } from "../../hooks/usePostComment"
 
 const CommentsModal = ({ isOpen, onClose, post }) =>{
 
     const [commentModal, setCommentModal] = useState(true),
-		  { handlePostComment, commenting, userComment, setUserComment } = usePostComment()
+		  { handlePostComment, commenting, userComment, setUserComment } = usePostComment(),
+		  commentsContainerRef = useRef(null)
 
+
+	useEffect(() =>{
+	
+		const scrollToBottom = () =>{
+
+			commentsContainerRef.current.scrollTop = commentsContainerRef.current.scrollHeight
+
+		}
+
+		if(isOpen) setTimeout(scrollToBottom, 100)
+	
+	}, [isOpen, post?.comments.length])
 
 	const handleSubmitComment = async() =>{
 
@@ -42,6 +55,7 @@ const CommentsModal = ({ isOpen, onClose, post }) =>{
                         h={"auto"}
                         overflowY={"auto"}  
                         overflowX={"hidden"}
+						ref={commentsContainerRef}
                     >
 
                         {
