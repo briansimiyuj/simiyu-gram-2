@@ -39,7 +39,7 @@ const ModalComments = ({ comment }) =>{
         <Flex 
             gap={12} 
             justifyContent={"start"} 
-            mb={10} 
+            mb={4} 
             w={"full"} 
             ml={2} 
             maxH={100} 
@@ -104,7 +104,7 @@ const ModalComments = ({ comment }) =>{
                     mr={-15}
                     position="absolute"
                     top={-20}
-                    left={{base: -340, sm: -460}}
+                    left={{base: -350, sm: -450}}
                 >
 
                     { timeAgo(comment.createdAt) }
