@@ -1,16 +1,19 @@
-import { Flex, Avatar, Text, VStack, Link } from '@chakra-ui/react'
+import { Flex, Avatar, Text, VStack, Link, Box } from '@chakra-ui/react'
+import { MdDelete } from 'react-icons/md'
 import { useState } from 'react'
 import { CommentLike, CommentUnlike} from '../..//assets/constants'
 import { useGetUserProfileById } from '../../hooks/useGetUserProfileById'
 import CommentsSkeleton from './CommentsSkeleton'
 import { Link as RouterLink } from 'react-router-dom'
 import { timeAgo } from '../../utils/timeAgo'
+import { useAuthStore } from '../../store/authStore'
 
 const Comments = ({ comment }) =>{
 
     const [liked, setLiked] = useState(false),
           [likes, setLikes] = useState(1000),
           { userProfile, loading } = useGetUserProfileById(comment.createdBy),
+          authUser = useAuthStore(state => state.user),
           chars = Array.from(comment.comment)
 
     if(loading) return <CommentsSkeleton/>
@@ -77,17 +80,33 @@ const Comments = ({ comment }) =>{
 
                 <Flex justifyContent={"space-between"} mb={5}>
 
-                    <VStack onClick={handleLikeComment} cursor={"pointer"} ml={5}>
+                    {
 
-                        {
+                        userProfile?.userId !== authUser?.userId ?(
 
-                            !liked? (<CommentLike />) : (<CommentUnlike/>)
+                            <VStack onClick={handleLikeComment} cursor={"pointer"} ml={5}>
 
-                        }
+                                {
 
-                        <Text fontWeight={600} fontSize={"sm"} mt={-2}>2</Text>
+                                    !liked? (<CommentLike />) : (<CommentUnlike/>)
 
-                    </VStack>
+                                }
+
+                                <Text fontWeight={600} fontSize={"sm"} mt={-2}>2</Text>
+
+                            </VStack>
+
+                        ):(
+
+                            <Box  cursor={"pointer"} ml={5} mt={1}>
+
+                                <MdDelete size={20}/>
+
+                            </Box>
+
+                        )
+
+                    }
 
                 </Flex>
 

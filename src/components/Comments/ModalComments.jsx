@@ -1,17 +1,20 @@
-import { Flex, Avatar, Text, VStack, Link } from '@chakra-ui/react'
+import { Flex, Avatar, Text, VStack, Link, Box } from '@chakra-ui/react'
 import { useState } from 'react'
 import { CommentLike, CommentUnlike} from '../..//assets/constants'
 import { useGetUserProfileById } from '../../hooks/useGetUserProfileById'
 import CommentsSkeleton from './CommentsSkeleton'
 import { Link as RouterLink } from 'react-router-dom'
 import { timeAgo } from '../../utils/timeAgo'
+import { useAuthStore } from '../../store/authStore'
+import { MdDelete } from 'react-icons/md'
 
 const ModalComments = ({ comment }) =>{
 
     const [liked, setLiked] = useState(false),
           [likes, setLikes] = useState(1000),
           { userProfile, loading } = useGetUserProfileById(comment.createdBy),
-          chars = Array.from(comment.comment)
+          chars = Array.from(comment.comment),
+          authUser = useAuthStore(state => state.user)
 
     if(loading) return <CommentsSkeleton/>
 
@@ -74,26 +77,49 @@ const ModalComments = ({ comment }) =>{
             
             <Flex direction={"column"} w={"17%"} alignItems="center" position="relative" mt={32}>
 
-                <Flex justifyContent={"space-between"} mb={5}>                
+                <Flex justifyContent={"space-between"} mb={5}> 
 
-                    <VStack 
-                        onClick={handleLikeComment} 
-                        cursor={"pointer"} 
-                        ml={-7} 
-                        mt={0}
-                        position="absolute"
-                        top={-120}
-                    >
+                    {
 
-                        {
+                        authUser?.userId !== userProfile?.userId ?(
 
-                            !liked? (<CommentLike />) : (<CommentUnlike/>)
+                            <VStack 
+                                onClick={handleLikeComment} 
+                                cursor={"pointer"} 
+                                ml={-7} 
+                                mt={0}
+                                position="absolute"
+                                top={-120}
+                            >
 
-                        }
+                                {
 
-                        <Text fontWeight={600} fontSize={"sm"} mt={-2}>2</Text>
+                                    !liked? (<CommentLike />) : (<CommentUnlike/>)
 
-                    </VStack>
+                                }
+
+                                <Text fontWeight={600} fontSize={"sm"} mt={-2}>2</Text>
+
+                            </VStack>
+
+                        ):(
+
+                            <Box 
+                                cursor={"pointer"} 
+                                ml={-7} 
+                                mt={2}
+                                position="absolute"
+                                top={-120}
+                            >
+
+                                <MdDelete size={20}/>
+
+                            </Box>
+
+                        )
+
+                    }               
+
 
                 </Flex>
 
