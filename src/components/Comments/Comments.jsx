@@ -10,7 +10,8 @@ const Comments = ({ comment }) =>{
 
     const [liked, setLiked] = useState(false),
           [likes, setLikes] = useState(1000),
-          { userProfile, loading } = useGetUserProfileById(comment.createdBy)
+          { userProfile, loading } = useGetUserProfileById(comment.createdBy),
+          chars = Array.from(comment.comment)
 
     if(loading) return <CommentsSkeleton/>
 
@@ -35,35 +36,46 @@ const Comments = ({ comment }) =>{
 
     return(
 
-        <Flex gap={2} justifyContent={"center"} mt={6}>
+        <Flex 
+            gap={12} 
+            justifyContent={"start"} 
+            mb={4} 
+            w={"full"}
+            h={`${chars.length > 130 ? "auto" : "50px"}`}
+            position="relative"
+        >
 
             <Link
                 as={RouterLink}
                 to={`/${userProfile.username}`}
+                w={70}
             >
                 
                 <Flex gap={3} alignItems={"center"}>
                     
                     <Avatar src={userProfile.profilePicURL} name={userProfile.fullname} alt={`${userProfile.username}'s profile pic`} size={"sm"}/>
             
-                    <Text fontWeight={"bold"} fontSize={15}>{userProfile.username}</Text>
+                    <Text fontWeight={"bold"} fontSize={13}>{userProfile.username}</Text>
 
                 </Flex>
             
             </Link>
 
 
+            <Flex  
+              w={"100%"} 
+              maxH={70} 
+              h={"auto"}
+            >
+
+                <Text fontSize={{  base: 11, sm: 16}} ml={9} h={"auto"} textAlign={"left"} mt={1} w={"100%"}>{comment.comment}</Text>
+
+            </Flex>
+
             
-            <Flex direction={"column"} w={"170%"} alignItems="center" position="relative">
+            <Flex direction={"column"} w={"50%"} alignItems="center" position="relative">
 
                 <Flex justifyContent={"space-between"} mb={5}>
-
-                    <Flex ml={-6} w={300} mt={2}>
-
-                        <Text fontSize={14}>{comment.comment}</Text>
-
-                    </Flex>
-
 
                     <VStack onClick={handleLikeComment} cursor={"pointer"} ml={5}>
 
@@ -86,7 +98,7 @@ const Comments = ({ comment }) =>{
                     mr={-15}
                     position="absolute"
                     top={10}
-                    left={-110.8}
+                    left={-290.8}
                 >
 
                     { timeAgo(comment.createdAt) }
