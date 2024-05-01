@@ -6,14 +6,17 @@ import profileStore from "../store/profileStore"
 import { addDoc, arrayUnion, collection, doc, updateDoc } from "firebase/firestore"
 import { firestore, storage } from "../firebase/config"
 import { getDownloadURL, ref, uploadString } from "firebase/storage"
+import { useLocation } from "react-router-dom"
 
 export const useCreatePost = () => {
 
    const showToast = useShowToast(),
          [posting, setIsPosting] = useState(false),
          authUser = useAuthStore(state => state.user),
+         userProfile = profileStore(state => state.userProfile),
          createPost  = usePostStore(state => state.createPost),
-         addPost =  profileStore(state => state.addPost)
+         addPost =  profileStore(state => state.addPost),
+         { pathName } = useLocation()
 
 
    const handleCreatePost = async(selectedFile, caption) => {
@@ -50,7 +53,7 @@ export const useCreatePost = () => {
 
          createPost({ ...newPost, id: postDocRef.id })
 
-         addPost({ ...newPost, id: postDocRef.id })
+         if(pathName !== "/" && userProfile.userId === authUser.userId) addPost({ ...newPost, id: postDocRef.id })
 
 
          showToast("Success", "Post uploaded successfully", "success")

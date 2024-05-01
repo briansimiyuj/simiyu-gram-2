@@ -6,7 +6,6 @@ import PostFooter from "../FeedPosts/PostFooter"
 import profileStore from "../../store/profileStore"
 import { useAuthStore } from "../../store/authStore"
 import { useDeletePost } from "../../hooks/useDeletePost"
-import { timeAgo } from "../../utils/timeAgo"
 import Captions from "../Comments/Captions"
 
 const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
@@ -14,8 +13,7 @@ const PostModal = ({ isOpen, onClose, img, post, setIsEditing }) => {
     const userProfile = profileStore(state => state.userProfile),
           authUser = useAuthStore(state => state.user),
           { isDeleting, deleteUserPost } = useDeletePost()
-
-    console.log(post.comments)
+          
 
     return(
 
