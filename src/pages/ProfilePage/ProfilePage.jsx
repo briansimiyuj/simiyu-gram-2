@@ -1,4 +1,4 @@
-import { Container, Flex } from '@chakra-ui/react'
+import { Container, Flex, useMediaQuery } from '@chakra-ui/react'
 import ProfileHeader from '../../components/Profile/ProfileHeader'
 import ProfileTabs from '../../components/Profile/ProfileTabs'
 import ProfilePosts from '../../components/Profile/ProfilePosts'
@@ -6,11 +6,13 @@ import { useParams } from 'react-router-dom'
 import { useGetUserProfile } from '../../hooks/useGetUserProfile'
 import UserNotFound from '../../components/UserNotFound/UserNotFound'
 import ProfileHeaderSkeleton from '../../components/Profile/ProfileHeaderSkeleton/ProfileHeaderSkeleton'
+import ProfileHeaderMobile from '../../components/Profile/ProfileHeaderMobile'
 const ProfilePage = () =>{
 
     const { username } = useParams(),
           { loading, userProfile } = useGetUserProfile(username),
-          userNotFound = !loading && !userProfile
+          userNotFound = !loading && !userProfile,
+          [isLargerThan768] = useMediaQuery("(min-width: 768px)")
 
     if(userNotFound) return <UserNotFound/>
 
@@ -27,7 +29,15 @@ const ProfilePage = () =>{
                 flexDirection={"column"}
             >
 
-                { !loading && userProfile  && <ProfileHeader/>}
+                { 
+                
+                    !loading && userProfile  && (
+
+                        isLargerThan768 ? <ProfileHeader/> : <ProfileHeaderMobile/>
+
+                    )
+                
+                }
 
                 { loading && <ProfileHeaderSkeleton/>}
 
