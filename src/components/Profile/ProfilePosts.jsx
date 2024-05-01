@@ -1,4 +1,4 @@
-import { Grid, VStack, Skeleton, Box } from '@chakra-ui/react'
+import { Grid, VStack, Skeleton, Box, useMediaQuery } from '@chakra-ui/react'
 import ProfilePost from './ProfilePost'
 import { useGetUserPosts } from '../../hooks/useGetUsersPosts'
 import NoPostFound from './NoPostFound'
@@ -10,7 +10,8 @@ const ProfilePosts = ({ username }) =>{
 
     const { loading, posts } = useGetUserPosts(username),
           noPostsFound = !loading && !posts,
-          [isProfilePage, setIsProfilePage] = useState(true)
+          [isProfilePage, setIsProfilePage] = useState(true),
+          [isLargerThan768] = useMediaQuery("(min-width: 768px)")
 
     
     if(noPostsFound) return <NoPostFound/>
@@ -57,7 +58,7 @@ const ProfilePosts = ({ username }) =>{
 
                             posts.map(post => (
 
-                                // <ProfilePost key={post.id} postImage={post.image} post={post}/>
+                                isLargerThan768 ? <ProfilePost key={post.id} postImage={post.image} post={post}/> :
 
                                 <FeedPost key={post.id} postImage={post.image} post={post} isProfilePage={isProfilePage} />
 
