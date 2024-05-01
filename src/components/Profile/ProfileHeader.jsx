@@ -6,7 +6,7 @@ import { useFollowUser } from '../../hooks/useFollowUser'
 import profileStore from '../../store/profileStore'
 import EditProfile from './EditProfile'
 
-const ProfileHeader = () =>{
+const ProfileHeader = () => {
 
     const { userProfile } = profileStore(),
           { isOpen, onOpen, onClose } = useDisclosure(),
@@ -16,7 +16,7 @@ const ProfileHeader = () =>{
           [isFollowing, setIsFollowing] = useState(false),
           { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(userProfile.userId)
 
-    return(
+    return (
 
         <Flex
             gap={{ base: 4, sm: 10 }}
@@ -83,7 +83,7 @@ const ProfileHeader = () =>{
                             <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
 
                                 <Button 
-                                    bg={ isFollowingUser? "#333" : "blue.400" }
+                                    bg={ isFollowingUser ? "#333" : "blue.400" }
                                     _hover={{ border: isFollowingUser ? "1px solid white" : "none" }}
                                     color={"white"}
                                     size={{ base: "xs", md: "sm" }}
@@ -93,7 +93,21 @@ const ProfileHeader = () =>{
                                         setIsFollowing(!isFollowing)
                                         handleFollowUser()
                                     }}
-                                >{isFollowingUser ? "Following" : "Follow"}</Button>
+                                >
+                                
+                                    {
+                                    
+                                        isFollowingUser
+                                            ? "Following"
+                                            : !isFollowingUser && userProfile.following.includes(authUser.userId)
+                                                ? "Follow Back"
+                                                : isFollowingUser && userProfile.following.includes(authUser.userId)
+                                                    ? "Following"
+                                                    : "Follow"
+
+                                    }
+                                
+                                </Button>
 
                             </Flex>
 
