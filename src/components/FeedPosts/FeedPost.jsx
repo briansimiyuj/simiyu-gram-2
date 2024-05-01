@@ -3,8 +3,9 @@ import { useAuthStore } from "../../store/authStore"
 import PostFooter from "./PostFooter"
 import PostHeader from "./PostHeader"
 import { Box, Image } from "@chakra-ui/react"
+import PostHeaderProfile from "./PostHeaderProfile"
 
-const FeedPost = ({ post }) =>{
+const FeedPost = ({ post,  postImage, isProfilePage }) =>{
 
     const { userProfile } = useGetUserProfileById(post.createdBy)
 
@@ -12,7 +13,15 @@ const FeedPost = ({ post }) =>{
 
         <>
         
-            <PostHeader post={post} userProfile={userProfile}/>
+            { 
+            
+                !isProfilePage ?
+                
+                    <PostHeader post={post} userProfile={userProfile}/>
+                :
+                    <PostHeaderProfile post={post} userProfile={userProfile}/>
+                    
+                }
 
 
             <Box my={2} borderRadius={4} overflow={"hidden"}>
@@ -22,7 +31,7 @@ const FeedPost = ({ post }) =>{
             </Box>
 
 
-            <PostFooter post={post} userProfile={userProfile}/>
+            <PostFooter post={post} userProfile={userProfile} />
         
         </>
 

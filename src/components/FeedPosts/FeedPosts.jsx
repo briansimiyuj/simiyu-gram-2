@@ -1,11 +1,12 @@
 import { Container, VStack, Flex, SkeletonCircle, Skeleton, Box, Text } from '@chakra-ui/react'
 import FeedPost from './FeedPost'
 import { useGetFeedPosts } from '../../hooks/useGetFeedPosts'
+import { useState } from 'react'
 
 const FeedPosts = () =>{
 
-   const { loading, posts } = useGetFeedPosts()
-
+   const { loading, posts } = useGetFeedPosts(),
+         [isProfilePage, setIsProfilePage] = useState(false)
 
 
     return(
@@ -54,7 +55,7 @@ const FeedPosts = () =>{
 
                 !loading && posts.length > 0 && posts.map(post =>(
 
-                    <FeedPost key={post.postId} post={post}/>
+                    <FeedPost key={post.postId} post={post} isProfilePage={isProfilePage}/>
 
                 ))
 

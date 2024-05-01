@@ -2,12 +2,15 @@ import { Grid, VStack, Skeleton, Box } from '@chakra-ui/react'
 import ProfilePost from './ProfilePost'
 import { useGetUserPosts } from '../../hooks/useGetUsersPosts'
 import NoPostFound from './NoPostFound'
+import FeedPost from '../FeedPosts/FeedPost'
+import { useState } from 'react'
 
 
 const ProfilePosts = ({ username }) =>{
 
     const { loading, posts } = useGetUserPosts(username),
-          noPostsFound = !loading && !posts
+          noPostsFound = !loading && !posts,
+          [isProfilePage, setIsProfilePage] = useState(true)
 
     
     if(noPostsFound) return <NoPostFound/>
@@ -54,7 +57,9 @@ const ProfilePosts = ({ username }) =>{
 
                             posts.map(post => (
 
-                                <ProfilePost key={post.id} postImage={post.image} post={post}/>
+                                // <ProfilePost key={post.id} postImage={post.image} post={post}/>
+
+                                <FeedPost key={post.id} postImage={post.image} post={post} isProfilePage={isProfilePage} />
 
                             ))
 
