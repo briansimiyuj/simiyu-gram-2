@@ -26,9 +26,10 @@ const SuggestedUserTwo = ({ user, setUser, onClose }) =>{
     return(
 
         <Flex 
-            justifyContent={"space-between"} 
+            mb={5}
+            justifyContent={"space-between"}    
+            w={"60%"}
             alignItems={"center"} 
-            w={"full"} 
             _hover={{ bg: "whiteAlpha.300" }}
             paddingInline={2}
         >
@@ -47,9 +48,9 @@ const SuggestedUserTwo = ({ user, setUser, onClose }) =>{
 
                     <VStack spacing={2} alignItems={"start"}>
 
-                        <Text fontSize={12} fontWeight={"bold"}>{user?.username}</Text>
+                        <Text fontSize={14} fontWeight={"bold"}>{user?.username}</Text>
 
-                        <Text fontSize={11} color={"gray.500"}>{user?.followers.length} followers</Text>
+                        <Text fontSize={12} color={"gray.500"}>{user?.followers.length} followers</Text>
 
                     </VStack>
 
@@ -57,31 +58,18 @@ const SuggestedUserTwo = ({ user, setUser, onClose }) =>{
 
             </Link>
 
-            
-            {
 
-                authUser?.userId !== user?.userId && (
-
-                    <Button
-                        fontSize={13}
-                        bg={"transparent"}
-                        p={0}
-                        h={"max-content"}
-                        fontWeight={"medium"}
-                        color={"blue.400"}
-                        cursor={"pointer"}
-                        _hover={{ color: "white" }}
-                        onClick={onFollowUser}
-                        isLoading={isUpdating}
-                    >
-
-                        {isFollowingUser ? "Unfollow" : "Follow"}
-
-                    </Button>
-
-                )
-
-            } 
+            <Button
+                fontSize={14}
+                bg={"blue.400"}
+                p={3}
+                fontWeight={"medium"}
+                color={"white"}
+                cursor={"pointer"}
+                _hover={{ color: "white" }}
+                onClick={onFollowUser}
+                isLoading={isUpdating}
+            >Follow</Button>
 
         </Flex>
 

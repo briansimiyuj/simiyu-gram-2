@@ -10,7 +10,7 @@ const SuggestedUsers = () =>{
 
         <Flex ml={40} mt={20} w={800} flexDir={"column"} gap={10}>
 
-            <Text>Suggested Users</Text>
+            <Text fontSize={16} fontWeight={"bold"} ml={160}>Suggested Users</Text>
 
             <VStack>
 
