@@ -1,7 +1,23 @@
 import { Avatar, Button, CloseButton, Flex, Text, Link } from "@chakra-ui/react"
 import { Link as RouterLink } from "react-router-dom"
+import { useFollowUser } from "../../hooks/useFollowUser"
 
 const SuggestedUserMobile = ({ user }) =>{
+
+    const { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(user?.userId)
+
+    const onFollowUser = async() =>{
+    
+        await handleFollowUser()
+ 
+            setUser({ 
+                
+                ...user, 
+                followers: isFollowingUser ? user.followers.filter(userId => userId !== authUser.userId) : [...user.followers, authUser.userId]
+    
+            })
+     
+    }
 
     return(
 

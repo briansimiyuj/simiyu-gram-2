@@ -2,8 +2,9 @@ import { Flex, Text, Link } from "@chakra-ui/react"
 import { Link as RouterLink } from "react-router-dom"
 import { useGetSuggestedUsers } from "../../hooks/useGetSuggestedUsers"
 import SuggestedUserMobile from "./SuggestedUserMobile"
+import { useFollowUser } from "../../hooks/useFollowUser"
 
-const SuggestedUsersMobile = () =>{
+const SuggestedUsersMobile = ({ user }) =>{
 
     const { suggestedUsers } = useGetSuggestedUsers()
 
