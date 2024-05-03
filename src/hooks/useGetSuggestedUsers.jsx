@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import { useAuthStore } from "../store/authStore"
 import { useShowToast } from "./useShowToast"
 import { firestore } from "../firebase/config"
-import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore"
+import { collection, doc, getDoc, getDocs, limit, orderBy, query, where } from "firebase/firestore"
 
 export const useGetSuggestedUsers = () =>{
 
     const [loading, setLoading] = useState(true),
           [suggestedUsers, setSuggestedUsers] = useState([]),
+          [suggestedUser, setSuggestedUser] = useState(true),
           authUser = useAuthStore(state => state.user),
           showToast = useShowToast()
 
@@ -19,9 +20,15 @@ export const useGetSuggestedUsers = () =>{
             setLoading(true)
 
             try{
+
+                const userRef = doc(firestore, "users", authUser.userId),
+                      userDoc = await getDoc(userRef),
+                     disableSuggestedUsers = userDoc.data()?.disableSuggestedUsers || false
             
-               const usersRef = collection(firestore, "users"),
-                     
+                if(!disableSuggestedUsers){
+
+                    const usersRef = collection(firestore, "users"),
+                        
                     q = query(
 
                         usersRef,
@@ -34,13 +41,19 @@ export const useGetSuggestedUsers = () =>{
                     querySnapshot = await getDocs(q),
                     users = []
 
-                querySnapshot.forEach(doc =>{
+                    querySnapshot.forEach(doc =>{
 
-                    users.push({ ...doc.data(), userId: doc.id })
+                        users.push({ ...doc.data(), userId: doc.id })
 
-                })
+                    })
 
-                setSuggestedUsers(users)
+                    setSuggestedUsers(users)
+
+                }else{
+
+                    setSuggestedUser([])
+
+                }
             
             }catch(error){
             
