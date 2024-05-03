@@ -1,8 +1,11 @@
-import { Container, Flex, Box } from '@chakra-ui/react'
+import { Container, Flex, Box, useMediaQuery } from '@chakra-ui/react'
 import FeedPosts from '../../components/FeedPosts/FeedPosts'
 import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers'
+import SuggestedUsersMobile from '../../components/SuggestedUsers/SuggestedUsersMobile'
  
 const Home = () =>{
+
+    const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
 
     return(
 
@@ -10,7 +13,17 @@ const Home = () =>{
 
             <Flex gap={20}>
 
-                <Box flex={2} py={10}><FeedPosts/></Box>
+                <Box flex={2} py={10}>
+                    
+                    <FeedPosts/>
+
+                    {
+
+                        !isLargerThan768 && <SuggestedUsersMobile/>
+
+                    }
+                    
+                </Box>
 
                 <Box 
                     flex={3} 
