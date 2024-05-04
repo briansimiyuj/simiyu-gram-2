@@ -35,8 +35,9 @@ const SuggestedUserTwo = ({ user, setUser, onClose }) =>{
 
                     <Flex 
                         mb={5}
-                        justifyContent={"space-between"}    
+                        justifyContent={{ base: "space-around", md: "space-between" }}    
                         w={"60%"}
+                        ml={{ base: -266, md: 0 }}
                         alignItems={"center"} 
                         _hover={{ bg: "whiteAlpha.300" }}
                         paddingInline={2}
@@ -69,9 +70,9 @@ const SuggestedUserTwo = ({ user, setUser, onClose }) =>{
                         <Flex gap={2} alignItems={"center"}>
 
                             <Button
-                                fontSize={14}
+                                fontSize={11}
                                 bg={"blue.400"}
-                                p={3}
+                                p={2}
                                 fontWeight={"medium"}
                                 color={"white"}
                                 cursor={"pointer"}
