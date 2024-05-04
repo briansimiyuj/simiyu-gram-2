@@ -1,7 +1,8 @@
 import { Container, VStack, Flex, SkeletonCircle, Skeleton, Box, Text } from '@chakra-ui/react'
 import FeedPost from './FeedPost'
 import { useGetFeedPosts } from '../../hooks/useGetFeedPosts'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import SuggestedUsersMobile from '../SuggestedUsers/SuggestedUsersMobile'
 
 const FeedPosts = () =>{
 
@@ -53,9 +54,15 @@ const FeedPosts = () =>{
 
             {
 
-                !loading && posts.length > 0 && posts.map(post =>(
+                !loading && posts.length > 0 && posts.map((post, i) =>(
 
-                    <FeedPost key={post.postId} post={post} isProfilePage={isProfilePage}/>
+                    <React.Fragment key={post.postId}>
+
+                        <FeedPost key={post.postId} post={post} isProfilePage={isProfilePage}/>
+
+                        { (i + 1) % 3 === 0 && <SuggestedUsersMobile/> }
+                        
+                    </React.Fragment>   
 
                 ))
 
