@@ -5,7 +5,9 @@ import SuggestedUserMobile from "./SuggestedUserMobile"
 
 const SuggestedUsersMobile = ({ user }) =>{
 
-    const { suggestedUsers } = useGetSuggestedUsers()
+    const { suggestedUsers } = useGetSuggestedUsers(),
+    shuffledUsers = suggestedUsers.sort(() => Math.random() - 0.5)
+
 
 
     return(
@@ -39,7 +41,15 @@ const SuggestedUsersMobile = ({ user }) =>{
 
                 <Flex gap={4}>
 
-                    { suggestedUsers.map(user => <SuggestedUserMobile key={user.userId} user={user} />) }
+                    {
+
+                        shuffledUsers.map(user =>(
+
+                            <SuggestedUserMobile key={user.userId} user={user}/>
+
+                        ))
+
+                    }                    
 
                 </Flex>
 
