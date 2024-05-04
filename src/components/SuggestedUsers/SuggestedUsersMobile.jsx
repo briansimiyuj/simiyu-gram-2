@@ -2,21 +2,26 @@ import { Flex, Text, Link } from "@chakra-ui/react"
 import { Link as RouterLink } from "react-router-dom"
 import { useGetSuggestedUsers } from "../../hooks/useGetSuggestedUsers"
 import SuggestedUserMobile from "./SuggestedUserMobile"
-import { useFollowUser } from "../../hooks/useFollowUser"
 
 const SuggestedUsersMobile = ({ user }) =>{
 
     const { suggestedUsers } = useGetSuggestedUsers()
 
+
     return(
 
-        <Flex w="full">
+        <Flex  overflowX="hidden" w={325}>
 
             <Flex  flexDir="column">
 
-                <Flex justifyContent={"space-between"} alignItems={"center"}>
+                <Flex 
+                    justifyContent={"space-between"} 
+                    alignItems={"center"}
+                    flexWrap={"wrap"}
+                    w={325}
+                >
                     
-                    <Text>Suggested Users</Text>
+                    <Text flex={"1 0 auto"}>Suggested Users</Text>
 
                     <Link 
                         fontSize={12} 
@@ -26,6 +31,7 @@ const SuggestedUsersMobile = ({ user }) =>{
                         color={"blue.400"}
                         as={RouterLink}
                         to="/suggestedusers"
+                        flex={"0 0 auto"}
                     >See All</Link>
                     
                 </Flex>
