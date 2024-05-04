@@ -24,3 +24,4 @@ video.txt
 *.njsproj
 *.sln
 *.sw?
+.env

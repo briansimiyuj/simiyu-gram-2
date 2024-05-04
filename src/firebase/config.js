@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"   
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBKjdfmy8jnQcMHCdTKxN1YjmLXnI9H7m8",
-  authDomain: "simiyu-gram-ed4fb.firebaseapp.com",
-  projectId: "simiyu-gram-ed4fb",
-  storageBucket: "simiyu-gram-ed4fb.appspot.com",
-  messagingSenderId: "1052542337169",
-  appId: "1:1052542337169:web:129b8faab292cd74be7f30"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_IFFD,
 }
 
 const app = initializeApp(firebaseConfig),
