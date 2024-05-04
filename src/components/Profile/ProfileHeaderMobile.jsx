@@ -33,7 +33,7 @@ const ProfileHeader = () =>{
                     mx={{ base: -3, sm: 4}}
                 >
 
-                    <Avatar src={userProfile.profilePicURL} alt={`${userProfile.username}'s profile pic`} name={userProfile.username}/>
+                    <Avatar src={userProfile?.profilePicURL} alt={`${userProfile?.username}'s profile pic`} name={userProfile?.username}/>
 
                 </AvatarGroup>
 
@@ -42,7 +42,11 @@ const ProfileHeader = () =>{
 
                     <Text fontSize={{ base: "12px",  sm: "22px", md: "3md" }}>
 
-                        <Text as="span" fontWeight={"bold"} ml={11}>{userProfile.posts.length}</Text>
+                        <Text as="span" fontWeight={"bold"} ml={11}>
+
+                            { userProfile?.posts?.length > 0 ? userProfile?.posts?.length : 0 }
+
+                        </Text>
                         
                         <Text>Posts</Text>
 
@@ -51,8 +55,8 @@ const ProfileHeader = () =>{
                     
                     <Text fontSize={{ base: "12px", sm: "22px", md: "sm" }}>
 
-                        <Text as="span" fontWeight={"bold"} ml={6}>{userProfile.followers.length}</Text>
-                        
+                        <Text as="span" fontWeight={"bold"} ml={6}>{userProfile?.followers.length}</Text>
+                                                
                         <Text>Followers</Text>
 
                     </Text>
@@ -60,7 +64,7 @@ const ProfileHeader = () =>{
 
                     <Text fontSize={{ base: "12px", md: "sm", sm: "22px" }}>
 
-                        <Text as="span" fontWeight={"bold"} ml={6}>{userProfile.following.length}</Text>
+                        <Text as="span" fontWeight={"bold"} ml={6}>{userProfile?.following.length}</Text>
                         
                         <Text>Following</Text>
 
@@ -86,7 +90,7 @@ const ProfileHeader = () =>{
                     w={"full"}
                 >
 
-                    <Text fontSize={{ base: "18px", md: "lg" }}>{userProfile.username}</Text>
+                    <Text fontSize={{ base: "18px", md: "lg" }}>{userProfile?.username}</Text>
                     
 
                 </Flex>
@@ -95,24 +99,24 @@ const ProfileHeader = () =>{
 
                 <Flex alignItems={"center"} gap={4}>
 
-                    <Text fontSize={{ base: "16px", md: "sm" }} fontWeight={"bold"}>{userProfile.fullName}</Text>
+                    <Text fontSize={{ base: "16px", md: "sm" }} fontWeight={"bold"}>{userProfile?.fullName}</Text>
 
                 </Flex>
 
 
-                <Text fontSize={{ base: "14px", md: "sm" }}>{userProfile.bio}</Text> 
+                <Text fontSize={{ base: "14px", md: "sm" }}>{userProfile?.bio}</Text> 
                 
 
                 {
 
-                    userProfile.website && (
+                    userProfile?.website && (
                         
                         <Text fontSize={{ base: "16px", md: "sm" }} mt={19}>
 
                             <LinkIcon/>
 
                             <Link 
-                                href={userProfile.website}
+                                href={userProfile?.website}
                                 isExternal 
                                 color={"blue.500"} 
                                 ml={3}
@@ -120,7 +124,7 @@ const ProfileHeader = () =>{
 
                                 {
 
-                                    userProfile.website.replace(/https?:\/\//, "www.")
+                                    userProfile?.website.replace(/https?:\/\//, "www.")
 
                                 }
 

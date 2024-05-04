@@ -123,7 +123,7 @@ const ProfileHeader = () => {
 
                     <Text fontSize={{ base: "xs", md: "sm" }}>
 
-                        <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.posts.length}</Text>Posts
+                        <Text as="span" fontWeight={"bold"} mr={1}>{ userProfile?.posts?.length > 0 ? userProfile?.posts?.length : 0 }</Text>Posts
 
                     </Text>
 
