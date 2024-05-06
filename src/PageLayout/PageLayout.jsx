@@ -57,7 +57,7 @@ const PageLayout = ({ children }) =>{
 
             {
 
-                isLessThan768 &&(
+                isLessThan768 && canRenderSidebar &&(
 
                     <Box w="100%" h="10vh" position="fixed" bottom={0} left={0} bg="black" zIndex={1111}>
 
