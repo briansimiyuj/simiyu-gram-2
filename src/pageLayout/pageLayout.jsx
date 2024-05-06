@@ -1,4 +1,4 @@
-import { Flex, Box } from '@chakra-ui/react'
+import { Flex, Box, useMediaQuery } from '@chakra-ui/react'
 import { useLocation } from 'react-router-dom'
 import Sidebar from '../components/Sidebar/Sidebar'
 import { auth } from '../firebase/config'
@@ -12,7 +12,8 @@ const PageLayout = ({ children }) =>{
           [user, loading] = useAuthState(auth),
           canRenderSidebar = pathname !== '/auth' && user,
           canRenderNavbar = !user && !loading && pathname !== '/auth',
-          checkingUserIsAuthenticated = !user && loading
+          checkingUserIsAuthenticated = !user && loading,
+          [isLessThan768] = useMediaQuery("(max-width: 768px)")
 
     
     if(checkingUserIsAuthenticated) return <PageLayoutSpinner/>
@@ -24,15 +25,19 @@ const PageLayout = ({ children }) =>{
 
             {
 
-                canRenderSidebar ?(
+                !isLessThan768 &&(
 
-                    <Box w={{base:"70px", md:"240px"}}>
+                    canRenderSidebar ?(
 
-                        <Sidebar/>
+                        <Box w={{base:"70px", md:"240px"}}>
+    
+                            <Sidebar/>
+    
+                        </Box>
+    
+                    ): null
 
-                    </Box>
-
-                ): null
+                )
 
             }
 
