@@ -5,11 +5,11 @@ import Notifications from './Notification/Notification'
 import CreatePost from './CreatePost/CreatePost'
 import ProfileLink from './ProfileLink/ProfileLink'
 
-const Menu = ({ column }) =>{
+const Menu = ({ menuDirection }) =>{
 
   return(
 
-    <Flex direction={column} gap={5} cursor={"pointer"}>
+    <Flex direction={menuDirection} gap={5} cursor={"pointer"}>
 
       <Home/>
 

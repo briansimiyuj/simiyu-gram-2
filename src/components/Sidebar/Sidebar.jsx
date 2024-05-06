@@ -1,13 +1,14 @@
-import { Box, Flex, Link, Tooltip, Button } from '@chakra-ui/react'
+import { Box, Flex, Link, Tooltip, Button, useMediaQuery } from '@chakra-ui/react'
 import { BiLogOut } from'react-icons/bi'
 import { Link as RouterLink } from 'react-router-dom'
 import { InstagramMobileLogo } from '../../assets/constants'
 import Menu from '../Menu/Menu'
 import { useLogOut } from '../../hooks/useLogOut'
 
-const Sidebar = () =>{
+const Sidebar = ({ menuDirection, setMenuDirection }) => {
 
-    const { handleSignOut, isSigningOut } = useLogOut()
+    const { handleSignOut, isSigningOut } = useLogOut(),
+          [isLessThan768] = useMediaQuery("(max-width: 768px)")
 
 
     return(
@@ -16,7 +17,7 @@ const Sidebar = () =>{
             height={"100vh"}
             borderRight={"1px solid"}
             borderColor={"whiteAlpha.300"}
-            py={8}
+            py={ isLessThan768 ? 3 : 8}
             position={"sticky"}
             top={0}
             left={0}
@@ -30,40 +31,10 @@ const Sidebar = () =>{
                 height={"full"}
             >
 
-                <Link 
-                    to="/"
-                    as={RouterLink}
-                    pl={2}
-                    display={{base: "none", md: "block"}}
-                    cursor={"pointer"}
-                >
-
-                    <h1 style={{fontSize:"25px", fontWeight: 700, fontStyle: "italic"}}>SimiyuGram</h1>
-
-                </Link>
                 
-                
-                <Link 
-                    to="/"
-                    as={RouterLink}
-                    display={{base: "block", md: "none"}}
-                    p={2}
-                    cursor={"pointer"}
-                    borderRadius={6}
-                    _hover={{bg: "whiteAlpha.200"}}
-                    w={{base: 10}}
-                >
-
-                    <Flex justifyContent={"space-around"} alignItems={"center"}>
-
-                        <InstagramMobileLogo/>
-
-                    </Flex>
-
-                </Link>
 
 
-                <Menu column={"column"}/>                
+                <Menu  menuDirection={ isLessThan768 ? "row" : "column" } setMenuDirection={setMenuDirection}/>                
 
 
                 <Tooltip

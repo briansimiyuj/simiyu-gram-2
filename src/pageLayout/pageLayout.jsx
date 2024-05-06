@@ -5,6 +5,7 @@ import { auth } from '../firebase/config'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import NavBar from '../components/NavBar/NavBar'
 import PageLayoutSpinner from './PageLayoutSpinner'
+import { useState } from 'react'
 
 const PageLayout = ({ children }) =>{
 
@@ -13,7 +14,8 @@ const PageLayout = ({ children }) =>{
           canRenderSidebar = pathname !== '/auth' && user,
           canRenderNavbar = !user && !loading && pathname !== '/auth',
           checkingUserIsAuthenticated = !user && loading,
-          [isLessThan768] = useMediaQuery("(max-width: 768px)")
+          [isLessThan768] = useMediaQuery("(max-width: 768px)"),
+          [menuDirection, setMenuDirection] = useState("")
 
     
     if(checkingUserIsAuthenticated) return <PageLayoutSpinner/>
@@ -50,6 +52,22 @@ const PageLayout = ({ children }) =>{
                 {children}
 
             </Box>
+
+
+
+            {
+
+                isLessThan768 &&(
+
+                    <Box w="100%" h="10vh" position="fixed" top={0} left={0} bg='red' zIndex={1111}>
+
+                        <Sidebar menuDirection={"row"} setMenuDirection={setMenuDirection} />
+
+                    </Box>
+
+                )
+
+            }
 
         </Flex>
 
