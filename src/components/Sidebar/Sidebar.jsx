@@ -31,7 +31,26 @@ const Sidebar = ({ menuDirection, setMenuDirection }) => {
                 height={"full"}
             >
 
-                
+                {
+
+                    !isLessThan768 &&(
+
+
+                        <Link 
+                            to="/"
+                            as={RouterLink}
+                            pl={2}
+                            display={{base: "none", md: "block"}}
+                            cursor={"pointer"}
+                        >
+
+                            <h1 style={{fontSize:"25px", fontWeight: 700, fontStyle: "italic"}}>SimiyuGram</h1>
+
+                        </Link>
+
+                    )
+
+                }                 
 
 
                 <Menu  menuDirection={ isLessThan768 ? "row" : "column" } setMenuDirection={setMenuDirection}/>                
