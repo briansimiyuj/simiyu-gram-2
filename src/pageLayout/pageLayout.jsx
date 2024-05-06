@@ -23,7 +23,7 @@ const PageLayout = ({ children }) =>{
 
     return(
 
-        <Flex flexDir={ canRenderNavbar ? "column" : "row" }>
+        <Flex flexDir={ canRenderNavbar ? "column" : "row" } minH={"100vh"} position="relative">
 
             {
 
@@ -59,7 +59,7 @@ const PageLayout = ({ children }) =>{
 
                 isLessThan768 &&(
 
-                    <Box w="100%" h="10vh" position="fixed" top={0} left={0} bg='red' zIndex={1111}>
+                    <Box w="100%" h="10vh" position="fixed" bottom={0} left={0} bg="black" zIndex={1111}>
 
                         <Sidebar menuDirection={"row"} setMenuDirection={setMenuDirection} />
 
