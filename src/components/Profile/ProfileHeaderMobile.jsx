@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useFollowUser } from '../../hooks/useFollowUser'
 import profileStore from '../../store/profileStore'
 import EditProfile from './EditProfile'
+import { useLogOut } from '../../hooks/useLogOut'
 
 const ProfileHeader = () =>{
 
@@ -14,7 +15,8 @@ const ProfileHeader = () =>{
           ownProfileAndAuth = authUser && authUser.username === userProfile.username,
           anProfileAndAuth = authUser && authUser.username !== userProfile.username, 
           [isFollowing, setIsFollowing] = useState(false),
-          { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(userProfile.userId)
+          { isUpdating, isFollowingUser, handleFollowUser } = useFollowUser(userProfile.userId),
+          { handleSignOut, isSigningOut } = useLogOut()
 
     return(
 
@@ -153,6 +155,16 @@ const ProfileHeader = () =>{
                                     mb={{ base: 4, sm: 0 }}
                                     onClick={onOpen}
                                 >Edit Profile</Button>
+                                
+                                <Button 
+                                    bg={"#222"}
+                                    color={"white"}
+                                    cursor={"pointer"}
+                                    size={{ base: "md", md: "sm" }}
+                                    mb={{ base: 4, sm: 0 }}
+                                    isLoading={isSigningOut}
+                                    onClick={handleSignOut}
+                                >Sign Out</Button>
 
                             </Flex>
 
