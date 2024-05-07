@@ -22,7 +22,7 @@ const ProfileHeader = () =>{
 
         <Flex
             gap={{ base: 4, sm: 10 }}
-            py={10}
+            py={-5}
             direction="column"
         >
 
