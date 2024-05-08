@@ -1,13 +1,14 @@
 import { useGetUserProfileById } from "../../hooks/useGetUserProfileById"
-import { useAuthStore } from "../../store/authStore"
 import PostFooter from "./PostFooter"
 import PostHeader from "./PostHeader"
 import { Box, Image } from "@chakra-ui/react"
 import PostHeaderProfile from "./PostHeaderProfile"
+import { useState } from "react"
 
 const FeedPost = ({ post,  postImage, isProfilePage }) =>{
 
-    const { userProfile } = useGetUserProfileById(post.createdBy)
+    const { userProfile } = useGetUserProfileById(post.createdBy),
+          [isEditing, setIsEditing] = useState(false)
 
     return(
 
@@ -19,7 +20,14 @@ const FeedPost = ({ post,  postImage, isProfilePage }) =>{
                 
                     <PostHeader post={post} userProfile={userProfile}/>
                 :
-                    <PostHeaderProfile post={post} userProfile={userProfile}/>
+                    <PostHeaderProfile 
+                        post={post} 
+                        userProfile={userProfile} 
+                        postImage={postImage} 
+                        isEditing={isEditing} 
+                        setIsEditing={setIsEditing}
+                        isProfilePage={isProfilePage}
+                    />
                     
                 }
 
