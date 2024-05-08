@@ -3,11 +3,13 @@ import { MdEdit, MdDelete } from 'react-icons/md'
 import { Link as RouterLink } from 'react-router-dom'
 import { timeAgo } from '../../utils/timeAgo'
 import { useAuthStore } from '../../store/authStore'
+import { useDeletePost } from '../../hooks/useDeletePost'
 
 
 const PostHeaderProfile = ({ post, userProfile }) =>{
 
-    const authUser = useAuthStore(state => state.user)
+    const authUser = useAuthStore(state => state.user),
+          { isDeleting, deleteUserPost } = useDeletePost()
 
     return(
 
@@ -57,7 +59,7 @@ const PostHeaderProfile = ({ post, userProfile }) =>{
                             </Button>
                             
                             
-                            <Button size="sm">
+                            <Button size="sm" isLoading={isDeleting} onClick={() => deleteUserPost(post)}>
 
                                 <MdDelete/>
 
