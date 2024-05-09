@@ -41,7 +41,7 @@ const Search = () =>{
                     gap={4}
                     _hover={{bg: "whiteAlpha.400"}}
                     borderRadius={6}
-                    w={{ base: "100%", md: "full" }}
+                    w={{ base: 10, md: "full" }}
                     cursor="pointer"
                     onClick={onOpen}
                 >

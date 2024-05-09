@@ -9,7 +9,7 @@ const Menu = ({ menuDirection }) =>{
 
   return(
 
-    <Flex direction={menuDirection} gap={5} cursor={"pointer"}>
+    <Flex direction={menuDirection} justifyContent={{ base: "space-between" }} gap={5} cursor={"pointer"}>
 
       <Home/>
 
