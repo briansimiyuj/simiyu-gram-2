@@ -8,11 +8,11 @@ const SuggestedUsers = () =>{
 
     return(
 
-        <Flex ml={{ base: -59, sm: 40}} mt={20} w={800} flexDir={"column"} gap={10}>
+        <Flex mt={20} w={{ base: 330, md: 800 }} flexDir={"column"} gap={10} position="relative">
 
-            <Text fontSize={16} fontWeight={"bold"} ml={{ base: 120, md: 160 }}>Suggested Users</Text>
+            <Text fontSize={16} fontWeight={"bold"} ml={{ base: 10, md: 350 }}>Suggested Users</Text>
 
-            <VStack>
+            <VStack position="absolute" left={{ base: 130, md: 300 }} top={50}>
 
                 { suggestedUsers.map(user => <SuggestedUserTwo key={user.userId} user={user}/>) } 
 

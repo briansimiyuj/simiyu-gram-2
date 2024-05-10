@@ -39,6 +39,7 @@ const SuggestedUserTwo = ({ user, setUser, onClose }) =>{
                         w={"60%"}
                         ml={{ base: -266, md: 0 }}
                         alignItems={"center"} 
+                        gap={112}
                         _hover={{ bg: "whiteAlpha.300" }}
                         paddingInline={2}
                     >
@@ -59,7 +60,7 @@ const SuggestedUserTwo = ({ user, setUser, onClose }) =>{
 
                                     <Text fontSize={14} fontWeight={"bold"}>{user?.username}</Text>
 
-                                    <Text fontSize={12} color={"gray.500"}>{user?.followers.length} followers</Text>
+                                    <Text fontSize={12} w={"max-content"} color={"gray.500"}>{user?.followers.length} followers</Text>
 
                                 </VStack>
 
