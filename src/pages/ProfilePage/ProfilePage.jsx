@@ -7,6 +7,7 @@ import { useGetUserProfile } from '../../hooks/useGetUserProfile'
 import UserNotFound from '../../components/UserNotFound/UserNotFound'
 import ProfileHeaderSkeleton from '../../components/Profile/ProfileHeaderSkeleton/ProfileHeaderSkeleton'
 import ProfileHeaderMobile from '../../components/Profile/ProfileHeaderMobile'
+import ProfileHeaderMobileSkeleton from '../../components/Profile/ProfileHeaderSkeleton/ProfileHeaderMobileSkeleton'
 const ProfilePage = () =>{
 
     const { username } = useParams(),
@@ -39,7 +40,16 @@ const ProfilePage = () =>{
                 
                 }
 
-                { loading && <ProfileHeaderSkeleton/>}
+                {
+                
+                    loading &&(
+
+                        isLargerThan768 ? <ProfileHeaderSkeleton/> : <ProfileHeaderMobileSkeleton/>
+
+                    )
+                
+                
+                }
 
             </Flex>
 
