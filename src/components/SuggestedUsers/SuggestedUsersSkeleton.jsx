@@ -6,7 +6,8 @@ const SuggestedUsersSkeleton = () =>{
 
         <>
 
-            <Flex gap={4} w={"full"} alignItems={"center"}>
+            <Flex gap={4} marginTop={20} w={"full"} alignItems={"center"} position="absolute"
+      left={{ base: 130, md: 300 }}>
 
                 <SkeletonCircle h={10} w='10'/>
 

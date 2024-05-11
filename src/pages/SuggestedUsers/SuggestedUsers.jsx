@@ -1,10 +1,13 @@
 import { Flex, Text, VStack } from "@chakra-ui/react"
 import { useGetSuggestedUsers } from "../../hooks/useGetSuggestedUsers"
 import SuggestedUserTwo from "../../components/SuggestedUsers/SuggestedUserTwo"
+import SuggestedUsersSkeleton from "../../components/SuggestedUsers/SuggestedUsersSkeleton"
 
 const SuggestedUsers = () =>{
 
-    const { suggestedUsers } = useGetSuggestedUsers()
+    const { suggestedUsers, loading } = useGetSuggestedUsers()
+
+    if(loading) return <SuggestedUsersSkeleton/>
 
     return(
 
