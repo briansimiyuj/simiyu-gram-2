@@ -18,11 +18,18 @@ const GoogleAuth = ({ prefix }) =>{
             const newUser = await signInWithGoogle()
 
           
-            if(!newUser && error){
+            if(!newUser){
 
-                showToast(error.message, "error")
+                showToast("Error", "Error signing in with google", "error")
 
                 return
+
+            }
+
+
+            if(error){
+
+                showToast("Error", error.message, "error")
 
             }
 
