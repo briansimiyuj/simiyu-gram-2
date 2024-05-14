@@ -1,7 +1,10 @@
-import { Button, Container, Flex } from "@chakra-ui/react";
+import { Button, Container, Flex, useMediaQuery } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { InstagramMobileLogo } from "../../assets/constants";
 
 const NavBar = () => {
+
+	const [isLessThan768] = useMediaQuery("(max-width: 768px)")
 
 	return (
 
@@ -14,7 +17,9 @@ const NavBar = () => {
 				flexDir={{ base: "column", sm: "row" }}
 			>
 
-                <Flex gap={2}>
+                <Flex gap={5} alignItems={"center"}>
+
+					{ isLessThan768 && <InstagramMobileLogo/> }
 
 					<h1 style={{fontSize:"35px", fontWeight: 900, fontStyle: "italic"}}>BrisGram</h1>
 
