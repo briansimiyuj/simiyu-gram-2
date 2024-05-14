@@ -56,7 +56,7 @@ const PageLayout = ({ children }) =>{
 
                 {
 
-                    isLessThan768 &&(
+                    isLessThan768 && !canRenderNavbar &&(
 
                         <>
 
@@ -75,7 +75,7 @@ const PageLayout = ({ children }) =>{
 
                                     <InstagramMobileLogo/>
 
-                                    <h1 style={{fontSize:"25px", fontWeight: 700, fontStyle: "italic"}}>SimiyuGram</h1>
+                                    <h1 style={{fontSize:"25px", fontWeight: 700, fontStyle: "italic"}}>BrisGram</h1>
 
                                 </Flex>
 

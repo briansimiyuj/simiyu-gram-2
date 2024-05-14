@@ -1,4 +1,4 @@
-import { Button, Container, Flex, Image } from "@chakra-ui/react";
+import { Button, Container, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
@@ -14,7 +14,11 @@ const NavBar = () => {
 				flexDir={{ base: "column", sm: "row" }}
 			>
 
-                <h1 style={{fontSize:"35px", fontWeight: 900, fontStyle: "italic"}}>SimiyuGram</h1>
+                <Flex gap={2}>
+
+					<h1 style={{fontSize:"35px", fontWeight: 900, fontStyle: "italic"}}>BrisGram</h1>
+
+				</Flex>
 
 				<Flex 
 					gap={{ base: 4, sm: 2 }}

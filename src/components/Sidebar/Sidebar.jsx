@@ -44,7 +44,7 @@ const Sidebar = ({ menuDirection, setMenuDirection }) => {
                             cursor={"pointer"}
                         >
 
-                            <h1 style={{fontSize:"25px", fontWeight: 700, fontStyle: "italic"}}>SimiyuGram</h1>
+                            <h1 style={{fontSize:"25px", fontWeight: 700, fontStyle: "italic"}}>BrisGram</h1>
 
                         </Link>
 

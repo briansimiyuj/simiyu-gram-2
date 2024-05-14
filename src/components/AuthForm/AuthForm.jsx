@@ -18,7 +18,7 @@ const AuthForm = () =>{
 
                 <VStack spacing={4}>
 
-                    <h1 style={{fontSize:"60px", fontWeight: 900, fontStyle: "italic"}}>SimiyuGram</h1>
+                    <h1 style={{fontSize:"60px", fontWeight: 900, fontStyle: "italic"}}>BrisGram</h1>
 
                     
                     {
